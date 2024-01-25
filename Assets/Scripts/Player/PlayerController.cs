@@ -1,14 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
+
 
 
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
     private InputManager input;
+
     
+
     [SerializeField]
     private float Speed = 5;
     
@@ -33,5 +38,26 @@ public class PlayerController : MonoBehaviour
         
         controller.Move(movement * (Speed * delta));
     }
+
     
+    private void OnTriggerEnter(Collider other)
+    {
+        
+        if (other.gameObject.tag.Equals("Plot"))
+        {
+            PlotStats _stats = other.gameObject.GetComponent<PlotStats>();
+            if (_stats.isLocked == true)
+            {
+                Debug.Log("LOCKED PLOT");
+                
+            }
+            else
+            {
+                Debug.Log("UNLOCKED PLOT");
+                _stats.deactivateBoundry();
+
+            }
+            
+        }
+    }
 }
