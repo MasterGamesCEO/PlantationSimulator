@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private InputManager input;
 
-    
 
     [SerializeField]
     private float Speed = 5;
@@ -49,7 +48,6 @@ public class PlayerController : MonoBehaviour
             if (_stats.isLocked == true)
             {
                 Debug.Log("LOCKED PLOT");
-                
             }
             else
             {
