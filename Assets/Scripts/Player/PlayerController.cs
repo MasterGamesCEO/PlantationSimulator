@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
     private InputManager input;
+    
 
 
     [SerializeField]
@@ -41,20 +42,29 @@ public class PlayerController : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        
+        UiScript _uiScript = gameObject.GetComponent<UiScript>();
         if (other.gameObject.tag.Equals("Plot"))
         {
             PlotStats _stats = other.gameObject.GetComponent<PlotStats>();
             if (_stats.isLocked == true)
             {
                 Debug.Log("LOCKED PLOT");
+                if (_uiScript.Plopup.GetComponent<Animator>())
+                {
+                    
+                }
+                _uiScript.animatePlopup();
             }
             else
             {
                 Debug.Log("UNLOCKED PLOT");
                 _stats.deactivateBoundry();
-
+                
             }
+            
+        }
+        else
+        {
             
         }
     }
