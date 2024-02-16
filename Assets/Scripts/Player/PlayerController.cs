@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR;
 
 
@@ -11,18 +12,23 @@ public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
     private InputManager input;
-    
 
+    private UiScript _uiScript;
 
     [SerializeField]
     private float Speed = 5;
+
+    private PlotStats curPlotStats;
     
     // Start is called before the first frame update
     void Start()
     {
         input = InputManager.instance;
-        controller = GetComponent<CharacterController>();
         
+        controller = GetComponent<CharacterController>();
+        _uiScript = gameObject.GetComponent<UiScript>();
+        
+        input.buyLand.performed += OnBuyLandPerformed;
     }
 
     // Update is called once per frame
@@ -42,30 +48,40 @@ public class PlayerController : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        UiScript _uiScript = gameObject.GetComponent<UiScript>();
+       
         if (other.gameObject.tag.Equals("Plot"))
         {
-            PlotStats _stats = other.gameObject.GetComponent<PlotStats>();
-            if (_stats.isLocked == true)
+            curPlotStats = other.gameObject.GetComponent<PlotStats>();
+            if (curPlotStats.isLocked == true)
             {
                 Debug.Log("LOCKED PLOT");
-                if (_uiScript.Plopup.GetComponent<Animator>())
-                {
-                    
-                }
-                _uiScript.animatePlopup();
+                _uiScript.activatePopup();
             }
             else
             {
                 Debug.Log("UNLOCKED PLOT");
-                _stats.deactivateBoundry();
-                
+                curPlotStats.deactivateBoundry();
+                _uiScript.deactivatePopup();
             }
             
         }
-        else
+        else if (other.gameObject.tag.Equals("Onplot"))
         {
-            
+            _uiScript.deactivatePopup();
         }
     }
+
+    private void OnBuyLandPerformed(InputAction.CallbackContext obj)
+    {
+        if (_uiScript.popupActive())
+        {
+            
+            _uiScript.deactivatePopup();
+            curPlotStats.isLocked = false;
+            curPlotStats.deactivateBoundry();
+            _uiScript.updateMoney("0");
+        }
+        
+    }
+    
 }

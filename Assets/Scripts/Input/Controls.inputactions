@@ -2,14 +2,86 @@
     "name": "Controls",
     "maps": [
         {
-            "name": "Locomotion",
-            "id": "3f31fa9d-4cf3-478f-84ac-bcc40ab55721",
+            "name": "Player",
+            "id": "0693da98-dcd1-4bec-938a-62c4186c2a5e",
             "actions": [
                 {
-                    "name": "Move",
-                    "type": "PassThrough",
-                    "id": "06851d77-aae4-48db-a77a-e10e14b1ef1b",
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "cccaad87-f5ec-4475-a949-697a46ee35ad",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "WASD",
+                    "id": "26301c06-014c-4a23-bbc4-cc79b7002ba4",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "8a92b9d4-5566-4be9-925a-1f3e21bf6478",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "9c99cc8e-347b-4d89-8213-e3939f21c7d5",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "981bf732-1b45-48e8-b88f-18979fd293ae",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "1d001e24-0aea-4e4a-b3c5-77a0a037f876",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Dialog",
+            "id": "28288e77-1f21-4453-baf8-b734e9bbf9ce",
+            "actions": [
+                {
+                    "name": "Buy Land",
+                    "type": "Button",
+                    "id": "2002c4ea-e9c2-47cb-9d7b-b312b5b55b58",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -17,59 +89,15 @@
             ],
             "bindings": [
                 {
-                    "name": "2D Vector",
-                    "id": "b281454e-3ea4-4be6-b14a-94c4f4386026",
-                    "path": "2DVector",
+                    "name": "",
+                    "id": "7e357ec0-8355-4bea-99b6-176ab731bd12",
+                    "path": "<Keyboard>/b",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
-                    "isComposite": true,
+                    "action": "Buy Land",
+                    "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "67b37a0f-4722-4861-856e-f12448eca952",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "9275b1b0-11b5-4d41-98f7-8fafe257819e",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "09893072-9984-41b6-be83-956eb0ecbf71",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "c0ec09aa-e9bd-474a-8752-4a42d580a805",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         }

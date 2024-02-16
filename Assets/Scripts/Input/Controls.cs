@@ -24,40 +24,85 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     ""name"": ""Controls"",
     ""maps"": [
         {
-            ""name"": ""Locomotion"",
-            ""id"": ""d3e68489-89e2-4583-8c11-3adaa684cb01"",
+            ""name"": ""Player"",
+            ""id"": ""0693da98-dcd1-4bec-938a-62c4186c2a5e"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""8f5f8ca0-df5b-4818-b01e-0e4d72f252b7"",
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""cccaad87-f5ec-4475-a949-697a46ee35ad"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
                 {
-                    ""name"": ""Look"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""e9515e07-10e5-4bc1-ac07-bd75734f864a"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""name"": ""WASD"",
+                    ""id"": ""26301c06-014c-4a23-bbc4-cc79b7002ba4"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ADS"",
-                    ""type"": ""Button"",
-                    ""id"": ""adfe253f-af12-4e83-9812-1ac4b698eb4c"",
-                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Shoot"",
+                    ""name"": ""up"",
+                    ""id"": ""8a92b9d4-5566-4be9-925a-1f3e21bf6478"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""9c99cc8e-347b-4d89-8213-e3939f21c7d5"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""981bf732-1b45-48e8-b88f-18979fd293ae"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""1d001e24-0aea-4e4a-b3c5-77a0a037f876"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
+        },
+        {
+            ""name"": ""Dialog"",
+            ""id"": ""28288e77-1f21-4453-baf8-b734e9bbf9ce"",
+            ""actions"": [
+                {
+                    ""name"": ""Buy Land"",
                     ""type"": ""Button"",
-                    ""id"": ""f7334921-e5c6-4a79-afd7-d1892e3e74bd"",
+                    ""id"": ""2002c4ea-e9c2-47cb-9d7b-b312b5b55b58"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -66,90 +111,13 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""968b8b41-dca7-4c4d-b514-c8118a42ea05"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""c4052bf5-f231-4f4e-b145-6e52b0929165"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""1ad71592-ef3f-45df-9077-bf4e4f137ecf"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""b714acb7-5f5c-4b9f-beaa-66b230297efa"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""d4a6ac05-102e-4aeb-980e-0ef430a08ef6"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
-                    ""id"": ""c259906b-6f09-4d28-b383-d6023e6ece39"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""id"": ""7e357ec0-8355-4bea-99b6-176ab731bd12"",
+                    ""path"": ""<Keyboard>/b"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""64796d71-55f3-4ae4-8f9c-b4012ba275a4"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ADS"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1c7a303d-cfca-42c6-8d92-d4b427d5be98"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""action"": ""Buy Land"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -158,12 +126,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Locomotion
-        m_Locomotion = asset.FindActionMap("Locomotion", throwIfNotFound: true);
-        m_Locomotion_Move = m_Locomotion.FindAction("Move", throwIfNotFound: true);
-        m_Locomotion_Look = m_Locomotion.FindAction("Look", throwIfNotFound: true);
-        m_Locomotion_ADS = m_Locomotion.FindAction("ADS", throwIfNotFound: true);
-        m_Locomotion_Shoot = m_Locomotion.FindAction("Shoot", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+        // Dialog
+        m_Dialog = asset.FindActionMap("Dialog", throwIfNotFound: true);
+        m_Dialog_BuyLand = m_Dialog.FindAction("Buy Land", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -222,80 +190,103 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Locomotion
-    private readonly InputActionMap m_Locomotion;
-    private List<ILocomotionActions> m_LocomotionActionsCallbackInterfaces = new List<ILocomotionActions>();
-    private readonly InputAction m_Locomotion_Move;
-    private readonly InputAction m_Locomotion_Look;
-    private readonly InputAction m_Locomotion_ADS;
-    private readonly InputAction m_Locomotion_Shoot;
-    public struct LocomotionActions
+    // Player
+    private readonly InputActionMap m_Player;
+    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+    private readonly InputAction m_Player_Movement;
+    public struct PlayerActions
     {
         private @Controls m_Wrapper;
-        public LocomotionActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Locomotion_Move;
-        public InputAction @Look => m_Wrapper.m_Locomotion_Look;
-        public InputAction @ADS => m_Wrapper.m_Locomotion_ADS;
-        public InputAction @Shoot => m_Wrapper.m_Locomotion_Shoot;
-        public InputActionMap Get() { return m_Wrapper.m_Locomotion; }
+        public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_Player_Movement;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(LocomotionActions set) { return set.Get(); }
-        public void AddCallbacks(ILocomotionActions instance)
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerActions instance)
         {
-            if (instance == null || m_Wrapper.m_LocomotionActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_LocomotionActionsCallbackInterfaces.Add(instance);
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
-            @Look.started += instance.OnLook;
-            @Look.performed += instance.OnLook;
-            @Look.canceled += instance.OnLook;
-            @ADS.started += instance.OnADS;
-            @ADS.performed += instance.OnADS;
-            @ADS.canceled += instance.OnADS;
-            @Shoot.started += instance.OnShoot;
-            @Shoot.performed += instance.OnShoot;
-            @Shoot.canceled += instance.OnShoot;
+            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
+            @Movement.started += instance.OnMovement;
+            @Movement.performed += instance.OnMovement;
+            @Movement.canceled += instance.OnMovement;
         }
 
-        private void UnregisterCallbacks(ILocomotionActions instance)
+        private void UnregisterCallbacks(IPlayerActions instance)
         {
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
-            @Look.started -= instance.OnLook;
-            @Look.performed -= instance.OnLook;
-            @Look.canceled -= instance.OnLook;
-            @ADS.started -= instance.OnADS;
-            @ADS.performed -= instance.OnADS;
-            @ADS.canceled -= instance.OnADS;
-            @Shoot.started -= instance.OnShoot;
-            @Shoot.performed -= instance.OnShoot;
-            @Shoot.canceled -= instance.OnShoot;
+            @Movement.started -= instance.OnMovement;
+            @Movement.performed -= instance.OnMovement;
+            @Movement.canceled -= instance.OnMovement;
         }
 
-        public void RemoveCallbacks(ILocomotionActions instance)
+        public void RemoveCallbacks(IPlayerActions instance)
         {
-            if (m_Wrapper.m_LocomotionActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(ILocomotionActions instance)
+        public void SetCallbacks(IPlayerActions instance)
         {
-            foreach (var item in m_Wrapper.m_LocomotionActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_LocomotionActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public LocomotionActions @Locomotion => new LocomotionActions(this);
-    public interface ILocomotionActions
+    public PlayerActions @Player => new PlayerActions(this);
+
+    // Dialog
+    private readonly InputActionMap m_Dialog;
+    private List<IDialogActions> m_DialogActionsCallbackInterfaces = new List<IDialogActions>();
+    private readonly InputAction m_Dialog_BuyLand;
+    public struct DialogActions
     {
-        void OnMove(InputAction.CallbackContext context);
-        void OnLook(InputAction.CallbackContext context);
-        void OnADS(InputAction.CallbackContext context);
-        void OnShoot(InputAction.CallbackContext context);
+        private @Controls m_Wrapper;
+        public DialogActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @BuyLand => m_Wrapper.m_Dialog_BuyLand;
+        public InputActionMap Get() { return m_Wrapper.m_Dialog; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DialogActions set) { return set.Get(); }
+        public void AddCallbacks(IDialogActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DialogActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DialogActionsCallbackInterfaces.Add(instance);
+            @BuyLand.started += instance.OnBuyLand;
+            @BuyLand.performed += instance.OnBuyLand;
+            @BuyLand.canceled += instance.OnBuyLand;
+        }
+
+        private void UnregisterCallbacks(IDialogActions instance)
+        {
+            @BuyLand.started -= instance.OnBuyLand;
+            @BuyLand.performed -= instance.OnBuyLand;
+            @BuyLand.canceled -= instance.OnBuyLand;
+        }
+
+        public void RemoveCallbacks(IDialogActions instance)
+        {
+            if (m_Wrapper.m_DialogActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDialogActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DialogActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DialogActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DialogActions @Dialog => new DialogActions(this);
+    public interface IPlayerActions
+    {
+        void OnMovement(InputAction.CallbackContext context);
+    }
+    public interface IDialogActions
+    {
+        void OnBuyLand(InputAction.CallbackContext context);
     }
 }

@@ -7,6 +7,7 @@ TagManager:
   - Plot
   - Boundry
   - Plopup
+  - Onplot
   layers:
   - Default
   - TransparentFX
