@@ -1,51 +1,61 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager instance;
-    private Controls controls;
-    private PlayerController _playerController;
+    public static InputManager Instance;
+    private Controls _controls;
+
     public InputAction buyLand;
-    
+    public InputAction uiControls;
+    public InputAction movement; 
+    public InputAction openDialog;
+
     public Vector2 Move
     {
         get;
         private set;
     }
-    
-    
+
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Destroy(this);
         }
         else
         {
-            instance = this;
+            Instance = this;
         }
-        
-        controls = new Controls();
-        controls.Enable();
-        buyLand = controls.Dialog.BuyLand;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+
+        _controls = new Controls();
+        _controls.Enable();
+
+        buyLand = _controls.Dialog.BuyLand;
+        uiControls = _controls.Dialog.uiControls;
+        movement = _controls.Player.Movement;
+        openDialog = _controls.Dialog.openDialog;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        Move = controls.Player.Movement.ReadValue<Vector2>();
+        buyLand.Enable();
+        uiControls.Enable();
+        movement.Enable();  
+        openDialog.Enable();
     }
 
+    private void OnDisable()
+    {
+        buyLand.Disable();
+        uiControls.Disable();
+        movement.Disable();  
+        openDialog.Disable();
+    }
+
+    private void Update()
+    {
+        Move = movement.ReadValue<Vector2>();  
+        
+    }
 }

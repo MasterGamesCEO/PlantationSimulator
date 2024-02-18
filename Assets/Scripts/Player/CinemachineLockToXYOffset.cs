@@ -8,6 +8,15 @@ public class CinemachineLockToXYOffset : CinemachineExtension
     private float _zOffset;
     private float _yOffset;
  
+    private InputManager _input;
+    
+    
+    void Start()
+    {
+        _input = InputManager.Instance;
+        Cursor.lockState = CursorLockMode.Locked;
+
+    }
     protected override void Awake()
     {
         base.Awake();

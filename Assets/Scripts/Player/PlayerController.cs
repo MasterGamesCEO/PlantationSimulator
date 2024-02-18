@@ -1,37 +1,32 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR;
-
-
+using UnityEngine.Serialization;
+using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    private CharacterController controller;
-    private InputManager input;
+    private CharacterController _controller;
+    private InputManager _input;
+    private PlotStats _curPlotStats;
 
-    private UiScript _uiScript;
+    [SerializeField] private PlotPricePopupScript _plotPricePopupScript;
+    [SerializeField] private float speed = 5;
+    [SerializeField] public float playerMoney = 200;
 
-    [SerializeField]
-    private float Speed = 5;
-
-    private PlotStats curPlotStats;
-    
-    // Start is called before the first frame update
-    void Start()
+    public float GetPlayerMoney()
     {
-        input = InputManager.instance;
-        
-        controller = GetComponent<CharacterController>();
-        _uiScript = gameObject.GetComponent<UiScript>();
-        
-        input.buyLand.performed += OnBuyLandPerformed;
+        return playerMoney;
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        _input = InputManager.Instance;
+        _controller = GetComponent<CharacterController>();
+        _input.buyLand.performed += OnBuyLandPerformed;
+    }
+
     void FixedUpdate()
     {
         HandleMovement(Time.deltaTime);
@@ -39,49 +34,70 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement(float delta)
     {
-        //multiplying by transform.right and transform.forward will make all movement relative to camera direction. 
-        Vector3 movement = (input.Move.x * transform.right) + (input.Move.y * transform.forward);
-        
-        controller.Move(movement * (Speed * delta));
+        Vector3 movement = (_input.Move.x * transform.right) + (_input.Move.y * transform.forward);
+        _controller.Move(movement * (speed * delta));
     }
 
-    
     private void OnTriggerEnter(Collider other)
     {
-       
         if (other.gameObject.tag.Equals("Plot"))
         {
-            curPlotStats = other.gameObject.GetComponent<PlotStats>();
-            if (curPlotStats.isLocked == true)
+            _curPlotStats = other.gameObject.GetComponent<PlotStats>();
+            if (_curPlotStats.isLocked == true)
             {
                 Debug.Log("LOCKED PLOT");
-                _uiScript.activatePopup();
+                _plotPricePopupScript.ActivatePopup(_curPlotStats.PlotPrice);
             }
             else
             {
                 Debug.Log("UNLOCKED PLOT");
-                curPlotStats.deactivateBoundry();
-                _uiScript.deactivatePopup();
+                _curPlotStats.DeactivateBoundry();
+                _plotPricePopupScript.DeactivatePopup();
             }
             
-        }
-        else if (other.gameObject.tag.Equals("Onplot"))
+        } else if (other.gameObject.tag.Equals("House"))
         {
-            _uiScript.deactivatePopup();
-        }
-    }
-
-    private void OnBuyLandPerformed(InputAction.CallbackContext obj)
-    {
-        if (_uiScript.popupActive())
-        {
-            
-            _uiScript.deactivatePopup();
-            curPlotStats.isLocked = false;
-            curPlotStats.deactivateBoundry();
-            _uiScript.updateMoney("0");
+            // Call a method to switch to the market scene
+            SwitchToMarketScene();
         }
         
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Plot"))
+        {
+            _plotPricePopupScript.DeactivatePopup();
+        }
+    }
+    
+
+    private void OnBuyLandPerformed(InputAction.CallbackContext obj)
+    {
+        if (_plotPricePopupScript.PopupActive())
+        {
+            if (playerMoney >= _curPlotStats.PlotPrice)
+            {
+                _plotPricePopupScript.DeactivatePopup();
+                _curPlotStats.isLocked = false;
+                _curPlotStats.DeactivateBoundry();
+                _plotPricePopupScript.UpdateMoney(_curPlotStats.PlotPrice);
+                playerMoney = playerMoney - _curPlotStats.PlotPrice;
+            }
+            else
+            {
+                Debug.Log("Too broke lil homie");
+            }
+        }
+        else
+        {
+            Debug.Log("No Plot ready to buy");
+        }
+    }
+    private void SwitchToMarketScene()
+    {
+        SceneManager.LoadScene(1); 
+    }
+
     
 }

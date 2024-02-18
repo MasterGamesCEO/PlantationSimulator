@@ -8,6 +8,7 @@ TagManager:
   - Boundry
   - Plopup
   - Onplot
+  - House
   layers:
   - Default
   - TransparentFX

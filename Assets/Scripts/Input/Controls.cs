@@ -107,6 +107,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""uiControls"",
+                    ""type"": ""Button"",
+                    ""id"": ""5ff3f479-fcff-4c17-995f-29e768fc46a3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""openDialog"",
+                    ""type"": ""Button"",
+                    ""id"": ""381f0935-059c-4e90-8c75-945dc1587499"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -118,6 +136,72 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Buy Land"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""moveThroughUI"",
+                    ""id"": ""765095be-96ae-48e2-a147-45e9ad047cef"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""uiControls"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""7ec2eb5e-1474-4532-a1e8-d62f3a32af13"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""uiControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""fcbc6370-5194-4092-b907-44e8a7b58654"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""uiControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""54d4f5b4-5d89-46a8-8648-2bc102246d5b"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""uiControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""fc988451-5e51-4977-ac6d-0a98d5572fe7"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""uiControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9d2d9e1a-d015-40dc-a00d-a1782d1ec8dd"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""openDialog"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -132,6 +216,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // Dialog
         m_Dialog = asset.FindActionMap("Dialog", throwIfNotFound: true);
         m_Dialog_BuyLand = m_Dialog.FindAction("Buy Land", throwIfNotFound: true);
+        m_Dialog_uiControls = m_Dialog.FindAction("uiControls", throwIfNotFound: true);
+        m_Dialog_openDialog = m_Dialog.FindAction("openDialog", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -240,11 +326,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Dialog;
     private List<IDialogActions> m_DialogActionsCallbackInterfaces = new List<IDialogActions>();
     private readonly InputAction m_Dialog_BuyLand;
+    private readonly InputAction m_Dialog_uiControls;
+    private readonly InputAction m_Dialog_openDialog;
     public struct DialogActions
     {
         private @Controls m_Wrapper;
         public DialogActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @BuyLand => m_Wrapper.m_Dialog_BuyLand;
+        public InputAction @uiControls => m_Wrapper.m_Dialog_uiControls;
+        public InputAction @openDialog => m_Wrapper.m_Dialog_openDialog;
         public InputActionMap Get() { return m_Wrapper.m_Dialog; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -257,6 +347,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @BuyLand.started += instance.OnBuyLand;
             @BuyLand.performed += instance.OnBuyLand;
             @BuyLand.canceled += instance.OnBuyLand;
+            @uiControls.started += instance.OnUiControls;
+            @uiControls.performed += instance.OnUiControls;
+            @uiControls.canceled += instance.OnUiControls;
+            @openDialog.started += instance.OnOpenDialog;
+            @openDialog.performed += instance.OnOpenDialog;
+            @openDialog.canceled += instance.OnOpenDialog;
         }
 
         private void UnregisterCallbacks(IDialogActions instance)
@@ -264,6 +360,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @BuyLand.started -= instance.OnBuyLand;
             @BuyLand.performed -= instance.OnBuyLand;
             @BuyLand.canceled -= instance.OnBuyLand;
+            @uiControls.started -= instance.OnUiControls;
+            @uiControls.performed -= instance.OnUiControls;
+            @uiControls.canceled -= instance.OnUiControls;
+            @openDialog.started -= instance.OnOpenDialog;
+            @openDialog.performed -= instance.OnOpenDialog;
+            @openDialog.canceled -= instance.OnOpenDialog;
         }
 
         public void RemoveCallbacks(IDialogActions instance)
@@ -288,5 +390,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface IDialogActions
     {
         void OnBuyLand(InputAction.CallbackContext context);
+        void OnUiControls(InputAction.CallbackContext context);
+        void OnOpenDialog(InputAction.CallbackContext context);
     }
 }
