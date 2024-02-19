@@ -4,46 +4,53 @@ public class PlotStats : MonoBehaviour
 {
     [SerializeField] public bool isLocked = true;
     [SerializeField] public BoxCollider boundryPos;
-    [SerializeField ]public Material LockMaterial;
-    [SerializeField ]public Material unlockMaterial;
+    [SerializeField] public Material lockMaterial;
+    [SerializeField] public Material unlockMaterial;
     public float PlotPrice { get; private set; }
+
+    #region Unity Callbacks
 
     private void Awake()
     {
         SetPlotPrice();
     }
 
+    #endregion
+
+    #region Plot Configuration
+
     public void setPlotColor(bool locked)
     {
-        if (locked)
-        {
-            gameObject.GetComponent<MeshRenderer>().material = LockMaterial;
-        }
-        else
-        {
-            gameObject.GetComponent<MeshRenderer>().material = unlockMaterial;
-        }
+        var renderer = gameObject.GetComponent<MeshRenderer>();
+        renderer.material = locked ? lockMaterial : unlockMaterial;
     }
 
     public void SetPlotPrice()
     {
-        float distanceFromStartingPlot = Mathf.Abs(Mathf.RoundToInt(transform.position.x)/8);
-        float basePrice = 500; 
-        float pricePerDistance = 100; 
-        
-        PlotPrice = basePrice + (Mathf.Pow(distanceFromStartingPlot * pricePerDistance,8/5F));
-        
+        float distanceFromStartingPlot = Mathf.Abs(Mathf.RoundToInt(transform.position.x) / 8);
+        float basePrice = 500;
+        float pricePerDistance = 100;
+
+        PlotPrice = basePrice + (Mathf.Pow(distanceFromStartingPlot * pricePerDistance, 8 / 5F));
     }
+
+    #endregion
+
+    #region Boundry Operations
 
     public void ActivateBoundry()
     {
-        gameObject.GetComponent<MeshRenderer>().material = LockMaterial;
+        var renderer = gameObject.GetComponent<MeshRenderer>();
+        renderer.material = lockMaterial;
         boundryPos.enabled = true;
     }
 
     public void DeactivateBoundry()
     {
-        gameObject.GetComponent<MeshRenderer>().material = unlockMaterial;
+        var renderer = gameObject.GetComponent<MeshRenderer>();
+        renderer.material = unlockMaterial;
         boundryPos.enabled = false;
     }
+
+    #endregion
 }

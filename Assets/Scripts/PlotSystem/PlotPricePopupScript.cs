@@ -1,14 +1,10 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
 public class PlotPricePopupScript : MonoBehaviour
 {
-    
-    [SerializeField] TextMeshProUGUI plotPrice;
-    [SerializeField] TextMeshProUGUI moneyText;
+    [SerializeField] private TextMeshProUGUI plotPrice;
+    [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private GameObject moneySpreadPrefab;
     
     private GameObject currentMoneySpread;
@@ -17,16 +13,22 @@ public class PlotPricePopupScript : MonoBehaviour
 
     private static readonly int Popup = Animator.StringToHash("popup");
 
+    #region Unity Callbacks
+
     private void Start()
     {
         _mAnimator = GetComponent<Animator>();
         UpdateMoney(0);
     }
 
+    #endregion
+
+    #region Popup Management
+
     public void ActivatePopup(float plotPriceValue)
     {
         plotPriceValue = (int)plotPriceValue;
-        plotPrice.text = plotPriceValue.ToString();
+        plotPrice.text = "$" + plotPriceValue.ToString();
         _mAnimator.SetBool(Popup, true);
     }
 
@@ -39,6 +41,10 @@ public class PlotPricePopupScript : MonoBehaviour
     {
         return _mAnimator.GetBool(Popup);
     }
+
+    #endregion
+
+    #region Money Operations
 
     // ReSharper disable Unity.PerformanceAnalysis
     public void UpdateMoney(float moneyDelta)
@@ -53,13 +59,12 @@ public class PlotPricePopupScript : MonoBehaviour
             Debug.LogError("PlayerController not found!");
         }
     }
+
     public void RunMoneySpread()
     {
-        Debug.Log("Money Spread");
         Destroy(currentMoneySpread);
         currentMoneySpread = Instantiate(moneySpreadPrefab, _playerController.transform);
-        
-        
-        
     }
+
+    #endregion
 }

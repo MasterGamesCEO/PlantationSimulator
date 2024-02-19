@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,9 +6,10 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    #region Fields
+
     [SerializeField] private GameObject dialogBoxPrefab;
     [SerializeField] private PlayerController playerController;
-    [SerializeField] private PlotStats[] allPlots;
     [SerializeField] private PlotPricePopupScript _plotPricePopupScript;
 
     private InputManager _input;
@@ -23,9 +23,12 @@ public class UIManager : MonoBehaviour
     private const float DefaultPlayerPositionY = 1f;
     private const float DefaultPlayerPositionZ = 0f;
 
+    #endregion
+
+    #region Unity Callbacks
+
     private void Awake()
     {
-        // Check if playerController is assigned before calling methods on it
         if (playerController != null)
         {
             playerController.SetPlayerMoney(10000);
@@ -38,14 +41,12 @@ public class UIManager : MonoBehaviour
         _input = InputManager.Instance;
         _input.openDialog.performed += OnDialogPerformed;
 
-        // Load saved game data
         LoadGameData();
-        
-    
-        // Unlock the first plot immediately
-        if (allPlots.Length > 0)
+
+        PlotDataHandler plotDataHandler = FindObjectOfType<PlotDataHandler>();
+        if (plotDataHandler != null)
         {
-            allPlots[0].isLocked = false;
+            plotDataHandler.UnlockFirstPlot();
         }
     }
 
@@ -61,9 +62,11 @@ public class UIManager : MonoBehaviour
             }
             UpdateUI();
         }
-        
+
         _navigationProcessedThisFrame = false;
     }
+
+    #endregion
 
     #region Actions
 
@@ -101,7 +104,7 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    #region UIPOPUP AND NAV
+    #region UI Popup and Navigation
 
     private void HandleNavigation(Vector2 uiInput)
     {
@@ -151,7 +154,6 @@ public class UIManager : MonoBehaviour
 
     private void OnDialogPerformed(InputAction.CallbackContext obj)
     {
-        Debug.Log("Dialog performed!");
         _isDialogOpen = !_isDialogOpen;
 
         if (_isDialogOpen)
@@ -185,76 +187,75 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion
+    
+    #region Save and Load UI State
+
+    public void SaveUIState()
+    {
+        PlayerPrefs.SetString("ActivePanel_Scene" + gameObject.scene.buildIndex, "MainMenu");
+        PlayerPrefs.Save();
+    }
+
+    public void LoadUIState()
+    {
+        string activePanel = PlayerPrefs.GetString("ActivePanel_Scene" + gameObject.scene.buildIndex, "MainMenu");
+    }
+
+    #endregion
 
     #region Save and Load Game Data
 
-    private void SaveGameData()
+    public void SaveGameData()
     {
         PlayerPrefs.SetFloat("PlayerMoney", playerController.GetPlayerMoney());
-        PlayerPrefs.SetFloat("PlayerPositionX", playerController.transform.position.x);
-        PlayerPrefs.SetFloat("PlayerPositionY", playerController.transform.position.y);
-        PlayerPrefs.SetFloat("PlayerPositionZ", playerController.transform.position.z);
+        var position = playerController.transform.position;
+        PlayerPrefs.SetFloat("PlayerPositionX", position.x);
+        PlayerPrefs.SetFloat("PlayerPositionY", position.y);
+        PlayerPrefs.SetFloat("PlayerPositionZ", position.z);
 
-        for (int i = 0; i < allPlots.Length; i++)
+        PlotDataHandler plotDataHandler = FindObjectOfType<PlotDataHandler>();
+        if (plotDataHandler != null)
         {
-            PlayerPrefs.SetInt($"Plot_{i}_IsLocked", allPlots[i].isLocked ? 1 : 0);
+            plotDataHandler.SavePlotData();
         }
 
         PlayerPrefs.Save();
     }
 
-    private void LoadGameData()
+    public void LoadGameData()
     {
         playerController.SetPlayerMoney(PlayerPrefs.GetFloat("PlayerMoney", 10000f));
         _plotPricePopupScript.UpdateMoney(0);
-        // Load player's position
+
         float playerPositionX = PlayerPrefs.GetFloat("PlayerPositionX", DefaultPlayerPositionX);
         float playerPositionY = PlayerPrefs.GetFloat("PlayerPositionY", DefaultPlayerPositionY);
         float playerPositionZ = PlayerPrefs.GetFloat("PlayerPositionZ", DefaultPlayerPositionZ);
 
-        // Set the player's position immediately
-        playerController.transform.position = new Vector3(playerPositionX, playerPositionY, playerPositionZ);
-        Debug.Log("Loaded Player Position: " + playerController.transform.position);
-        
-        
-        // Load plot status
-        for (int i = 0; i < allPlots.Length; i++)
+        var transform1 = playerController.transform;
+        transform1.position = new Vector3(playerPositionX, playerPositionY, playerPositionZ);
+
+        PlotDataHandler plotDataHandler = FindObjectOfType<PlotDataHandler>();
+        if (plotDataHandler != null)
         {
-            int isLockedValue = PlayerPrefs.GetInt($"Plot_{i}_IsLocked", 1);
-            allPlots[i].isLocked = isLockedValue == 1;
-            allPlots[i].setPlotColor(allPlots[i].isLocked = isLockedValue == 1);
+            plotDataHandler.LoadPlotData();
         }
     }
-
-    private void UnlockFirstPlot()
-    {
-        if (allPlots.Length > 0)
-        {
-            allPlots[0].isLocked = false;
-            allPlots[0].DeactivateBoundry();
-        }
-    }
-
-    // ReSharper disable Unity.PerformanceAnalysis
+    
     private void ResetGameData()
     {
         playerController.SetPlayerMoney(10000);
         _plotPricePopupScript.UpdateMoney(0);
 
-        for (int i = 0; i < allPlots.Length; i++)
-        {
-            allPlots[i].isLocked = true;
-            allPlots[i].ActivateBoundry();
-            
-        }
-        UnlockFirstPlot();
-        
+        PlotDataHandler plotDataHandler = FindObjectOfType<PlotDataHandler>();
 
+        if (plotDataHandler != null)
+        {
+            plotDataHandler.ResetGameData();
+        }
+        
         PlayerPrefs.DeleteAll();
         playerController.transform.position = new Vector3(DefaultPlayerPositionX, DefaultPlayerPositionY, DefaultPlayerPositionZ);
-        
     }
 
-    
     #endregion
 }

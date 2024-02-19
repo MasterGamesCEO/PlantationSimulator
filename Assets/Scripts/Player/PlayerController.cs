@@ -1,20 +1,23 @@
-using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
-using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    #region Fields
+
     private CharacterController _controller;
     private InputManager _input;
     private PlotStats _curPlotStats;
-    
 
     [SerializeField] private PlotPricePopupScript _plotPricePopupScript;
     [SerializeField] private float speed = 5;
     [SerializeField] private float playerMoney = 200;
+
+    #endregion
+
+    #region Properties
 
     public float GetPlayerMoney()
     {
@@ -25,48 +28,32 @@ public class PlayerController : MonoBehaviour
     {
         playerMoney = amount;
     }
-    
 
-    void Start()
+    #endregion
+
+    #region Unity Callbacks
+
+    private void Start()
     {
         _input = InputManager.Instance;
         _controller = GetComponent<CharacterController>();
         _input.buyLand.performed += OnBuyLandPerformed;
-        Debug.Log("Start Player Position: " + transform.position);
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         HandleMovement(Time.deltaTime);
-    }
-
-    private void HandleMovement(float delta)
-    {
-        Vector3 movement = (_input.Move.x * transform.right) + (_input.Move.y * transform.forward);
-        _controller.Move(movement * (speed * delta));
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Plot"))
         {
-            _curPlotStats = other.gameObject.GetComponent<PlotStats>();
-            if (_curPlotStats.isLocked == true)
-            {
-                Debug.Log("LOCKED PLOT");
-                _plotPricePopupScript.ActivatePopup(_curPlotStats.PlotPrice);
-            }
-            else
-            {
-                Debug.Log("UNLOCKED PLOT");
-                _curPlotStats.DeactivateBoundry();
-                _plotPricePopupScript.DeactivatePopup();
-            }
+            HandlePlotTrigger(other);
         }
         else if (other.gameObject.tag.Equals("House"))
         {
-            // Call a method to switch to the market scene
-            SwitchToMarketScene();
+            SwitchScenes();
         }
     }
 
@@ -78,23 +65,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Player Actions
+
+    private void HandleMovement(float delta)
+    {
+        Vector3 movement = (_input.Move.x * transform.right) + (_input.Move.y * transform.forward);
+        _controller.Move(movement * (speed * delta));
+    }
+
     private void OnBuyLandPerformed(InputAction.CallbackContext obj)
     {
         if (_plotPricePopupScript.PopupActive())
         {
-            if (playerMoney >= _curPlotStats.PlotPrice)
-            {
-                _plotPricePopupScript.DeactivatePopup();
-                _curPlotStats.isLocked = false;
-                _curPlotStats.DeactivateBoundry();
-                _plotPricePopupScript.UpdateMoney(_curPlotStats.PlotPrice);
-                playerMoney = playerMoney - _curPlotStats.PlotPrice;
-                _plotPricePopupScript.RunMoneySpread();
-            }
-            else
-            {
-                Debug.Log("Too broke lil homie");
-            }
+            BuyLand();
         }
         else
         {
@@ -102,8 +87,77 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void SwitchToMarketScene()
+    private void HandlePlotTrigger(Collider plotCollider)
     {
-        SceneManager.LoadScene(1);
+        _curPlotStats = plotCollider.gameObject.GetComponent<PlotStats>();
+        if (_curPlotStats.isLocked)
+        {
+            Debug.Log("LOCKED PLOT");
+            _plotPricePopupScript.ActivatePopup(_curPlotStats.PlotPrice);
+        }
+        else
+        {
+            Debug.Log("UNLOCKED PLOT");
+            _curPlotStats.DeactivateBoundry();
+            _plotPricePopupScript.DeactivatePopup();
+        }
     }
+
+    private void BuyLand()
+    {
+        if (playerMoney >= _curPlotStats.PlotPrice)
+        {
+            _plotPricePopupScript.DeactivatePopup();
+            _curPlotStats.isLocked = false;
+            _curPlotStats.DeactivateBoundry();
+            _plotPricePopupScript.UpdateMoney(_curPlotStats.PlotPrice);
+            playerMoney -= _curPlotStats.PlotPrice;
+            _plotPricePopupScript.RunMoneySpread();
+        }
+        else
+        {
+            Debug.Log("Too broke lil homie");
+        }
+    }
+
+    #endregion
+
+    #region Scene Transition
+
+    private void SwitchScenes()
+    {
+        UIManager uiManager = FindObjectOfType<UIManager>();
+        if (uiManager != null)
+        {
+            uiManager.SaveUIState();
+            uiManager.SaveGameData();
+        }
+
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.buildIndex == 0)
+        {
+            Debug.Log("Switching from Scene 0 to Scene 1");
+            SceneManager.sceneLoaded += OnSceneLoaded; 
+            SceneManager.LoadScene(1);
+        }
+        else if (currentScene.buildIndex == 1)
+        {
+            Debug.Log("Switching from Scene 1 to Scene 0");
+            SceneManager.sceneLoaded += OnSceneLoaded; 
+            SceneManager.LoadScene(0);
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        UIManager uiManager = FindObjectOfType<UIManager>();
+        if (uiManager != null)
+        {
+            uiManager.LoadUIState();
+            uiManager.LoadGameData();
+        }
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    #endregion
 }

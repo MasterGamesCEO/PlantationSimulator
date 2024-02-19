@@ -229,7 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   boundryPos: {fileID: 2638917511651399961}
-  LockMaterial: {fileID: 2100000, guid: 9efedd2a02a24ac479e285d244f6b34e, type: 2}
+  lockMaterial: {fileID: 2100000, guid: 9efedd2a02a24ac479e285d244f6b34e, type: 2}
   unlockMaterial: {fileID: 2100000, guid: f42a357a923c92f4b9818c765c8b2c03, type: 2}
 --- !u!65 &5767001104101108031
 BoxCollider:
