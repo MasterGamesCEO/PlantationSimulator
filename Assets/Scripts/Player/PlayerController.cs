@@ -10,21 +10,29 @@ public class PlayerController : MonoBehaviour
     private CharacterController _controller;
     private InputManager _input;
     private PlotStats _curPlotStats;
+    
 
     [SerializeField] private PlotPricePopupScript _plotPricePopupScript;
     [SerializeField] private float speed = 5;
-    [SerializeField] public float playerMoney = 200;
+    [SerializeField] private float playerMoney = 200;
 
     public float GetPlayerMoney()
     {
         return playerMoney;
     }
 
+    public void SetPlayerMoney(float amount)
+    {
+        playerMoney = amount;
+    }
+    
+
     void Start()
     {
         _input = InputManager.Instance;
         _controller = GetComponent<CharacterController>();
         _input.buyLand.performed += OnBuyLandPerformed;
+        Debug.Log("Start Player Position: " + transform.position);
     }
 
     void FixedUpdate()
@@ -54,13 +62,12 @@ public class PlayerController : MonoBehaviour
                 _curPlotStats.DeactivateBoundry();
                 _plotPricePopupScript.DeactivatePopup();
             }
-            
-        } else if (other.gameObject.tag.Equals("House"))
+        }
+        else if (other.gameObject.tag.Equals("House"))
         {
             // Call a method to switch to the market scene
             SwitchToMarketScene();
         }
-        
     }
 
     private void OnTriggerExit(Collider other)
@@ -70,7 +77,6 @@ public class PlayerController : MonoBehaviour
             _plotPricePopupScript.DeactivatePopup();
         }
     }
-    
 
     private void OnBuyLandPerformed(InputAction.CallbackContext obj)
     {
@@ -83,6 +89,7 @@ public class PlayerController : MonoBehaviour
                 _curPlotStats.DeactivateBoundry();
                 _plotPricePopupScript.UpdateMoney(_curPlotStats.PlotPrice);
                 playerMoney = playerMoney - _curPlotStats.PlotPrice;
+                _plotPricePopupScript.RunMoneySpread();
             }
             else
             {
@@ -94,10 +101,9 @@ public class PlayerController : MonoBehaviour
             Debug.Log("No Plot ready to buy");
         }
     }
+
     private void SwitchToMarketScene()
     {
-        SceneManager.LoadScene(1); 
+        SceneManager.LoadScene(1);
     }
-
-    
 }

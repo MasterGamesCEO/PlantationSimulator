@@ -4,12 +4,25 @@ public class PlotStats : MonoBehaviour
 {
     [SerializeField] public bool isLocked = true;
     [SerializeField] public BoxCollider boundryPos;
-    
+    [SerializeField ]public Material LockMaterial;
+    [SerializeField ]public Material unlockMaterial;
     public float PlotPrice { get; private set; }
 
     private void Awake()
     {
         SetPlotPrice();
+    }
+
+    public void setPlotColor(bool locked)
+    {
+        if (locked)
+        {
+            gameObject.GetComponent<MeshRenderer>().material = LockMaterial;
+        }
+        else
+        {
+            gameObject.GetComponent<MeshRenderer>().material = unlockMaterial;
+        }
     }
 
     public void SetPlotPrice()
@@ -22,8 +35,15 @@ public class PlotStats : MonoBehaviour
         
     }
 
+    public void ActivateBoundry()
+    {
+        gameObject.GetComponent<MeshRenderer>().material = LockMaterial;
+        boundryPos.enabled = true;
+    }
+
     public void DeactivateBoundry()
     {
+        gameObject.GetComponent<MeshRenderer>().material = unlockMaterial;
         boundryPos.enabled = false;
     }
 }

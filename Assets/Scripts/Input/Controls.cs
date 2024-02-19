@@ -125,6 +125,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""enterKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""184decfa-4df2-43f7-8692-e78020a521b7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -204,6 +213,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""openDialog"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f82c667e-5d2a-435e-868d-ca1c0f2e8841"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""enterKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -218,6 +238,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Dialog_BuyLand = m_Dialog.FindAction("Buy Land", throwIfNotFound: true);
         m_Dialog_uiControls = m_Dialog.FindAction("uiControls", throwIfNotFound: true);
         m_Dialog_openDialog = m_Dialog.FindAction("openDialog", throwIfNotFound: true);
+        m_Dialog_enterKey = m_Dialog.FindAction("enterKey", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -328,6 +349,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Dialog_BuyLand;
     private readonly InputAction m_Dialog_uiControls;
     private readonly InputAction m_Dialog_openDialog;
+    private readonly InputAction m_Dialog_enterKey;
     public struct DialogActions
     {
         private @Controls m_Wrapper;
@@ -335,6 +357,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @BuyLand => m_Wrapper.m_Dialog_BuyLand;
         public InputAction @uiControls => m_Wrapper.m_Dialog_uiControls;
         public InputAction @openDialog => m_Wrapper.m_Dialog_openDialog;
+        public InputAction @enterKey => m_Wrapper.m_Dialog_enterKey;
         public InputActionMap Get() { return m_Wrapper.m_Dialog; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -353,6 +376,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @openDialog.started += instance.OnOpenDialog;
             @openDialog.performed += instance.OnOpenDialog;
             @openDialog.canceled += instance.OnOpenDialog;
+            @enterKey.started += instance.OnEnterKey;
+            @enterKey.performed += instance.OnEnterKey;
+            @enterKey.canceled += instance.OnEnterKey;
         }
 
         private void UnregisterCallbacks(IDialogActions instance)
@@ -366,6 +392,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @openDialog.started -= instance.OnOpenDialog;
             @openDialog.performed -= instance.OnOpenDialog;
             @openDialog.canceled -= instance.OnOpenDialog;
+            @enterKey.started -= instance.OnEnterKey;
+            @enterKey.performed -= instance.OnEnterKey;
+            @enterKey.canceled -= instance.OnEnterKey;
         }
 
         public void RemoveCallbacks(IDialogActions instance)
@@ -392,5 +421,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnBuyLand(InputAction.CallbackContext context);
         void OnUiControls(InputAction.CallbackContext context);
         void OnOpenDialog(InputAction.CallbackContext context);
+        void OnEnterKey(InputAction.CallbackContext context);
     }
 }
