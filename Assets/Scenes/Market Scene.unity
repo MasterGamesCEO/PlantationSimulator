@@ -141,6 +141,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 6227944549253903171, guid: 4dd9c2d3315575942b11f9e3963d329b,
+        type: 3}
+      propertyPath: _playerController
+      value: 
+      objectReference: {fileID: 103598504}
     - target: {fileID: 7544545918030441885, guid: 4dd9c2d3315575942b11f9e3963d329b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -191,6 +196,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8019832338336841199, guid: 4dd9c2d3315575942b11f9e3963d329b,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 103598504}
     - target: {fileID: 8020369822643934018, guid: 4dd9c2d3315575942b11f9e3963d329b,
         type: 3}
       propertyPath: playerController
@@ -203,7 +213,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 4dd9c2d3315575942b11f9e3963d329b, type: 3}
 --- !u!114 &14186217 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1544860899095290549, guid: 4dd9c2d3315575942b11f9e3963d329b,
+  m_CorrespondingSourceObject: {fileID: 6227944549253903171, guid: 4dd9c2d3315575942b11f9e3963d329b,
     type: 3}
   m_PrefabInstance: {fileID: 14186216}
   m_PrefabAsset: {fileID: 0}

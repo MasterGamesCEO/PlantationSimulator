@@ -235,7 +235,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4096142615674465828}
-  - component: {fileID: 3017909379820748131}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -261,18 +260,6 @@ Transform:
   - {fileID: 6904607742212990538}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3017909379820748131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1979705788885432783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 508730c03aeb87e4e9879669bd26b3b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4343983734798772689
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +540,6 @@ MonoBehaviour:
   _plotPricePopupScript: {fileID: 0}
   speed: 5
   playerMoney: 10000
-  fadeDuration: 1
 --- !u!143 &2663625964122914301
 CharacterController:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private PlotPricePopupScript _plotPricePopupScript;
     [SerializeField] private float speed = 5;
-    [SerializeField] private float playerMoney = 200;
+    [SerializeField] private float playerMoney = 10000;
 
     #endregion
 
@@ -126,36 +126,24 @@ public class PlayerController : MonoBehaviour
 
     private void SwitchScenes()
     {
-        UIManager uiManager = FindObjectOfType<UIManager>();
-        if (uiManager != null)
-        {
-            uiManager.SaveUIState();
-            uiManager.SaveGameData();
-        }
+        SaveLoadSystem.SaveGameData(this, FindObjectOfType<PlotDataHandler>());
 
-        Scene currentScene = SceneManager.GetActiveScene();
-        if (currentScene.buildIndex == 0)
-        {
-            Debug.Log("Switching from Scene 0 to Scene 1");
-            SceneManager.sceneLoaded += OnSceneLoaded; 
-            SceneManager.LoadScene(1);
-        }
-        else if (currentScene.buildIndex == 1)
-        {
-            Debug.Log("Switching from Scene 1 to Scene 0");
-            SceneManager.sceneLoaded += OnSceneLoaded; 
-            SceneManager.LoadScene(0);
-        }
+        SceneController currentScene = FindObjectOfType<SceneController>();
+        currentScene.ChangeScene();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        SaveLoadSystem.LoadGameData(this, FindObjectOfType<PlotDataHandler>());
+
+        
         UIManager uiManager = FindObjectOfType<UIManager>();
         if (uiManager != null)
         {
             uiManager.LoadUIState();
-            uiManager.LoadGameData();
         }
+
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 

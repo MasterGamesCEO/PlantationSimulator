@@ -6,6 +6,16 @@ public class PlotDataHandler : MonoBehaviour
 {
     [SerializeField] private PlayerController _controller;
     [SerializeField] public PlotStats[] allPlots;
+    
+    public List<SaveData.PlotData> GetPlotDataList()
+    {
+        List<SaveData.PlotData> plotDataList = new List<SaveData.PlotData>();
+        foreach (var plot in allPlots)
+        {
+            plotDataList.Add(new SaveData.PlotData(plot.isLocked));
+        }
+        return plotDataList;
+    }
 
     #region Save and Load Plot Data
 
@@ -18,7 +28,7 @@ public class PlotDataHandler : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void LoadPlotData()
+    public void LoadPlotData(List<SaveData.PlotData> saveDataPlotDataList)
     {
         for (int i = 0; i < allPlots.Length; i++)
         {
