@@ -6,13 +6,18 @@ using UnityEngine;
 public class SaveData
 {
     public float playerMoney;
-    // Add any other data you want to save/load
-
+    public List<PlotData> plotDataList = new List<PlotData>();
+    public HomeScreen HomeScreen = new HomeScreen();
+    
+    public int SlotLastSelectedData
+    {
+        get { return HomeScreen.SlotLastSelected; }
+        set { HomeScreen.SlotLastSelected = value; }
+    }
     [System.Serializable]
     public class PlotData
     {
         public bool isLocked;
-        // Add any other plot-related data you want to save/load
 
         public PlotData(bool isLocked)
         {
@@ -20,34 +25,26 @@ public class SaveData
         }
     }
 
-    public List<PlotData> plotDataList = new List<PlotData>();
+    
 
-    // Add other methods for saving/loading specific data
-
-    #region Save and Load Methods
-
-    public void Save()
-    {
-        SaveGameData();
-        SaveUIState();
-    }
-
-    public void Load()
+    public void Load(int slotIndex)
     {
         LoadGameData();
-        LoadUIState();
+        LoadUIState(slotIndex);
     }
 
-    #endregion
+    public void Reset()
+    {
+        ResetGameData();
+        SaveGameData();
+    }
 
     #region Game Data
 
     private void SaveGameData()
     {
-        
         PlayerPrefs.SetFloat("PlayerMoney", playerMoney);
 
-        // Save plot data
         for (int i = 0; i < plotDataList.Count; i++)
         {
             PlayerPrefs.SetInt($"Plot_{i}_IsLocked", plotDataList[i].isLocked ? 1 : 0);
@@ -58,33 +55,42 @@ public class SaveData
 
     private void LoadGameData()
     {
-        
-        playerMoney = 10000f;
+        playerMoney = PlayerPrefs.GetFloat("PlayerMoney", 10000f);
 
-        // Load plot data
         for (int i = 0; i < plotDataList.Count; i++)
         {
             int isLockedValue = PlayerPrefs.GetInt($"Plot_{i}_IsLocked", 1);
             plotDataList[i].isLocked = isLockedValue == 1;
-            // You may want to call a method like setPlotColor here if needed
         }
-        Debug.Log("SavedataLoadGameData"+ playerMoney); 
+    }
+
+    private void ResetGameData()
+    {
+        playerMoney = 10000f;
+
+        for (int i = 0; i < plotDataList.Count; i++)
+        {
+            plotDataList[i].isLocked = true;
+        }
+
+        if (plotDataList.Count > 0)
+        {
+            plotDataList[0].isLocked = false;
+        }
     }
 
     #endregion
 
     #region UI State
 
-    private void SaveUIState()
+    private void SaveUIState(int slotIndex)
     {
-        PlayerPrefs.SetString("ActivePanel_Scene", "MainMenu"); // Adjust this as needed
-        // Save other UI state data if necessary
+        PlayerPrefs.SetString($"ActivePanel_Scene_{slotIndex}", "MainMenu");
     }
 
-    private void LoadUIState()
+    private void LoadUIState(int slotIndex)
     {
-        string activePanel = PlayerPrefs.GetString("ActivePanel_Scene", "MainMenu"); // Adjust this as needed
-        // Load other UI state data if necessary
+        string activePanel = PlayerPrefs.GetString($"ActivePanel_Scene_{slotIndex}", "MainMenu");
     }
 
     #endregion

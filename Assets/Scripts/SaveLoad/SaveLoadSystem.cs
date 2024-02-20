@@ -4,16 +4,17 @@ using UnityEngine;
 
 public static class SaveLoadSystem
 {
+    
     public static void SaveData(SaveData data, int slotIndex)
     {
         string json = JsonUtility.ToJson(data);
-        PlayerPrefs.SetString("SaveSlot_" + slotIndex, json);
+        PlayerPrefs.SetString($"SaveSlot_{slotIndex}", json);
         PlayerPrefs.Save();
     }
 
     public static SaveData LoadData(int slotIndex)
     {
-        string json = PlayerPrefs.GetString("SaveSlot_" + slotIndex);
+        string json = PlayerPrefs.GetString($"SaveSlot_{slotIndex}");
         SaveData loadedData = JsonUtility.FromJson<SaveData>(json);
 
         if (loadedData == null)
@@ -22,21 +23,27 @@ public static class SaveLoadSystem
             loadedData = new SaveData();
         }
 
-        Debug.Log($"Loaded player money: {loadedData.playerMoney}");
-    
         return loadedData;
     }
 
-
     public static bool DoesSaveExist(int slotIndex)
     {
-        return PlayerPrefs.HasKey("SaveSlot_" + slotIndex);
+        return PlayerPrefs.HasKey($"SaveSlot_{slotIndex}");
     }
 
-    public static void DeleteSave(int slotIndex)
+    public static SaveData ResetData(int slotIndex)
     {
-        PlayerPrefs.DeleteKey("SaveSlot_" + slotIndex);
-        PlayerPrefs.Save();
+        SaveData newData = LoadData(slotIndex);
+        newData.Reset();
+        SaveData(newData, slotIndex);
+        return newData;
+    }
+
+    public static void CreateNewSave(int slotIndex)
+    {
+        SaveData newData = new SaveData();
+        newData.playerMoney = 10000f;
+        SaveData(newData, slotIndex);
     }
 
     public static void SaveGameData(PlayerController playerController, PlotDataHandler plotDataHandler)
@@ -47,18 +54,17 @@ public static class SaveLoadSystem
         if (plotDataHandler != null)
         {
             saveData.plotDataList = plotDataHandler.GetPlotDataList();
+            plotDataHandler.SavePlotData();
         }
 
-        SaveData(saveData, 0); // Assuming you're using slotIndex 0
+        SaveData(saveData, saveData.SlotLastSelectedData);
         Debug.Log($"Saving player money: {saveData.playerMoney}");
     }
 
     public static void LoadGameData(PlayerController playerController, PlotDataHandler plotDataHandler)
     {
-        Debug.Log("LoadGameData method called");
-        
-        SaveData saveData = LoadData(0);
-        
+        SaveData saveData =  new SaveData();
+        saveData = LoadData(saveData.SlotLastSelectedData);
 
         if (saveData != null)
         {
@@ -67,9 +73,7 @@ public static class SaveLoadSystem
                 plotDataHandler.LoadPlotData(saveData.plotDataList);
             }
 
-            // Set player money after loading plot data
             playerController.SetPlayerMoney(saveData.playerMoney);
-            Debug.Log("LoadGameData"+ saveData.playerMoney); 
         }
         Debug.Log($"Loaded player money: {saveData.playerMoney}");
     }

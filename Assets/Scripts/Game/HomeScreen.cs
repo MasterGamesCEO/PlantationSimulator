@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class HomeScreen : MonoBehaviour, ISaveSlotHandler
+public class HomeScreen : MonoBehaviour
 {
     [SerializeField] private GameObject startOptionsPrefab;
     [SerializeField] private GameObject slotPrefab;
@@ -24,6 +24,12 @@ public class HomeScreen : MonoBehaviour, ISaveSlotHandler
     private bool _navigationProcessedThisFrame = false;
     private bool _wasYPressed = false;
     private bool _wasXPressed = false;
+
+    public int SlotLastSelected
+    {
+        get { return _selectedOptionIndexSlot; }
+        set { _selectedOptionIndexSlot = value; }
+    }
 
     private void Start()
     {
@@ -203,6 +209,7 @@ public class HomeScreen : MonoBehaviour, ISaveSlotHandler
         if (_selectedOptionIndexStart == 1)
         {
             OpenSlotBox();
+            
         }
         // Add other actions for start options as needed
     }
@@ -210,10 +217,18 @@ public class HomeScreen : MonoBehaviour, ISaveSlotHandler
     private void ExecuteSlotSelectedAction()
     {
         // Add actions for slot options based on _selectedOptionIndexSlot
-        // For example, load, reset, etc.
+        // For example, load or create new save, reset, etc.
         if (_selectedOptionIndexVerticalSlot == 0)
         {
-            LoadSave(_selectedOptionIndexSlot);
+            if (SaveLoadSystem.DoesSaveExist(_selectedOptionIndexSlot))
+            {
+                LoadSave(_selectedOptionIndexSlot);
+            }
+            else
+            {
+                // If no save exists, create a new save
+                CreateNewSave(_selectedOptionIndexSlot);
+            }
         }
         else if (_selectedOptionIndexVerticalSlot == 1)
         {
@@ -225,7 +240,10 @@ public class HomeScreen : MonoBehaviour, ISaveSlotHandler
     {
         if (SaveLoadSystem.DoesSaveExist(slotIndex))
         {
+            // Assuming loadGameData is the correct method name
+            SlotLastSelected = slotIndex;
             SaveData loadedData = SaveLoadSystem.LoadData(slotIndex);
+
             // Pass loadedData to your game's initialization logic or handle the data as needed
             SceneManager.LoadScene(0);
         }
@@ -237,8 +255,17 @@ public class HomeScreen : MonoBehaviour, ISaveSlotHandler
 
     public void ResetSave(int slotIndex)
     {
-        // Implement your reset save logic here
-        Debug.Log("Resetting save data for Slot " + slotIndex);
+        if (SaveLoadSystem.DoesSaveExist(slotIndex))
+        {
+            SlotLastSelected = slotIndex;
+            SaveData saveData = SaveLoadSystem.ResetData(slotIndex);
+            // Pass loadedData to your game's initialization logic or handle the data as needed
+            Debug.Log("Resetting save data for Slot " + slotIndex);
+        }
+        else
+        {
+            Debug.Log("No save data found for Slot " + slotIndex);
+        }
     }
 
     #endregion
@@ -269,17 +296,20 @@ public class HomeScreen : MonoBehaviour, ISaveSlotHandler
     // Implement the CreateNewSave and DeleteSave methods from ISaveSlotHandler
     public void CreateNewSave(int slotIndex)
     {
-        // Implement logic to create a new save for the specified slotIndex
-        // For example, you might want to instantiate a new save file or update your save data structure.
+        // Check if a save already exists for the specified slotIndex
+        if (SaveLoadSystem.DoesSaveExist(slotIndex))
+        {
+            Debug.Log($"A save already exists for Slot {slotIndex}. If you want to overwrite, implement logic here.");
+        }
+        else
+        {
+            // Create a new save for the specified slotIndex
+            SaveLoadSystem.CreateNewSave(slotIndex);
 
-        // In this example, let's just print a debug message.
-        Debug.Log($"Creating a new save for slot {slotIndex}");
-
-        // You might want to add your actual logic here, such as creating a new SaveData instance.
-        // SaveData newData = new SaveData();
-        // SaveLoadSystem.SaveData(newData, slotIndex);
+            // Optionally, you can load the new save immediately if needed
+            LoadSave(slotIndex);
+        }
     }
-
     public void DeleteSave(int slotIndex)
     {
         // Implement logic to delete the save for the specified slotIndex

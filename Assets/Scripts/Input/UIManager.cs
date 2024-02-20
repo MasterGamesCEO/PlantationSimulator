@@ -47,7 +47,6 @@ public class UIManager : MonoBehaviour
         _input.openDialog.performed += OnDialogPerformed;
 
         LoadGameData();
-
         PlotDataHandler plotDataHandler = FindObjectOfType<PlotDataHandler>();
         if (plotDataHandler != null)
         {
