@@ -6,6 +6,9 @@ public class PlotStats : MonoBehaviour
     [SerializeField] public BoxCollider boundryPos;
     [SerializeField] public Material lockMaterial;
     [SerializeField] public Material unlockMaterial;
+    [SerializeField ]public Component lockItem;
+    
+    public Component currentlockItem;
     public float PlotPrice { get; private set; }
 
     #region Unity Callbacks
@@ -22,7 +25,18 @@ public class PlotStats : MonoBehaviour
     public void setPlotColor(bool locked)
     {
         var renderer = gameObject.GetComponent<MeshRenderer>();
+        
         renderer.material = locked ? lockMaterial : unlockMaterial;
+        if (locked)
+        {
+            if (currentlockItem != null)
+            {
+                Destroy(currentlockItem);
+            }
+
+            currentlockItem = Instantiate(lockItem, transform);
+            
+        }
     }
 
     public void SetPlotPrice()

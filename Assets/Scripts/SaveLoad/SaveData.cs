@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class SaveData : MonoBehaviour
@@ -58,7 +59,7 @@ public class SaveData : MonoBehaviour
 
     public bool DoesSaveExist(int slotIndex)
     {
-        return PlayerPrefs.HasKey($"SaveSlot_{slotIndex}");
+        return true;
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
@@ -99,7 +100,7 @@ public class SaveData : MonoBehaviour
     {
         if (slotIndex == 0 && _ifPlotReset0 || slotIndex == 1 && _ifPlotReset1 || slotIndex == 2 && _ifPlotReset2)
         {
-            ResetGameData(slotIndex);
+            Reset(slotIndex);
             if (slotIndex == 0 && _ifPlotReset0)
             {
                 _ifPlotReset0 = false;
@@ -142,8 +143,13 @@ public class SaveData : MonoBehaviour
         PlayerPrefs.SetFloat($"PlayerMoney_{slotIndex}", 10000f);
         playerMoney = 10000f;
         _playerMoneySave = 10000f;
+
+        if (plotDataList != null)
+        {
+            plotDataList.ResetGameData(slotIndex);
+        }
         
-        plotDataList.ResetGameData(slotIndex);
+        
         
         
     }

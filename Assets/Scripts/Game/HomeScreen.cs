@@ -223,6 +223,7 @@ public class HomeScreen : MonoBehaviour
         {
             if (_saveData.DoesSaveExist(_selectedOptionIndexSlot))
             {
+                Debug.Log("Loading Save");
                 LoadSave(_selectedOptionIndexSlot);
             }
             else
@@ -237,15 +238,17 @@ public class HomeScreen : MonoBehaviour
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public void LoadSave(int slotIndex)
     {
         if (_saveData.DoesSaveExist(slotIndex))
         {
             SceneManager.LoadScene(0);
+            
             _saveData.SlotLastSelectedData = slotIndex;
             _saveData.Load(slotIndex);
 
-            
+
         }
         else
         {
@@ -255,27 +258,24 @@ public class HomeScreen : MonoBehaviour
 
     public void ResetSave(int slotIndex)
     {
-        if (_saveData.DoesSaveExist(slotIndex))
+        if (slotIndex == 0)
         {
-            if (slotIndex == 0)
-            {
-                _saveData._ifPlotReset0 = true;
-            }
-            if (slotIndex == 1)
-            {
-                _saveData._ifPlotReset1 = true;
-            }
-            if (slotIndex == 2)
-            {
-                _saveData._ifPlotReset2 = true;
-            }
-            Debug.Log("Resetting save data for Slot " + slotIndex);
+            _saveData._ifPlotReset0 = true;
         }
-        else
+
+        if (slotIndex == 1)
         {
-            Debug.Log("No save data found for Slot " + slotIndex);
+            _saveData._ifPlotReset1 = true;
         }
+
+        if (slotIndex == 2)
+        {
+            _saveData._ifPlotReset2 = true;
+        }
+
+        Debug.Log("Resetting save data for Slot " + slotIndex);
     }
+    
 
     #endregion
 
@@ -318,7 +318,7 @@ public class HomeScreen : MonoBehaviour
 
             // Reset and get the updated SaveData instance
             SaveData newData = _saveData.Reset(slotIndex);
-
+            
             // Optionally, you can load the new save immediately if needed
             LoadSave(slotIndex);
         }
