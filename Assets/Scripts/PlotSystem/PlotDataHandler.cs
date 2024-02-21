@@ -19,23 +19,26 @@ public class PlotDataHandler : MonoBehaviour
 
     #region Save and Load Plot Data
 
-    public void SavePlotData()
+    public void SavePlotData(int slotIndex)
     {
+        
         for (int i = 0; i < allPlots.Length; i++)
         {
-            PlayerPrefs.SetInt($"Plot_{i}_IsLocked", allPlots[i].isLocked ? 1 : 0);
+            PlayerPrefs.SetInt($"Plot_{slotIndex}_{i}_IsLocked", allPlots[i].isLocked ? 1 : 0);
         }
+        
         PlayerPrefs.Save();
     }
 
-    public void LoadPlotData(List<SaveData.PlotData> saveDataPlotDataList)
+    public void LoadPlotData(int slotIndex)
     {
         for (int i = 0; i < allPlots.Length; i++)
         {
-            int isLockedValue = PlayerPrefs.GetInt($"Plot_{i}_IsLocked", 1);
+            int isLockedValue = PlayerPrefs.GetInt($"Plot_{slotIndex}_{i}_IsLocked", 1);
             allPlots[i].isLocked = isLockedValue == 1;
             allPlots[i].setPlotColor(allPlots[i].isLocked);
         }
+        
     }
 
     #endregion
@@ -51,15 +54,16 @@ public class PlotDataHandler : MonoBehaviour
         }
     }
 
-    public void ResetGameData()
+    public void ResetGameData(int slotIndex)
     {
         for (int i = 0; i < allPlots.Length; i++)
         {
+            PlayerPrefs.DeleteKey($"Plot_{slotIndex}_{i}_IsLocked");
             allPlots[i].isLocked = true;
             allPlots[i].ActivateBoundry();
         }
         UnlockFirstPlot();
-        PlayerPrefs.DeleteAll();
+        
     }
 
     #endregion

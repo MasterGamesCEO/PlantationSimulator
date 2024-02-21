@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     private InputManager _input;
     private GameObject _currentSaveBox;
     private GameObject _currentDialogBox;
+    private SaveData _saveData;
+    
     private int _selectedOptionIndex = 0;
     private int _selectedOptionIndexSave = 0;
     private bool _isDialogOpen = false;
@@ -36,7 +38,6 @@ public class UIManager : MonoBehaviour
     {
         if (playerController != null)
         {
-            playerController.SetPlayerMoney(10000);
             _plotPricePopupScript.UpdateMoney(0);
         }
     }
@@ -44,8 +45,9 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         _input = InputManager.Instance;
+        _saveData = SaveData.Instance;
         _input.openDialog.performed += OnDialogPerformed;
-
+        
         LoadGameData();
         PlotDataHandler plotDataHandler = FindObjectOfType<PlotDataHandler>();
         if (plotDataHandler != null)
@@ -331,12 +333,28 @@ public class UIManager : MonoBehaviour
 
     public void SaveGameData()
     {
-        SaveLoadSystem.SaveGameData(playerController, FindObjectOfType<PlotDataHandler>());
+        // Make sure _saveData is not null before calling methods on it
+        if (_saveData != null)
+        {
+            _saveData.SaveGameData(_saveData.SlotLastSelectedData);
+        }
+        else
+        {
+            Debug.LogWarning("SaveData instance not found.");
+        }
     }
 
     public void LoadGameData()
     {
-        SaveLoadSystem.LoadGameData(playerController, FindObjectOfType<PlotDataHandler>());
+        // Make sure _saveData is not null before calling methods on it
+        if (_saveData != null)
+        {
+            _saveData.LoadGameData(_saveData.SlotLastSelectedData);
+        }
+        else
+        {
+            Debug.LogWarning("SaveData instance not found.");
+        }
     }
 
     #endregion

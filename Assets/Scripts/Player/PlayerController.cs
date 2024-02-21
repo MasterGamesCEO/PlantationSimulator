@@ -13,20 +13,23 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private PlotPricePopupScript _plotPricePopupScript;
     [SerializeField] private float speed = 5;
-    [SerializeField] private float playerMoney = 10000;
-
+    [SerializeField] private float playerMoney = SaveData.Instance.PlayerMoneySave;
+    
+    private SaveData _saveData;
+    
     #endregion
 
     #region Properties
 
     public float GetPlayerMoney()
     {
-        return playerMoney;
+        return SaveData.Instance.PlayerMoneySave;
     }
 
     public void SetPlayerMoney(float amount)
     {
         playerMoney = amount;
+        SaveData.Instance.playerMoney = playerMoney;
     }
 
     #endregion
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _input = InputManager.Instance;
+        _saveData = SaveData.Instance;
         _controller = GetComponent<CharacterController>();
         _input.buyLand.performed += OnBuyLandPerformed;
     }
@@ -53,7 +57,10 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.tag.Equals("House"))
         {
+            Debug.Log("Current player money " + playerMoney);
+            
             SwitchScenes();
+            
         }
     }
 
@@ -112,6 +119,7 @@ public class PlayerController : MonoBehaviour
             _curPlotStats.DeactivateBoundry();
             _plotPricePopupScript.UpdateMoney(_curPlotStats.PlotPrice);
             playerMoney -= _curPlotStats.PlotPrice;
+            SaveData.Instance.playerMoney = playerMoney;
             _plotPricePopupScript.RunMoneySpread();
         }
         else
@@ -126,7 +134,7 @@ public class PlayerController : MonoBehaviour
 
     private void SwitchScenes()
     {
-        SaveLoadSystem.SaveGameData(this, FindObjectOfType<PlotDataHandler>());
+        SaveData.Instance.SaveGameData(_saveData.SlotLastSelectedData);
 
         SceneController currentScene = FindObjectOfType<SceneController>();
         currentScene.ChangeScene();
@@ -135,9 +143,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        SaveLoadSystem.LoadGameData(this, FindObjectOfType<PlotDataHandler>());
+        SaveData.Instance.LoadGameData(_saveData.SlotLastSelectedData);
 
-        
         UIManager uiManager = FindObjectOfType<UIManager>();
         if (uiManager != null)
         {

@@ -9,6 +9,7 @@ public class PlotPricePopupScript : MonoBehaviour
     
     private GameObject currentMoneySpread;
     [SerializeField] private PlayerController _playerController;
+    private SaveData _saveData;
     private Animator _mAnimator;
 
     private static readonly int Popup = Animator.StringToHash("popup");
@@ -17,8 +18,10 @@ public class PlotPricePopupScript : MonoBehaviour
 
     private void Start()
     {
+        _saveData = SaveData.Instance;
         _mAnimator = GetComponent<Animator>();
         UpdateMoney(0);
+        
     }
 
     #endregion
@@ -49,9 +52,10 @@ public class PlotPricePopupScript : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     public void UpdateMoney(float moneyDelta)
     {
+        _saveData = FindObjectOfType<SaveData>();
         if (_playerController != null)
         {
-            var moneyAfterUpdate = (int)_playerController.GetPlayerMoney() - (int)moneyDelta;
+            var moneyAfterUpdate = (int)_saveData.playerMoney - (int)moneyDelta;
             moneyText.text = "$" + moneyAfterUpdate.ToString();
         }
         else

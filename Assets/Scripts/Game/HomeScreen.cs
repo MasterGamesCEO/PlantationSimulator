@@ -10,7 +10,7 @@ public class HomeScreen : MonoBehaviour
     [SerializeField] private GameObject slotPrefab;
 
     private InputManager _input;
-    
+
     private GameObject _currentStart;
     private GameObject _currentSlot;
 
@@ -25,17 +25,15 @@ public class HomeScreen : MonoBehaviour
     private bool _wasYPressed = false;
     private bool _wasXPressed = false;
 
-    public int SlotLastSelected
-    {
-        get { return _selectedOptionIndexSlot; }
-        set { _selectedOptionIndexSlot = value; }
-    }
+    private SaveData _saveData; // Reference to the SaveData instance
+
 
     private void Start()
     {
         _input = InputManager.Instance;
         _input.openDialog.performed += OnDialogPerformed;
         OpenStartBox();
+        _saveData = SaveData.Instance;
     }
 
     private void Update()
@@ -49,6 +47,7 @@ public class HomeScreen : MonoBehaviour
             {
                 ExecuteStartSelectedAction();
             }
+
             UpdateStartUI();
         }
         else if (_isSlotsOpen)
@@ -58,6 +57,7 @@ public class HomeScreen : MonoBehaviour
             {
                 ExecuteSlotSelectedAction();
             }
+
             UpdateSlotUI();
         }
 
@@ -141,7 +141,7 @@ public class HomeScreen : MonoBehaviour
 
     #region UI Updates
 
-    
+
     private void UpdateStartUI()
     {
         for (int i = 0; i < 3; i++)
@@ -180,7 +180,8 @@ public class HomeScreen : MonoBehaviour
 
                     if (fillImageTransform != null)
                     {
-                        fillImageTransform.gameObject.SetActive(f == _selectedOptionIndexSlot && i == _selectedOptionIndexVerticalSlot);
+                        fillImageTransform.gameObject.SetActive(f == _selectedOptionIndexSlot &&
+                                                                i == _selectedOptionIndexVerticalSlot);
                     }
 
                     if (optionText != null)
@@ -209,7 +210,7 @@ public class HomeScreen : MonoBehaviour
         if (_selectedOptionIndexStart == 1)
         {
             OpenSlotBox();
-            
+
         }
         // Add other actions for start options as needed
     }
@@ -217,10 +218,10 @@ public class HomeScreen : MonoBehaviour
     private void ExecuteSlotSelectedAction()
     {
         // Add actions for slot options based on _selectedOptionIndexSlot
-        // For example, load or create new save, reset, etc.
+        // For example, load or create a new save, reset, etc.
         if (_selectedOptionIndexVerticalSlot == 0)
         {
-            if (SaveLoadSystem.DoesSaveExist(_selectedOptionIndexSlot))
+            if (_saveData.DoesSaveExist(_selectedOptionIndexSlot))
             {
                 LoadSave(_selectedOptionIndexSlot);
             }
@@ -238,14 +239,13 @@ public class HomeScreen : MonoBehaviour
 
     public void LoadSave(int slotIndex)
     {
-        if (SaveLoadSystem.DoesSaveExist(slotIndex))
+        if (_saveData.DoesSaveExist(slotIndex))
         {
-            // Assuming loadGameData is the correct method name
-            SlotLastSelected = slotIndex;
-            SaveData loadedData = SaveLoadSystem.LoadData(slotIndex);
-
-            // Pass loadedData to your game's initialization logic or handle the data as needed
             SceneManager.LoadScene(0);
+            _saveData.SlotLastSelectedData = slotIndex;
+            _saveData.Load(slotIndex);
+
+            
         }
         else
         {
@@ -255,11 +255,20 @@ public class HomeScreen : MonoBehaviour
 
     public void ResetSave(int slotIndex)
     {
-        if (SaveLoadSystem.DoesSaveExist(slotIndex))
+        if (_saveData.DoesSaveExist(slotIndex))
         {
-            SlotLastSelected = slotIndex;
-            SaveData saveData = SaveLoadSystem.ResetData(slotIndex);
-            // Pass loadedData to your game's initialization logic or handle the data as needed
+            if (slotIndex == 0)
+            {
+                _saveData._ifPlotReset0 = true;
+            }
+            if (slotIndex == 1)
+            {
+                _saveData._ifPlotReset1 = true;
+            }
+            if (slotIndex == 2)
+            {
+                _saveData._ifPlotReset2 = true;
+            }
             Debug.Log("Resetting save data for Slot " + slotIndex);
         }
         else
@@ -276,6 +285,7 @@ public class HomeScreen : MonoBehaviour
         {
             Destroy(_currentStart);
         }
+
         _currentStart = Instantiate(startOptionsPrefab, transform);
         _input.uiControls.Enable();
         _input.movement.Disable();
@@ -294,31 +304,23 @@ public class HomeScreen : MonoBehaviour
     }
 
     // Implement the CreateNewSave and DeleteSave methods from ISaveSlotHandler
+    // ReSharper disable Unity.PerformanceAnalysis
     public void CreateNewSave(int slotIndex)
     {
         // Check if a save already exists for the specified slotIndex
-        if (SaveLoadSystem.DoesSaveExist(slotIndex))
+        if (_saveData.DoesSaveExist(slotIndex))
         {
             Debug.Log($"A save already exists for Slot {slotIndex}. If you want to overwrite, implement logic here.");
         }
         else
         {
-            // Create a new save for the specified slotIndex
-            SaveLoadSystem.CreateNewSave(slotIndex);
+            _saveData.SlotLastSelectedData = slotIndex;
+
+            // Reset and get the updated SaveData instance
+            SaveData newData = _saveData.Reset(slotIndex);
 
             // Optionally, you can load the new save immediately if needed
             LoadSave(slotIndex);
         }
-    }
-    public void DeleteSave(int slotIndex)
-    {
-        // Implement logic to delete the save for the specified slotIndex
-        // For example, you might want to remove the corresponding save file or update your save data structure.
-
-        // In this example, let's just print a debug message.
-        Debug.Log($"Deleting the save for slot {slotIndex}");
-
-        // You might want to add your actual logic here, such as deleting the SaveData instance.
-        // SaveLoadSystem.DeleteSave(slotIndex);
     }
 }

@@ -3,17 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SaveData
+public class SaveData : MonoBehaviour
 {
     public float playerMoney;
-    public List<PlotData> plotDataList = new List<PlotData>();
-    public HomeScreen HomeScreen = new HomeScreen();
-    
+    public PlotDataHandler plotDataList;
+    private int _slotLastSelected;
+    public bool _ifPlotReset0 = false;
+    public bool _ifPlotReset1 = false;
+    public bool _ifPlotReset2 = false;
+
     public int SlotLastSelectedData
     {
-        get { return HomeScreen.SlotLastSelected; }
-        set { HomeScreen.SlotLastSelected = value; }
+        get { return _slotLastSelected; }
+        set { _slotLastSelected = value; }
     }
+    private float _playerMoneySave;
+    
+    public float PlayerMoneySave
+    {
+        get { return _playerMoneySave; }
+        set { _playerMoneySave = value; }
+    }
+
+    private static SaveData _instance;
+    public static SaveData Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<SaveData>();
+
+                if (_instance == null)
+                {
+                    GameObject go = new GameObject("SaveData");
+                    _instance = go.AddComponent<SaveData>();
+                    DontDestroyOnLoad(go);
+                }
+            }
+            return _instance;
+        }
+    }
+    
     [System.Serializable]
     public class PlotData
     {
@@ -25,73 +56,106 @@ public class SaveData
         }
     }
 
-    
+    public bool DoesSaveExist(int slotIndex)
+    {
+        return PlayerPrefs.HasKey($"SaveSlot_{slotIndex}");
+    }
 
+    // ReSharper disable Unity.PerformanceAnalysis
+    public SaveData Reset(int slotIndex)
+    {
+        // Reset the data for the specified slotIndex
+        ResetGameData(slotIndex);
+        SaveUIState(slotIndex);
+        SaveGameData(slotIndex);
+    
+        // Return the updated SaveData instance
+        return this;
+    }
+
+    // ReSharper disable Unity.PerformanceAnalysis
     public void Load(int slotIndex)
     {
-        LoadGameData();
+        Debug.Log($"Loading Save {slotIndex}");
+        LoadGameData(slotIndex);
         LoadUIState(slotIndex);
     }
 
-    public void Reset()
+    public void SaveGameData(int slotIndex)
     {
-        ResetGameData();
-        SaveGameData();
-    }
-
-    #region Game Data
-
-    private void SaveGameData()
-    {
-        PlayerPrefs.SetFloat("PlayerMoney", playerMoney);
-
-        for (int i = 0; i < plotDataList.Count; i++)
+        plotDataList = FindObjectOfType<PlotDataHandler>();
+        if (plotDataList != null)
         {
-            PlayerPrefs.SetInt($"Plot_{i}_IsLocked", plotDataList[i].isLocked ? 1 : 0);
+            plotDataList.SavePlotData(slotIndex);
         }
-
+        PlayerPrefs.SetFloat($"PlayerMoney_{slotIndex}", playerMoney);
+        _playerMoneySave = playerMoney;
+        
+        Debug.Log($"Saving data for slot {slotIndex}, PlayerMoney: {playerMoney}");
         PlayerPrefs.Save();
     }
 
-    private void LoadGameData()
+    public void LoadGameData(int slotIndex)
     {
-        playerMoney = PlayerPrefs.GetFloat("PlayerMoney", 10000f);
-
-        for (int i = 0; i < plotDataList.Count; i++)
+        if (slotIndex == 0 && _ifPlotReset0 || slotIndex == 1 && _ifPlotReset1 || slotIndex == 2 && _ifPlotReset2)
         {
-            int isLockedValue = PlayerPrefs.GetInt($"Plot_{i}_IsLocked", 1);
-            plotDataList[i].isLocked = isLockedValue == 1;
+            ResetGameData(slotIndex);
+            if (slotIndex == 0 && _ifPlotReset0)
+            {
+                _ifPlotReset0 = false;
+            }
+            else if (slotIndex == 1 && _ifPlotReset1)
+            {
+                _ifPlotReset1 = false;
+            } else if (slotIndex == 2 && _ifPlotReset2)
+            {
+                _ifPlotReset2 = false;
+            }
+            
         }
+        else
+        {
+            plotDataList = FindObjectOfType<PlotDataHandler>();
+            if (plotDataList != null)
+            {
+                plotDataList.LoadPlotData(slotIndex);
+            }
+            PlayerController playerController = FindObjectOfType<PlayerController>();
+            playerMoney = PlayerPrefs.GetFloat($"PlayerMoney_{slotIndex}", 10000f);
+            _playerMoneySave = playerMoney;
+            if (playerController != null)
+            {
+                playerController.SetPlayerMoney(playerMoney);
+            }
+        
+            Debug.Log($"Loading data for slot {slotIndex}, PlayerMoney: {playerMoney}");
+        }
+        
     }
 
-    private void ResetGameData()
+    private void ResetGameData(int slotIndex)
     {
+        
+        plotDataList = FindObjectOfType<PlotDataHandler>();
+        
+        
+        PlayerPrefs.SetFloat($"PlayerMoney_{slotIndex}", 10000f);
         playerMoney = 10000f;
-
-        for (int i = 0; i < plotDataList.Count; i++)
-        {
-            plotDataList[i].isLocked = true;
-        }
-
-        if (plotDataList.Count > 0)
-        {
-            plotDataList[0].isLocked = false;
-        }
+        _playerMoneySave = 10000f;
+        
+        plotDataList.ResetGameData(slotIndex);
+        
+        
     }
-
-    #endregion
-
-    #region UI State
 
     private void SaveUIState(int slotIndex)
     {
-        PlayerPrefs.SetString($"ActivePanel_Scene_{slotIndex}", "MainMenu");
+        PlayerPrefs.SetInt($"SlotLastSelected_{slotIndex}", SlotLastSelectedData);
+        PlayerPrefs.Save();
     }
 
     private void LoadUIState(int slotIndex)
     {
-        string activePanel = PlayerPrefs.GetString($"ActivePanel_Scene_{slotIndex}", "MainMenu");
+        SlotLastSelectedData = PlayerPrefs.GetInt($"SlotLastSelected_{slotIndex}", 0);
     }
-
-    #endregion
 }

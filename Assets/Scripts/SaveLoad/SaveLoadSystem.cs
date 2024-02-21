@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class SaveLoadSystem
 {
+    /**
     
     public static void SaveData(SaveData data, int slotIndex)
     {
@@ -63,9 +64,8 @@ public static class SaveLoadSystem
 
     public static void LoadGameData(PlayerController playerController, PlotDataHandler plotDataHandler)
     {
-        SaveData saveData =  new SaveData();
-        saveData = LoadData(saveData.SlotLastSelectedData);
-
+        SaveData saveData = LoadData(SaveData.slotlastSelected);
+        
         if (saveData != null)
         {
             if (plotDataHandler != null)
@@ -77,4 +77,5 @@ public static class SaveLoadSystem
         }
         Debug.Log($"Loaded player money: {saveData.playerMoney}");
     }
+    **/
 }
