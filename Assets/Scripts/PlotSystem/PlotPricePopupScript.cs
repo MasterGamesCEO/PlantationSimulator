@@ -57,6 +57,7 @@ public class PlotPricePopupScript : MonoBehaviour
         {
             var moneyAfterUpdate = (int)_saveData.playerMoney - (int)moneyDelta;
             moneyText.text = "$" + moneyAfterUpdate.ToString();
+            Debug.Log("Update money" + moneyAfterUpdate);
         }
         else
         {

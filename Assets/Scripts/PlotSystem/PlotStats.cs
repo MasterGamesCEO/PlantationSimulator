@@ -29,12 +29,10 @@ public class PlotStats : MonoBehaviour
         renderer.material = locked ? lockMaterial : unlockMaterial;
         if (locked)
         {
-            if (currentlockItem != null)
+            if (currentlockItem == null)
             {
-                Destroy(currentlockItem);
+                currentlockItem = Instantiate(lockItem, transform);
             }
-
-            currentlockItem = Instantiate(lockItem, transform);
             
         }
     }
@@ -63,6 +61,12 @@ public class PlotStats : MonoBehaviour
     {
         var renderer = gameObject.GetComponent<MeshRenderer>();
         renderer.material = unlockMaterial;
+        if (currentlockItem != null)
+        {
+            Destroy(currentlockItem.gameObject);
+            Debug.Log("Destroy");
+        }
+        
         boundryPos.enabled = false;
     }
 

@@ -32,8 +32,15 @@ public class HomeScreen : MonoBehaviour
     {
         _input = InputManager.Instance;
         _input.openDialog.performed += OnDialogPerformed;
+        _input.backKey.performed += OnBackPerformed;
         OpenStartBox();
         _saveData = SaveData.Instance;
+    }
+
+    private void OnBackPerformed(InputAction.CallbackContext obj)
+    {
+        CloseSlotBox();
+        OpenStartBox();
     }
 
     private void Update()
@@ -210,6 +217,7 @@ public class HomeScreen : MonoBehaviour
         if (_selectedOptionIndexStart == 1)
         {
             OpenSlotBox();
+            CloseStartBox();
 
         }
         // Add other actions for start options as needed
@@ -223,7 +231,6 @@ public class HomeScreen : MonoBehaviour
         {
             if (_saveData.DoesSaveExist(_selectedOptionIndexSlot))
             {
-                Debug.Log("Loading Save");
                 LoadSave(_selectedOptionIndexSlot);
             }
             else
@@ -243,17 +250,30 @@ public class HomeScreen : MonoBehaviour
     {
         if (_saveData.DoesSaveExist(slotIndex))
         {
-            SceneManager.LoadScene(0);
-            
-            _saveData.SlotLastSelectedData = slotIndex;
-            _saveData.Load(slotIndex);
-
-
+            SceneController sceneController = FindObjectOfType<SceneController>();
+            StartCoroutine(LoadSceneAndData(slotIndex, sceneController));
         }
         else
         {
             Debug.Log("No save data found for Slot " + slotIndex);
         }
+    }
+
+    // ReSharper disable Unity.PerformanceAnalysis
+    private IEnumerator LoadSceneAndData(int slotIndex, SceneController sceneController)
+    {
+        // Start the scene transition
+        _saveData.SlotLastSelectedData = slotIndex;
+        sceneController.ChangeScene(1);
+
+        // Wait for the scene transition to complete
+        while (sceneController._currentlySceneChanging)
+        {
+            yield return null;
+        }
+
+        // Scene transition is complete, now load the data
+        _saveData.Load(slotIndex);
     }
 
     public void ResetSave(int slotIndex)
@@ -301,6 +321,27 @@ public class HomeScreen : MonoBehaviour
         _input.movement.Disable();
         _isSlotsOpen = true;
         _isStartOpen = false;
+    }
+    private void CloseSlotBox()
+    {
+        Destroy(_currentSlot);
+        
+        _input.uiControls.Enable();
+        _input.movement.Disable();
+        _isSlotsOpen = false;
+        _isStartOpen = true;
+    }
+    private void CloseStartBox()
+    {
+        if (_currentStart != null)
+        {
+            Destroy(_currentStart);
+        }
+        
+        _input.uiControls.Enable();
+        _input.movement.Disable();
+        _isStartOpen = false;
+        _isSlotsOpen = true;
     }
 
     // Implement the CreateNewSave and DeleteSave methods from ISaveSlotHandler

@@ -33,7 +33,6 @@ public class SaveData : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<SaveData>();
 
                 if (_instance == null)
                 {
@@ -124,11 +123,13 @@ public class SaveData : MonoBehaviour
             PlayerController playerController = FindObjectOfType<PlayerController>();
             playerMoney = PlayerPrefs.GetFloat($"PlayerMoney_{slotIndex}", 10000f);
             _playerMoneySave = playerMoney;
+            PlotPricePopupScript plotPricePopupScript = FindObjectOfType<PlotPricePopupScript>();
+            plotPricePopupScript.UpdateMoney(0);
             if (playerController != null)
             {
                 playerController.SetPlayerMoney(playerMoney);
             }
-        
+            Debug.Log($"Loading money for slot {slotIndex}, PlayerMoney: {playerMoney}");
             Debug.Log($"Loading data for slot {slotIndex}, PlayerMoney: {playerMoney}");
         }
         
@@ -136,22 +137,17 @@ public class SaveData : MonoBehaviour
 
     private void ResetGameData(int slotIndex)
     {
-        
         plotDataList = FindObjectOfType<PlotDataHandler>();
-        
-        
         PlayerPrefs.SetFloat($"PlayerMoney_{slotIndex}", 10000f);
         playerMoney = 10000f;
         _playerMoneySave = 10000f;
-
-        if (plotDataList != null)
-        {
-            plotDataList.ResetGameData(slotIndex);
-        }
+        plotDataList.ResetGameData(slotIndex);
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        playerController.SetPlayerMoney(_playerMoneySave);
+        PlotPricePopupScript plotPricePopupScript = FindObjectOfType<PlotPricePopupScript>();
+        plotPricePopupScript.UpdateMoney(0);
         
-        
-        
-        
+        Debug.Log($"Resetting money for slot {slotIndex}, PlayerMoney: {playerMoney}");
     }
 
     private void SaveUIState(int slotIndex)

@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private PlotPricePopupScript _plotPricePopupScript;
     [SerializeField] private float speed = 5;
-    [SerializeField] private float playerMoney = SaveData.Instance.PlayerMoneySave;
+    [SerializeField] private float playerMoney;
     
     private SaveData _saveData;
     
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Current player money " + playerMoney);
             
-            SwitchScenes();
+            SwitchHomeScenes();
             
         }
     }
@@ -132,12 +132,20 @@ public class PlayerController : MonoBehaviour
 
     #region Scene Transition
 
-    private void SwitchScenes()
+    private void SwitchHomeScenes()
     {
         SaveData.Instance.SaveGameData(_saveData.SlotLastSelectedData);
-
         SceneController currentScene = FindObjectOfType<SceneController>();
-        currentScene.ChangeScene();
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            currentScene.ChangeScene(2);
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            currentScene.ChangeScene(1);
+        } 
+        
+        
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 

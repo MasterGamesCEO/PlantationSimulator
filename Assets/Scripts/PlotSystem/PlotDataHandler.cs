@@ -61,9 +61,9 @@ public class PlotDataHandler : MonoBehaviour
             PlayerPrefs.DeleteKey($"Plot_{slotIndex}_{i}_IsLocked");
             allPlots[i].isLocked = true;
             allPlots[i].ActivateBoundry();
+            allPlots[i].setPlotColor(allPlots[i].isLocked);
         }
         UnlockFirstPlot();
-        
     }
 
     #endregion

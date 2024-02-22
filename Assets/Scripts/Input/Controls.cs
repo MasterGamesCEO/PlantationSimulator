@@ -134,6 +134,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BackKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""d059cd9d-7a5f-4079-8e79-00587e9965fd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -224,6 +233,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""enterKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f52d917d-b86d-47be-8022-6328280a102c"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BackKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -239,6 +259,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Dialog_uiControls = m_Dialog.FindAction("uiControls", throwIfNotFound: true);
         m_Dialog_openDialog = m_Dialog.FindAction("openDialog", throwIfNotFound: true);
         m_Dialog_enterKey = m_Dialog.FindAction("enterKey", throwIfNotFound: true);
+        m_Dialog_BackKey = m_Dialog.FindAction("BackKey", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -350,6 +371,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Dialog_uiControls;
     private readonly InputAction m_Dialog_openDialog;
     private readonly InputAction m_Dialog_enterKey;
+    private readonly InputAction m_Dialog_BackKey;
     public struct DialogActions
     {
         private @Controls m_Wrapper;
@@ -358,6 +380,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @uiControls => m_Wrapper.m_Dialog_uiControls;
         public InputAction @openDialog => m_Wrapper.m_Dialog_openDialog;
         public InputAction @enterKey => m_Wrapper.m_Dialog_enterKey;
+        public InputAction @BackKey => m_Wrapper.m_Dialog_BackKey;
         public InputActionMap Get() { return m_Wrapper.m_Dialog; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -379,6 +402,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @enterKey.started += instance.OnEnterKey;
             @enterKey.performed += instance.OnEnterKey;
             @enterKey.canceled += instance.OnEnterKey;
+            @BackKey.started += instance.OnBackKey;
+            @BackKey.performed += instance.OnBackKey;
+            @BackKey.canceled += instance.OnBackKey;
         }
 
         private void UnregisterCallbacks(IDialogActions instance)
@@ -395,6 +421,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @enterKey.started -= instance.OnEnterKey;
             @enterKey.performed -= instance.OnEnterKey;
             @enterKey.canceled -= instance.OnEnterKey;
+            @BackKey.started -= instance.OnBackKey;
+            @BackKey.performed -= instance.OnBackKey;
+            @BackKey.canceled -= instance.OnBackKey;
         }
 
         public void RemoveCallbacks(IDialogActions instance)
@@ -422,5 +451,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnUiControls(InputAction.CallbackContext context);
         void OnOpenDialog(InputAction.CallbackContext context);
         void OnEnterKey(InputAction.CallbackContext context);
+        void OnBackKey(InputAction.CallbackContext context);
     }
 }

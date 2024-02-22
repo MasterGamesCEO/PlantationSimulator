@@ -6,6 +6,8 @@ public class SceneController : MonoBehaviour
 {
     [SerializeField] private Animator transitionAnim;
 
+    public bool _currentlySceneChanging;
+
     private static readonly int CloseScene = Animator.StringToHash("CloseScene");
     private static readonly int OpenScene = Animator.StringToHash("OpenScene");
 
@@ -26,40 +28,40 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    public void ChangeScene() => StartCoroutine(LoadScene());
+    public void ChangeScene(int scene) => StartCoroutine(LoadScene(scene));
 
     #region Scene Transition
 
-    IEnumerator LoadScene()
+    IEnumerator LoadScene(int scene)
     {
+        Debug.Log("Scene change start");
+        _currentlySceneChanging = true;
         FindCanvasGroup();
 
         StartCoroutine(FadeCanvasGroup(canvasGroup, 1f, 0f));
         transitionAnim.SetTrigger(CloseScene);
         yield return new WaitForSeconds(1);
-        LoadNextScene();
+        SceneManager.LoadScene(scene);
+        Debug.Log("Scene change end");
         transitionAnim.SetTrigger(OpenScene);
         StartCoroutine(FadeCanvasGroup(canvasGroup, 0f, 1f));
+        _currentlySceneChanging = false;
+        
     }
 
-    void LoadNextScene()
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
-        int nextSceneIndex = (currentScene.buildIndex == 0) ? 1 : 0;
-        SceneManager.LoadScene(nextSceneIndex);
-    }
+    
 
+    // ReSharper disable Unity.PerformanceAnalysis
     void FindCanvasGroup()
     {
+        
         CanvasGroup[] canvasGroups = FindObjectsOfType<CanvasGroup>();
         if (canvasGroups.Length > 0)
         {
             canvasGroup = canvasGroups[0];
+            Debug.Log("CanvasGroup" + canvasGroup);
         }
-        else
-        {
-            Debug.LogError("CanvasGroup not found in the scene.");
-        }
+        
     }
 
     #endregion
@@ -68,26 +70,30 @@ public class SceneController : MonoBehaviour
 
     IEnumerator FadeCanvasGroup(CanvasGroup group, float startAlpha, float endAlpha)
     {
-        float elapsedTime = 0f;
-        float fadeDuration = 1f;
-
-        while (elapsedTime < fadeDuration)
+        if (canvasGroup != null)
         {
+            float elapsedTime = 0f;
+            float fadeDuration = 1f;
+
+            while (elapsedTime < fadeDuration)
+            {
+                // Check if the CanvasGroup is not null before accessing it
+                if (group != null)
+                {
+                    group.alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / fadeDuration);
+                }
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
             // Check if the CanvasGroup is not null before accessing it
             if (group != null)
             {
-                group.alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / fadeDuration);
+                group.alpha = endAlpha;
             }
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
         }
-
-        // Check if the CanvasGroup is not null before accessing it
-        if (group != null)
-        {
-            group.alpha = endAlpha;
-        }
+        
     }
 
     #endregion

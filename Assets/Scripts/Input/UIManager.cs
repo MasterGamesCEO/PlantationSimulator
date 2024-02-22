@@ -94,10 +94,16 @@ public class UIManager : MonoBehaviour
                 OnResumeAction();
                 break;
             case 1:
-                OnSavePopupAction();
+                OnSaveAction();
                 break;
             case 2:
-                OnSettingsAction();
+                OnOptionsAction();
+                break;
+            case 3:
+                OnMenuAction();
+                break;
+            case 4:
+                OnSaveOpen();
                 break;
         }
     }
@@ -106,39 +112,44 @@ public class UIManager : MonoBehaviour
     {
         CloseDialogBox();
     }
-
-    private void OnSavePopupAction()
+    private void OnSaveAction()
     {
-        OpenSaveBox();
+        SaveGameData();
+        CloseDialogBox();
+    }
+    private void OnOptionsAction()
+    {
+        Debug.Log("Options");
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
-    private void OnSettingsAction()
+    private void OnMenuAction()
     {
-        Debug.Log("Settings");
+        SaveGameData();
+        CloseSaveBox();
+        SceneController sceneController = FindObjectOfType<SceneController>();
+        sceneController.ChangeScene(0);
     }
+    private void OnSaveOpen()
+    {
+        OpenSaveBox();
+    }
+    
+    
     private void ExecuteSelectedSaveAction()
     {
         switch (_selectedOptionIndexSave)
         {
             case 0:
-                OnSaveAction();
+                OnCancelAction();
                 break;
             case 1:
                 OnSaveAndExitAction();
-                break;
-            case 2:
-                OnCancelAction();
                 break;
         }
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
-    private void OnSaveAction()
-    {
-        SaveGameData();
-        CloseSaveBox();
-    }
     // ReSharper disable Unity.PerformanceAnalysis
     private void OnSaveAndExitAction()
     {
@@ -162,13 +173,13 @@ public class UIManager : MonoBehaviour
 
         if (uiInput.y > 0 && !_wasYPressed)
         {
-            _selectedOptionIndex = (_selectedOptionIndex - 1 + 3) % 3;
+            _selectedOptionIndex = (_selectedOptionIndex - 1 + 5) % 5;
             _navigationProcessedThisFrame = true;
             _wasYPressed = true;
         }
         else if (uiInput.y < 0 && !_wasYPressed)
         {
-            _selectedOptionIndex = (_selectedOptionIndex + 1) % 3;
+            _selectedOptionIndex = (_selectedOptionIndex + 1) % 5;
             _navigationProcessedThisFrame = true;
             _wasYPressed = true;
         }
@@ -180,7 +191,7 @@ public class UIManager : MonoBehaviour
 
     private void UpdateUI()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             Transform option = _currentDialogBox.transform.Find($"Canvas/Foreground/Options/Option{i}");
             if (option != null)
@@ -250,13 +261,13 @@ public class UIManager : MonoBehaviour
 
         if (uiInput.x < 0 && !_wasXPressed)
         {
-            _selectedOptionIndexSave = (_selectedOptionIndexSave - 1 + 3) % 3;
+            _selectedOptionIndexSave = (_selectedOptionIndexSave - 1 + 2) % 2;
             _navigationProcessedThisFrame = true;
             _wasXPressed = true;
         }
         else if (uiInput.x > 0 && !_wasXPressed)
         {
-            _selectedOptionIndexSave = (_selectedOptionIndexSave + 1) % 3;
+            _selectedOptionIndexSave = (_selectedOptionIndexSave + 1) % 2;
             _navigationProcessedThisFrame = true;
             _wasXPressed = true;
         }
@@ -269,7 +280,7 @@ public class UIManager : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private void UpdateSaveUI()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             Transform option = _currentSaveBox.transform.Find($"Canvas/Foreground/Options/Option{i}");
             if (option != null)
