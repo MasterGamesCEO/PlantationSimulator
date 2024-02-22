@@ -53,11 +53,12 @@ public class PlotPricePopupScript : MonoBehaviour
     public void UpdateMoney(float moneyDelta)
     {
         _saveData = FindObjectOfType<SaveData>();
+        playerController = FindObjectOfType<PlayerController>();
         if (playerController != null)
         {
-            var moneyAfterUpdate = (int)_saveData.playerMoney - (int)moneyDelta;
-            moneyText.text = "$" + moneyAfterUpdate.ToString();
-            Debug.Log("Update money" + moneyAfterUpdate);
+            float moneyAfterUpdate = _saveData.playerMoney - moneyDelta;
+            moneyText.text = "$" + ((int)moneyAfterUpdate).ToString();
+            Debug.Log("Updated money $" + moneyAfterUpdate);
         }
     }
 

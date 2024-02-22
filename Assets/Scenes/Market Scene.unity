@@ -131,6 +131,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 806355153379758554, guid: 4dd9c2d3315575942b11f9e3963d329b,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 103598504}
     - target: {fileID: 2247368976455171320, guid: 4dd9c2d3315575942b11f9e3963d329b,
         type: 3}
       propertyPath: m_Name
@@ -196,18 +201,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dd9c2d3315575942b11f9e3963d329b, type: 3}
---- !u!114 &14186217 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6227944549253903171, guid: 4dd9c2d3315575942b11f9e3963d329b,
-    type: 3}
-  m_PrefabInstance: {fileID: 14186216}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36fa4216c139a06408186313363a7285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &103598503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -285,7 +278,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _plotPricePopupScript
       value: 
-      objectReference: {fileID: 14186217}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3291841639273293422, guid: 56e960c413a931543abc33b5617e58f9, type: 3}

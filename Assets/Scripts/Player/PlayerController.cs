@@ -139,15 +139,28 @@ public class PlayerController : MonoBehaviour
         SceneController currentScene = FindObjectOfType<SceneController>();
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            currentScene.ChangeScene(2);
+            StartCoroutine(LoadSceneAndData(_saveData.SlotLastSelectedData, currentScene, 2));
         }
         else if (SceneManager.GetActiveScene().buildIndex == 2)
         {
-            currentScene.ChangeScene(1);
+            StartCoroutine(LoadSceneAndData(_saveData.SlotLastSelectedData, currentScene, 1));
         } 
         
         
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    
+    // ReSharper disable Unity.PerformanceAnalysis
+    private IEnumerator LoadSceneAndData(int slotIndex, SceneController sceneController, int scene)
+    {
+        _saveData.SlotLastSelectedData = slotIndex;
+        sceneController.ChangeScene(scene);
+        
+        while (sceneController.currentlySceneChanging)
+        {
+            yield return null;
+        }
+        _saveData.Load(slotIndex);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
