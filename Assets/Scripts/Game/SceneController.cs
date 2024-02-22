@@ -1,25 +1,26 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class SceneController : MonoBehaviour
 {
     [SerializeField] private Animator transitionAnim;
 
-    public bool _currentlySceneChanging;
+    [FormerlySerializedAs("_currentlySceneChanging")] public bool currentlySceneChanging;
 
     private static readonly int CloseScene = Animator.StringToHash("CloseScene");
     private static readonly int OpenScene = Animator.StringToHash("OpenScene");
 
-    private CanvasGroup canvasGroup;
-    private static SceneController instance;
+    private CanvasGroup _canvasGroup;
+    private static SceneController _instance;
 
     
     private void Awake()
     {
-        if (instance == null)
+        if (_instance == null)
         {
-            instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -35,17 +36,17 @@ public class SceneController : MonoBehaviour
     IEnumerator LoadScene(int scene)
     {
         Debug.Log("Scene change start");
-        _currentlySceneChanging = true;
+        currentlySceneChanging = true;
         FindCanvasGroup();
 
-        StartCoroutine(FadeCanvasGroup(canvasGroup, 1f, 0f));
+        StartCoroutine(FadeCanvasGroup(_canvasGroup, 1f, 0f));
         transitionAnim.SetTrigger(CloseScene);
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(scene);
         Debug.Log("Scene change end");
         transitionAnim.SetTrigger(OpenScene);
-        StartCoroutine(FadeCanvasGroup(canvasGroup, 0f, 1f));
-        _currentlySceneChanging = false;
+        StartCoroutine(FadeCanvasGroup(_canvasGroup, 0f, 1f));
+        currentlySceneChanging = false;
         
     }
 
@@ -58,8 +59,8 @@ public class SceneController : MonoBehaviour
         CanvasGroup[] canvasGroups = FindObjectsOfType<CanvasGroup>();
         if (canvasGroups.Length > 0)
         {
-            canvasGroup = canvasGroups[0];
-            Debug.Log("CanvasGroup" + canvasGroup);
+            _canvasGroup = canvasGroups[0];
+            Debug.Log("CanvasGroup" + _canvasGroup);
         }
         
     }
@@ -70,7 +71,7 @@ public class SceneController : MonoBehaviour
 
     IEnumerator FadeCanvasGroup(CanvasGroup group, float startAlpha, float endAlpha)
     {
-        if (canvasGroup != null)
+        if (_canvasGroup != null)
         {
             float elapsedTime = 0f;
             float fadeDuration = 1f;

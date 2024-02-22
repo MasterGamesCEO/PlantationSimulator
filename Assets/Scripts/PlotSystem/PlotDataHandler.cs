@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlotDataHandler : MonoBehaviour
 {
-    [SerializeField] private PlayerController _controller;
+    [FormerlySerializedAs("_controller")] [SerializeField] private PlayerController controller;
     [SerializeField] public PlotStats[] allPlots;
     
     public List<SaveData.PlotData> GetPlotDataList()
@@ -36,7 +37,7 @@ public class PlotDataHandler : MonoBehaviour
         {
             int isLockedValue = PlayerPrefs.GetInt($"Plot_{slotIndex}_{i}_IsLocked", 1);
             allPlots[i].isLocked = isLockedValue == 1;
-            allPlots[i].setPlotColor(allPlots[i].isLocked);
+            allPlots[i].SetPlotColor(allPlots[i].isLocked);
         }
         
     }
@@ -61,7 +62,7 @@ public class PlotDataHandler : MonoBehaviour
             PlayerPrefs.DeleteKey($"Plot_{slotIndex}_{i}_IsLocked");
             allPlots[i].isLocked = true;
             allPlots[i].ActivateBoundry();
-            allPlots[i].setPlotColor(allPlots[i].isLocked);
+            allPlots[i].SetPlotColor(allPlots[i].isLocked);
         }
         UnlockFirstPlot();
     }

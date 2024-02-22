@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GameData : MonoBehaviour
 {
-    private int selectedSlot;
+    private int _selectedSlot;
 
     public int SelectedGameSlot
     {
-        get { return selectedSlot; }
-        set { selectedSlot = value; }
+        get { return _selectedSlot; }
+        set { _selectedSlot = value; }
     }
     // Singleton pattern
     private static GameData _instance;

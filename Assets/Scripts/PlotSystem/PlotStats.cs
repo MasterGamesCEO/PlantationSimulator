@@ -22,7 +22,7 @@ public class PlotStats : MonoBehaviour
 
     #region Plot Configuration
 
-    public void setPlotColor(bool locked)
+    public void SetPlotColor(bool locked)
     {
         var renderer = gameObject.GetComponent<MeshRenderer>();
         
@@ -64,7 +64,6 @@ public class PlotStats : MonoBehaviour
         if (currentlockItem != null)
         {
             Destroy(currentlockItem.gameObject);
-            Debug.Log("Destroy");
         }
         
         boundryPos.enabled = false;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 [System.Serializable]
 public class SaveData : MonoBehaviour
@@ -9,9 +10,9 @@ public class SaveData : MonoBehaviour
     public float playerMoney;
     public PlotDataHandler plotDataList;
     private int _slotLastSelected;
-    public bool _ifPlotReset0 = false;
-    public bool _ifPlotReset1 = false;
-    public bool _ifPlotReset2 = false;
+    [FormerlySerializedAs("_ifPlotReset0")] public bool ifPlotReset0 = false;
+    [FormerlySerializedAs("_ifPlotReset1")] public bool ifPlotReset1 = false;
+    [FormerlySerializedAs("_ifPlotReset2")] public bool ifPlotReset2 = false;
 
     public int SlotLastSelectedData
     {
@@ -97,19 +98,19 @@ public class SaveData : MonoBehaviour
 
     public void LoadGameData(int slotIndex)
     {
-        if (slotIndex == 0 && _ifPlotReset0 || slotIndex == 1 && _ifPlotReset1 || slotIndex == 2 && _ifPlotReset2)
+        if (slotIndex == 0 && ifPlotReset0 || slotIndex == 1 && ifPlotReset1 || slotIndex == 2 && ifPlotReset2)
         {
             Reset(slotIndex);
-            if (slotIndex == 0 && _ifPlotReset0)
+            if (slotIndex == 0 && ifPlotReset0)
             {
-                _ifPlotReset0 = false;
+                ifPlotReset0 = false;
             }
-            else if (slotIndex == 1 && _ifPlotReset1)
+            else if (slotIndex == 1 && ifPlotReset1)
             {
-                _ifPlotReset1 = false;
-            } else if (slotIndex == 2 && _ifPlotReset2)
+                ifPlotReset1 = false;
+            } else if (slotIndex == 2 && ifPlotReset2)
             {
-                _ifPlotReset2 = false;
+                ifPlotReset2 = false;
             }
             
         }

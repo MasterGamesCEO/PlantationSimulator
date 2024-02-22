@@ -39,8 +39,11 @@ public class HomeScreen : MonoBehaviour
 
     private void OnBackPerformed(InputAction.CallbackContext obj)
     {
-        CloseSlotBox();
-        OpenStartBox();
+        if (this != null)
+        {
+            CloseSlotBox();
+            OpenStartBox();
+        }
     }
 
     private void Update()
@@ -267,7 +270,7 @@ public class HomeScreen : MonoBehaviour
         sceneController.ChangeScene(1);
 
         // Wait for the scene transition to complete
-        while (sceneController._currentlySceneChanging)
+        while (sceneController.currentlySceneChanging)
         {
             yield return null;
         }
@@ -280,17 +283,17 @@ public class HomeScreen : MonoBehaviour
     {
         if (slotIndex == 0)
         {
-            _saveData._ifPlotReset0 = true;
+            _saveData.ifPlotReset0 = true;
         }
 
         if (slotIndex == 1)
         {
-            _saveData._ifPlotReset1 = true;
+            _saveData.ifPlotReset1 = true;
         }
 
         if (slotIndex == 2)
         {
-            _saveData._ifPlotReset2 = true;
+            _saveData.ifPlotReset2 = true;
         }
 
         Debug.Log("Resetting save data for Slot " + slotIndex);

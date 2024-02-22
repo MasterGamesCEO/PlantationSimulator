@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private InputManager _input;
     private PlotStats _curPlotStats;
 
-    [SerializeField] private PlotPricePopupScript _plotPricePopupScript;
+    [FormerlySerializedAs("_plotPricePopupScript")] [SerializeField] private PlotPricePopupScript plotPricePopupScript;
     [SerializeField] private float speed = 5;
     [SerializeField] private float playerMoney;
     
@@ -68,7 +69,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Plot"))
         {
-            _plotPricePopupScript.DeactivatePopup();
+            plotPricePopupScript.DeactivatePopup();
         }
     }
 
@@ -84,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnBuyLandPerformed(InputAction.CallbackContext obj)
     {
-        if (_plotPricePopupScript.PopupActive())
+        if (plotPricePopupScript.PopupActive())
         {
             BuyLand();
         }
@@ -100,13 +101,13 @@ public class PlayerController : MonoBehaviour
         if (_curPlotStats.isLocked)
         {
             Debug.Log("LOCKED PLOT");
-            _plotPricePopupScript.ActivatePopup(_curPlotStats.PlotPrice);
+            plotPricePopupScript.ActivatePopup(_curPlotStats.PlotPrice);
         }
         else
         {
             Debug.Log("UNLOCKED PLOT");
             _curPlotStats.DeactivateBoundry();
-            _plotPricePopupScript.DeactivatePopup();
+            plotPricePopupScript.DeactivatePopup();
         }
     }
 
@@ -114,13 +115,13 @@ public class PlayerController : MonoBehaviour
     {
         if (playerMoney >= _curPlotStats.PlotPrice)
         {
-            _plotPricePopupScript.DeactivatePopup();
+            plotPricePopupScript.DeactivatePopup();
             _curPlotStats.isLocked = false;
             _curPlotStats.DeactivateBoundry();
-            _plotPricePopupScript.UpdateMoney(_curPlotStats.PlotPrice);
+            plotPricePopupScript.UpdateMoney(_curPlotStats.PlotPrice);
             playerMoney -= _curPlotStats.PlotPrice;
             SaveData.Instance.playerMoney = playerMoney;
-            _plotPricePopupScript.RunMoneySpread();
+            plotPricePopupScript.RunMoneySpread();
         }
         else
         {

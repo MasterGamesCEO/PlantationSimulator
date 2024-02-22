@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -11,7 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject savePopupPrefab;
     [SerializeField] private GameObject dialogBoxPrefab;
     [SerializeField] private PlayerController playerController;
-    [SerializeField] private PlotPricePopupScript _plotPricePopupScript;
+    [FormerlySerializedAs("_plotPricePopupScript")] [SerializeField] private PlotPricePopupScript plotPricePopupScript;
 
     private InputManager _input;
     private GameObject _currentSaveBox;
@@ -20,7 +21,7 @@ public class UIManager : MonoBehaviour
     
     private int _selectedOptionIndex = 0;
     private int _selectedOptionIndexSave = 0;
-    private bool _isDialogOpen = false;
+    [FormerlySerializedAs("_isDialogOpen")] public bool isDialogOpen = false;
     private bool _isSaveOpen = false;
     private bool _navigationProcessedThisFrame = false;
     private bool _wasYPressed = false;
@@ -38,7 +39,7 @@ public class UIManager : MonoBehaviour
     {
         if (playerController != null)
         {
-            _plotPricePopupScript.UpdateMoney(0);
+            plotPricePopupScript.UpdateMoney(0);
         }
     }
 
@@ -58,7 +59,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (_isDialogOpen && !_isSaveOpen)
+        if (isDialogOpen && !_isSaveOpen)
         {
             Vector2 uiInput = _input.uiControls.ReadValue<Vector2>();
             HandleNavigation(uiInput);
@@ -68,7 +69,7 @@ public class UIManager : MonoBehaviour
             }
             UpdateUI();
         }
-        else if(_isDialogOpen && _isSaveOpen)
+        else if(isDialogOpen && _isSaveOpen)
         {
             Vector2 uiInput = _input.uiControls.ReadValue<Vector2>();
             HandleSaveNavigation(uiInput);
@@ -214,9 +215,9 @@ public class UIManager : MonoBehaviour
 
     private void OnDialogPerformed(InputAction.CallbackContext obj)
     {
-        _isDialogOpen = !_isDialogOpen;
+        isDialogOpen = !isDialogOpen;
 
-        if (_isDialogOpen)
+        if (isDialogOpen)
         {
             OpenDialogBox();
         }
@@ -245,7 +246,7 @@ public class UIManager : MonoBehaviour
             Destroy(_currentDialogBox);
         }
 
-        _isDialogOpen = false;
+        isDialogOpen = false;
         _input.uiControls.Disable();
         _input.movement.Enable();
     }

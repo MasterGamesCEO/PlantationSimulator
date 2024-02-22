@@ -9,7 +9,7 @@ namespace TMPro.Examples
 
     public class Benchmark03 : MonoBehaviour
     {
-        public enum BenchmarkType { TMPSDFMobile = 0, TMPSDFMobileSsd = 1, TMPSDF = 2, TMPBitmapMobile = 3, TextmeshBitmap = 4 }
+        public enum BenchmarkType { TmpsdfMobile = 0, TmpsdfMobileSsd = 1, Tmpsdf = 2, TMPBitmapMobile = 3, TextmeshBitmap = 4 }
 
         [FormerlySerializedAs("NumberOfSamples")] public int numberOfSamples = 100;
         [FormerlySerializedAs("Benchmark")] public BenchmarkType benchmark;
@@ -30,14 +30,14 @@ namespace TMPro.Examples
             // Create Dynamic Font Asset for the given font file.
             switch (benchmark)
             {
-                case BenchmarkType.TMPSDFMobile:
+                case BenchmarkType.TmpsdfMobile:
                     fontAsset = TMP_FontAsset.CreateFontAsset(sourceFont, 90, 9, GlyphRenderMode.SDFAA, 256, 256, AtlasPopulationMode.Dynamic);
                     break;
-                case BenchmarkType.TMPSDFMobileSsd:
+                case BenchmarkType.TmpsdfMobileSsd:
                     fontAsset = TMP_FontAsset.CreateFontAsset(sourceFont, 90, 9, GlyphRenderMode.SDFAA, 256, 256, AtlasPopulationMode.Dynamic);
                     fontAsset.material.shader = Shader.Find("TextMeshPro/Mobile/Distance Field SSD");
                     break;
-                case BenchmarkType.TMPSDF:
+                case BenchmarkType.Tmpsdf:
                     fontAsset = TMP_FontAsset.CreateFontAsset(sourceFont, 90, 9, GlyphRenderMode.SDFAA, 256, 256, AtlasPopulationMode.Dynamic);
                     fontAsset.material.shader = Shader.Find("TextMeshPro/Distance Field");
                     break;
@@ -50,9 +50,9 @@ namespace TMPro.Examples
             {
                 switch (benchmark)
                 {
-                    case BenchmarkType.TMPSDFMobile:
-                    case BenchmarkType.TMPSDFMobileSsd:
-                    case BenchmarkType.TMPSDF:
+                    case BenchmarkType.TmpsdfMobile:
+                    case BenchmarkType.TmpsdfMobileSsd:
+                    case BenchmarkType.Tmpsdf:
                     case BenchmarkType.TMPBitmapMobile:
                         {
                             GameObject go = new GameObject();

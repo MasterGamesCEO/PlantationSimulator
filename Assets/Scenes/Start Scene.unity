@@ -382,9 +382,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMoney: 0
   plotDataList: {fileID: 0}
-  _ifPlotReset0: 0
-  _ifPlotReset1: 0
-  _ifPlotReset2: 0
+  ifPlotReset0: 0
+  ifPlotReset1: 0
+  ifPlotReset2: 0
 --- !u!1 &692575696
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,7 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionAnim: {fileID: 2014727399}
-  _currentlySceneChanging: 0
+  currentlySceneChanging: 0
 --- !u!4 &1134983808
 Transform:
   m_ObjectHideFlags: 0
@@ -712,6 +712,7 @@ GameObject:
   - component: {fileID: 1316025757}
   - component: {fileID: 1316025756}
   - component: {fileID: 1316025759}
+  - component: {fileID: 1316025760}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -837,6 +838,18 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &1316025760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316025755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74183a2093b259d4db243213bec27b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1519299604
 GameObject:
   m_ObjectHideFlags: 0

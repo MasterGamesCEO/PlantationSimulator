@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlotPricePopupScript : MonoBehaviour
 {
@@ -7,8 +8,8 @@ public class PlotPricePopupScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private GameObject moneySpreadPrefab;
     
-    private GameObject currentMoneySpread;
-    [SerializeField] private PlayerController _playerController;
+    private GameObject _currentMoneySpread;
+    [SerializeField] private PlayerController playerController;
     private SaveData _saveData;
     private Animator _mAnimator;
 
@@ -21,7 +22,6 @@ public class PlotPricePopupScript : MonoBehaviour
         _saveData = SaveData.Instance;
         _mAnimator = GetComponent<Animator>();
         UpdateMoney(0);
-        
     }
 
     #endregion
@@ -53,22 +53,18 @@ public class PlotPricePopupScript : MonoBehaviour
     public void UpdateMoney(float moneyDelta)
     {
         _saveData = FindObjectOfType<SaveData>();
-        if (_playerController != null)
+        if (playerController != null)
         {
             var moneyAfterUpdate = (int)_saveData.playerMoney - (int)moneyDelta;
             moneyText.text = "$" + moneyAfterUpdate.ToString();
             Debug.Log("Update money" + moneyAfterUpdate);
         }
-        else
-        {
-            Debug.LogError("PlayerController not found!");
-        }
     }
 
     public void RunMoneySpread()
     {
-        Destroy(currentMoneySpread);
-        currentMoneySpread = Instantiate(moneySpreadPrefab, _playerController.transform);
+        Destroy(_currentMoneySpread);
+        _currentMoneySpread = Instantiate(moneySpreadPrefab, playerController.transform);
     }
 
     #endregion
