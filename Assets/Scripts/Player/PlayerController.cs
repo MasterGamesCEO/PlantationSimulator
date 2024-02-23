@@ -12,9 +12,10 @@ public class PlayerController : MonoBehaviour
     private InputManager _input;
     private PlotStats _curPlotStats;
 
-    [FormerlySerializedAs("_plotPricePopupScript")] [SerializeField] private PlotPricePopupScript plotPricePopupScript;
+    [SerializeField] private PlotPricePopupScript plotPricePopupScript;
     [SerializeField] private float speed = 5;
     [SerializeField] private float playerMoney;
+    [SerializeField] private Animator playerAnimation;
     
     private SaveData _saveData;
     
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         HandleMovement(Time.deltaTime);
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -77,10 +79,21 @@ public class PlayerController : MonoBehaviour
 
     #region Player Actions
 
+    
     private void HandleMovement(float delta)
     {
-        Vector3 movement = (_input.Move.x * transform.right) + (_input.Move.y * transform.forward);
-        _controller.Move(movement * (speed * delta));
+        Vector3 movement = new Vector3(_input.Move.x, 0, _input.Move.y);  // Ignore the y-axis for rotation
+        bool isWalking = movement.magnitude > 0.1f;
+        if (isWalking)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(movement, Vector3.up);
+            transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 10 * delta);
+            _controller.Move(transform.forward * (speed * delta));  
+        }
+        if (playerAnimation != null)
+        {
+            playerAnimation.SetBool("IsWalking", isWalking);
+        }
     }
 
     private void OnBuyLandPerformed(InputAction.CallbackContext obj)

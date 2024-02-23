@@ -48,6 +48,7 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
         Move = movement.ReadValue<Vector2>();
+        
     }
 
     #endregion
