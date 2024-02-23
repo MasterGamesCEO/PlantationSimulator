@@ -135,7 +135,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerController
       value: 
-      objectReference: {fileID: 103598504}
+      objectReference: {fileID: 0}
     - target: {fileID: 2247368976455171320, guid: 4dd9c2d3315575942b11f9e3963d329b,
         type: 3}
       propertyPath: m_Name
@@ -195,7 +195,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerController
       value: 
-      objectReference: {fileID: 103598504}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -285,18 +285,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56e960c413a931543abc33b5617e58f9, type: 3}
---- !u!114 &103598504 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7843556056121519234, guid: 56e960c413a931543abc33b5617e58f9,
-    type: 3}
-  m_PrefabInstance: {fileID: 103598503}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe5ac85c0e650a847963a13748c9ca9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1087115923
 GameObject:
   m_ObjectHideFlags: 0

@@ -597,7 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plotPricePopupScript: {fileID: 0}
-  speed: 5
+  speed: 3
   playerMoney: 10000
   playerAnimation: {fileID: 2531396288567058683}
 --- !u!1 &7749288473487770649

@@ -2603,7 +2603,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f1cff9e4f4019ea4297a1f056eaed440, type: 2}
+  - {fileID: 2100000, guid: a0daf307fa18019449678b9016e4b2b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4690,11 +4690,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1147213301800016350, guid: 56e960c413a931543abc33b5617e58f9,
         type: 3}
-      propertyPath: speed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1147213301800016350, guid: 56e960c413a931543abc33b5617e58f9,
-        type: 3}
       propertyPath: plotPricePopupScript
       value: 
       objectReference: {fileID: 2372825560039540601}
@@ -4702,16 +4697,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2864294277147946411, guid: 56e960c413a931543abc33b5617e58f9,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2864294277147946411, guid: 56e960c413a931543abc33b5617e58f9,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 4096142615674465828, guid: 56e960c413a931543abc33b5617e58f9,
         type: 3}
@@ -4870,16 +4855,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 174482900078050707, guid: 4dd9c2d3315575942b11f9e3963d329b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 806355153379758554, guid: 4dd9c2d3315575942b11f9e3963d329b,
-        type: 3}
-      propertyPath: playerController
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2247368976455171320, guid: 4dd9c2d3315575942b11f9e3963d329b,
         type: 3}
       propertyPath: m_Name
@@ -4934,41 +4909,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6561458470477637421, guid: 4dd9c2d3315575942b11f9e3963d329b,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6561458470477637421, guid: 4dd9c2d3315575942b11f9e3963d329b,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -87
-      objectReference: {fileID: 0}
-    - target: {fileID: 6561458470477637421, guid: 4dd9c2d3315575942b11f9e3963d329b,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6561458470477637421, guid: 4dd9c2d3315575942b11f9e3963d329b,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6561458470477637421, guid: 4dd9c2d3315575942b11f9e3963d329b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6561458470477637421, guid: 4dd9c2d3315575942b11f9e3963d329b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -56.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8019832338336841199, guid: 4dd9c2d3315575942b11f9e3963d329b,
-        type: 3}
-      propertyPath: playerController
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

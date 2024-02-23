@@ -320,8 +320,8 @@ public class UIManager : MonoBehaviour
         }
 
         _isSaveOpen = false;
-        _input.uiControls.Enable();
-        _input.movement.Disable();
+        _input.uiControls.Disable();
+        _input.movement.Enable();
     }
 
     #endregion
