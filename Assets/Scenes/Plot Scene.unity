@@ -198,6 +198,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -281,6 +287,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -390,6 +402,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -474,6 +492,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -557,6 +581,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -763,6 +793,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -853,6 +889,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -937,6 +979,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -1010,6 +1058,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -1094,6 +1148,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -1190,6 +1250,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -1292,6 +1358,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -1591,6 +1663,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -1680,6 +1758,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -1776,6 +1860,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -1921,6 +2011,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -2022,6 +2118,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -2155,6 +2257,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -2238,6 +2346,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -2341,6 +2455,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -2425,6 +2545,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -2508,6 +2634,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -2735,6 +2867,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -2830,6 +2968,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -2969,6 +3113,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -3052,6 +3202,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -3149,6 +3305,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -3233,6 +3395,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -3316,6 +3484,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -3455,6 +3629,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -3592,6 +3772,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -3742,6 +3928,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -3825,6 +4017,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -4197,6 +4395,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -4280,6 +4484,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -4383,6 +4593,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -4466,6 +4682,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
@@ -4647,6 +4869,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
         type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
+        type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}
       propertyPath: m_Name
@@ -4697,6 +4925,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2864294277147946411, guid: 56e960c413a931543abc33b5617e58f9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2864294277147946411, guid: 56e960c413a931543abc33b5617e58f9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 4096142615674465828, guid: 56e960c413a931543abc33b5617e58f9,
         type: 3}
@@ -4821,6 +5059,12 @@ PrefabInstance:
       propertyPath: lockItem
       value: 
       objectReference: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60,
+        type: 3}
+    - target: {fileID: 4552792676031819512, guid: 40d0308d21e9c9a48b2305efd8da5f05,
+        type: 3}
+      propertyPath: unLockedPlot
+      value: 
+      objectReference: {fileID: 7504002138495674914, guid: cc58b59ccaa02ff44bb91ad7fd9c5871,
         type: 3}
     - target: {fileID: 4901138334452792963, guid: 40d0308d21e9c9a48b2305efd8da5f05,
         type: 3}

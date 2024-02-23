@@ -7,8 +7,10 @@ public class PlotStats : MonoBehaviour
     [SerializeField] public Material lockMaterial;
     [SerializeField] public Material unlockMaterial;
     [SerializeField ]public Component lockItem;
+    [SerializeField ]public Component unLockedPlot;
     
     public Component currentlockItem;
+    public Component currentunlockItem;
     public float PlotPrice { get; private set; }
 
     #region Unity Callbacks
@@ -34,6 +36,13 @@ public class PlotStats : MonoBehaviour
                 currentlockItem = Instantiate(lockItem, transform);
             }
             
+        }
+        else
+        {
+            if (currentunlockItem == null)
+            {
+                currentunlockItem = Instantiate(unLockedPlot, transform);
+            }
         }
     }
 
@@ -65,7 +74,10 @@ public class PlotStats : MonoBehaviour
         {
             Destroy(currentlockItem.gameObject);
         }
-        
+        if (currentunlockItem == null)
+        {
+            currentunlockItem = Instantiate(unLockedPlot, transform);
+        }
         boundryPos.enabled = false;
     }
 
