@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.InputSystem.iOS;
 using UnityEngine.Search;
@@ -19,41 +18,41 @@ public class RobotAttributes : MonoBehaviour
     private void Start()
     {
         CPS = Random.Range(0.001f, 5f);
-        robotValue();
+        RobotValue();
         
     }
 
-    private void robotValue()
+    private void RobotValue()
     {
         if (CPS >= 0.001 & CPS < 0.1)
         {
             robotType.Equals("basicRobot");
-            basicRobotS();
+            BasicRobotS();
         }
         if (CPS >= 0.1 & CPS < 1)
         {
             robotType.Equals("silverRobot");
-            silverRobotS();
+            SilverRobotS();
         }
         if (CPS >= 1 & CPS < 2)
         {
             robotType.Equals("goldRobot");
-            goldRobotS();
+            GoldRobotS();
         }
         if (CPS >= 2 & CPS < 3.5)
         {
             robotType.Equals("diamondRobot");
-            diamondRobotS();
+            DiamondRobotS();
         }
         if (CPS >= 3.5 & CPS < 5)
         {
             robotType.Equals("ultraBot");
-            ultraBotS();
+            UltraBotS();
         }
         
     }
 
-    private void basicRobotS()
+    private void BasicRobotS()
     {
         price = 20;
         quickSellPrice = 1;
@@ -62,7 +61,7 @@ public class RobotAttributes : MonoBehaviour
         size = CPS >= 0.05 ? "scrawny" : "normal";
     }
 
-    private void silverRobotS()
+    private void SilverRobotS()
     {
         price = 100;
         quickSellPrice = 10;
@@ -72,7 +71,7 @@ public class RobotAttributes : MonoBehaviour
         
     }
 
-    private void goldRobotS()
+    private void GoldRobotS()
     {
         price = 500;
         quickSellPrice = 50;
@@ -81,7 +80,7 @@ public class RobotAttributes : MonoBehaviour
         size = CPS >= 1.5 ? "tall" : "built";
     }
 
-    private void diamondRobotS()
+    private void DiamondRobotS()
     {
         price = 2000;
         quickSellPrice = 100;
@@ -90,16 +89,12 @@ public class RobotAttributes : MonoBehaviour
         size = CPS >= 2.9 ? "built" : "massive";
     }
 
-    private void ultraBotS()
+    private void UltraBotS()
     {
         price = 10000;
         quickSellPrice = 1000;
         robotType = "ultraBot";
         
         size = CPS >= 4 ? "massive" : "tank";
-    }
-    private void Update()
-    {
-        
     }
 }

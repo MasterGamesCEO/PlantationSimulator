@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
     public InputAction openDialog;
     public InputAction enterKey;
     public InputAction backKey;
+    public InputAction sprint;
     public Vector2 Move { get; private set; }
 
     #endregion
@@ -63,6 +64,7 @@ public class InputManager : MonoBehaviour
         openDialog = _controls.Dialog.openDialog;
         enterKey = _controls.Dialog.enterKey;
         backKey = _controls.Dialog.BackKey;
+        sprint = _controls.Player.Sprint;
     }
 
     private void EnableInputActions()

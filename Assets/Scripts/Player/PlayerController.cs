@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController _controller;
     private InputManager _input;
     private PlotStats _curPlotStats;
+    private bool _isSprinting;
 
     [SerializeField] private PlotPricePopupScript plotPricePopupScript;
     [SerializeField] private float speed = 5;
@@ -44,6 +45,20 @@ public class PlayerController : MonoBehaviour
         _saveData = SaveData.Instance;
         _controller = GetComponent<CharacterController>();
         _input.buyLand.performed += OnBuyLandPerformed;
+        _input.sprint.performed += OnSprintPerformed;
+        _input.sprint.canceled += OnSprintPerformed;
+    }
+
+    private void OnSprintPerformed(InputAction.CallbackContext obj)
+    {
+        if (_input.sprint.triggered)
+        {
+            _isSprinting = true;
+        }
+        else
+        {
+            _isSprinting = false;
+        }
     }
 
     private void FixedUpdate()
@@ -84,16 +99,21 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 movement = new Vector3(_input.Move.x, 0, _input.Move.y);  // Ignore the y-axis for rotation
         bool isWalking = movement.magnitude > 0.1f;
-        if (isWalking)
+        if (isWalking && !_isSprinting)
         {
             Quaternion toRotation = Quaternion.LookRotation(movement, Vector3.up);
             transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 10 * delta);
             _controller.Move(transform.forward * (speed * delta));  
         }
-        if (playerAnimation != null)
+        else if (isWalking && _isSprinting)
         {
-            playerAnimation.SetBool("IsWalking", isWalking);
+            Quaternion toRotation = Quaternion.LookRotation(movement, Vector3.up);
+            transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 10 * delta);
+            _controller.Move(transform.forward * ((speed+3) * delta));  
         }
+        
+        playerAnimation.SetBool("IsWalking", isWalking);
+        playerAnimation.SetBool("IsSprinting", _isSprinting);
     }
 
     private void OnBuyLandPerformed(InputAction.CallbackContext obj)

@@ -22,7 +22,7 @@ public class StockMarket : MonoBehaviour
             ResetTimer();
             stockChange = true;
         }
-        if (stockChange = true)
+        if (stockChange == true)
         {
             StockPrice = Random.Range(50, 200);
         }
