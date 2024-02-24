@@ -79,6 +79,9 @@ public class PlayerController : MonoBehaviour
             
             SwitchHomeScenes();
             
+        } else if (other.gameObject.tag.Equals("Platform"))
+        {
+            Debug.Log("platform");
         }
     }
 

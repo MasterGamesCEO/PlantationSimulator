@@ -4,13 +4,11 @@ public class PlotStats : MonoBehaviour
 {
     [SerializeField] public bool isLocked = true;
     [SerializeField] public BoxCollider boundryPos;
-    [SerializeField] public Material lockMaterial;
-    [SerializeField] public Material unlockMaterial;
-    [SerializeField ]public Component lockItem;
-    [SerializeField ]public Component unLockedPlot;
+    [SerializeField] public Component LockPrefab;
+    [SerializeField] public Component UnlockedPrefab;
     
-    public Component currentlockItem;
-    public Component currentunlockItem;
+    private Component _currentLockItem;
+    private Component _currentUnlockItem;
     public float PlotPrice { get; private set; }
 
     #region Unity Callbacks
@@ -26,22 +24,19 @@ public class PlotStats : MonoBehaviour
 
     public void SetPlotColor(bool locked)
     {
-        var renderer = gameObject.GetComponent<MeshRenderer>();
-        
-        renderer.material = locked ? lockMaterial : unlockMaterial;
         if (locked)
         {
-            if (currentlockItem == null)
+            if (_currentLockItem == null)
             {
-                currentlockItem = Instantiate(lockItem, transform);
+                _currentLockItem = Instantiate(LockPrefab, transform);
             }
             
         }
         else
         {
-            if (currentunlockItem == null)
+            if (_currentUnlockItem == null)
             {
-                currentunlockItem = Instantiate(unLockedPlot, transform);
+                _currentUnlockItem = Instantiate(UnlockedPrefab, transform);
             }
         }
     }
@@ -61,22 +56,18 @@ public class PlotStats : MonoBehaviour
 
     public void ActivateBoundry()
     {
-        var renderer = gameObject.GetComponent<MeshRenderer>();
-        renderer.material = lockMaterial;
         boundryPos.enabled = true;
     }
 
     public void DeactivateBoundry()
     {
-        var renderer = gameObject.GetComponent<MeshRenderer>();
-        renderer.material = unlockMaterial;
-        if (currentlockItem != null)
+        if (_currentLockItem != null)
         {
-            Destroy(currentlockItem.gameObject);
+            Destroy(_currentLockItem.gameObject);
         }
-        if (currentunlockItem == null)
+        if (_currentUnlockItem == null)
         {
-            currentunlockItem = Instantiate(unLockedPlot, transform);
+            _currentUnlockItem = Instantiate(UnlockedPrefab, transform);
         }
         boundryPos.enabled = false;
     }

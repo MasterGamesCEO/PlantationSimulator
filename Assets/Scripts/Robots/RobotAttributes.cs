@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.iOS;
 using UnityEngine.Search;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class RobotAttributes : MonoBehaviour
 {
-    [SerializeField] private float CPS;
+    [SerializeField] private float cps;
     [SerializeField] public GameObject assignedPlot;
     [SerializeField] private int price;
     [SerializeField] private int quickSellPrice;
@@ -17,34 +18,34 @@ public class RobotAttributes : MonoBehaviour
 
     private void Start()
     {
-        CPS = Random.Range(0.001f, 5f);
+        cps = Random.Range(0.001f, 5f);
         RobotValue();
         
     }
 
     private void RobotValue()
     {
-        if (CPS >= 0.001 & CPS < 0.1)
+        if (cps >= 0.001 & cps < 0.1)
         {
             robotType.Equals("basicRobot");
             BasicRobotS();
         }
-        if (CPS >= 0.1 & CPS < 1)
+        if (cps >= 0.1 & cps < 1)
         {
             robotType.Equals("silverRobot");
             SilverRobotS();
         }
-        if (CPS >= 1 & CPS < 2)
+        if (cps >= 1 & cps < 2)
         {
             robotType.Equals("goldRobot");
             GoldRobotS();
         }
-        if (CPS >= 2 & CPS < 3.5)
+        if (cps >= 2 & cps < 3.5)
         {
             robotType.Equals("diamondRobot");
             DiamondRobotS();
         }
-        if (CPS >= 3.5 & CPS < 5)
+        if (cps >= 3.5 & cps < 5)
         {
             robotType.Equals("ultraBot");
             UltraBotS();
@@ -58,7 +59,7 @@ public class RobotAttributes : MonoBehaviour
         quickSellPrice = 1;
         robotType = "basicRobot";
         
-        size = CPS >= 0.05 ? "scrawny" : "normal";
+        size = cps >= 0.05 ? "scrawny" : "normal";
     }
 
     private void SilverRobotS()
@@ -67,7 +68,7 @@ public class RobotAttributes : MonoBehaviour
         quickSellPrice = 10;
         robotType = "silverRobot";
         
-        size = CPS >= .5 ? "normal" : "tall";
+        size = cps >= .5 ? "normal" : "tall";
         
     }
 
@@ -77,7 +78,7 @@ public class RobotAttributes : MonoBehaviour
         quickSellPrice = 50;
         robotType = "goldRobot";
         
-        size = CPS >= 1.5 ? "tall" : "built";
+        size = cps >= 1.5 ? "tall" : "built";
     }
 
     private void DiamondRobotS()
@@ -86,7 +87,7 @@ public class RobotAttributes : MonoBehaviour
         quickSellPrice = 100;
         robotType = "diamondRobot";
         
-        size = CPS >= 2.9 ? "built" : "massive";
+        size = cps >= 2.9 ? "built" : "massive";
     }
 
     private void UltraBotS()
@@ -95,6 +96,6 @@ public class RobotAttributes : MonoBehaviour
         quickSellPrice = 1000;
         robotType = "ultraBot";
         
-        size = CPS >= 4 ? "massive" : "tank";
+        size = cps >= 4 ? "massive" : "tank";
     }
 }

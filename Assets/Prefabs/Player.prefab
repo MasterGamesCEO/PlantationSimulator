@@ -426,6 +426,15 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  sprint:
+    m_Name: Sprint
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a4a1b707-0342-4c1f-ba31-58e2003cd62e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1 &5001589029379819832
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,7 +727,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 54cee4433f0305c4a9eb37b0fc10b01b, type: 2}
+      objectReference: {fileID: 9100000, guid: 261a8fdf71023654086b36dd11b849be, type: 2}
     - target: {fileID: 95808264491268044, guid: 7126961e40fcaf34297e9547d17c2f70,
         type: 3}
       propertyPath: m_CullingMode
