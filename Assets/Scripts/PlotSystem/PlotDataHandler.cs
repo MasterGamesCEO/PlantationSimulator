@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 public class PlotDataHandler : MonoBehaviour
 {
-    [FormerlySerializedAs("_controller")] [SerializeField] private PlayerController controller;
+    [SerializeField] private PlayerController controller;
     [SerializeField] public PlotStats[] allPlots;
     
     public List<SaveData.PlotData> GetPlotDataList()
@@ -51,7 +51,7 @@ public class PlotDataHandler : MonoBehaviour
         if (allPlots.Length > 0)
         {
             allPlots[0].isLocked = false;
-            allPlots[0].DeactivateBoundry();
+            allPlots[0].DeactivateBoundary();
         }
     }
 
@@ -61,7 +61,7 @@ public class PlotDataHandler : MonoBehaviour
         {
             PlayerPrefs.DeleteKey($"Plot_{slotIndex}_{i}_IsLocked");
             allPlots[i].isLocked = true;
-            allPlots[i].ActivateBoundry();
+            allPlots[i].ActivateBoundary();
             allPlots[i].SetPlotColor(allPlots[i].isLocked);
         }
         UnlockFirstPlot();

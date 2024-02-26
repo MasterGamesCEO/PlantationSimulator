@@ -54,12 +54,12 @@ public class PlotStats : MonoBehaviour
 
     #region Boundry Operations
 
-    public void ActivateBoundry()
+    public void ActivateBoundary()
     {
         boundryPos.enabled = true;
     }
 
-    public void DeactivateBoundry()
+    public void DeactivateBoundary()
     {
         if (_currentLockItem != null)
         {

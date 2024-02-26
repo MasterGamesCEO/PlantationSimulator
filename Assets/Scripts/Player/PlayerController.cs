@@ -14,12 +14,15 @@ public class PlayerController : MonoBehaviour
     private bool _isSprinting;
 
     [SerializeField] private PlotPricePopupScript plotPricePopupScript;
+    [SerializeField] private RobotPopup robotPopupScript;
     [SerializeField] private float speed = 5;
     [SerializeField] private float playerMoney;
     [SerializeField] private Animator playerAnimation;
     
     private SaveData _saveData;
-    
+    private static readonly int IsWalking = Animator.StringToHash("IsWalking");
+    private static readonly int IsSprinting = Animator.StringToHash("IsSprinting");
+
     #endregion
 
     #region Properties
@@ -81,7 +84,7 @@ public class PlayerController : MonoBehaviour
             
         } else if (other.gameObject.tag.Equals("Platform"))
         {
-            Debug.Log("platform");
+            HandlePlatformTrigger(other);
         }
     }
 
@@ -90,6 +93,9 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag.Equals("Plot"))
         {
             plotPricePopupScript.DeactivatePopup();
+        } else if (other.gameObject.tag.Equals("Platform"))
+        {
+            robotPopupScript.DeactivatePopup();
         }
     }
 
@@ -115,8 +121,8 @@ public class PlayerController : MonoBehaviour
             _controller.Move(transform.forward * ((speed+3) * delta));  
         }
         
-        playerAnimation.SetBool("IsWalking", isWalking);
-        playerAnimation.SetBool("IsSprinting", _isSprinting);
+        playerAnimation.SetBool(IsWalking, isWalking);
+        playerAnimation.SetBool(IsSprinting, _isSprinting);
     }
 
     private void OnBuyLandPerformed(InputAction.CallbackContext obj)
@@ -142,9 +148,27 @@ public class PlayerController : MonoBehaviour
         else
         {
             Debug.Log("UNLOCKED PLOT");
-            _curPlotStats.DeactivateBoundry();
+            _curPlotStats.DeactivateBoundary();
             plotPricePopupScript.DeactivatePopup();
         }
+    }
+    private void HandlePlatformTrigger(Collider plotCollider)
+    {
+        /*
+        //TODO: add current platform robot stats
+        //TODO: Here -> _curPlatformStats = plotCollider.gameObject.GetComponent<PlotStats>();
+        if (//TODO: Current Platform has robot... _curPlatformStats.isEmpty)
+        {
+            Debug.Log("Empty Platform");
+            robotPopupScript.ActivatePopup(); //TODO: Add currently unassigned robots to the popup;
+        }
+        else //Current platform has a robot
+        {
+            Debug.Log("Robot here");
+            //TODO: Activate a un assign robot popup
+        }
+        */
+        robotPopupScript.ActivatePopup();
     }
 
     private void BuyLand()
@@ -153,7 +177,7 @@ public class PlayerController : MonoBehaviour
         {
             plotPricePopupScript.DeactivatePopup();
             _curPlotStats.isLocked = false;
-            _curPlotStats.DeactivateBoundry();
+            _curPlotStats.DeactivateBoundary();
             plotPricePopupScript.UpdateMoney(_curPlotStats.PlotPrice);
             playerMoney -= _curPlotStats.PlotPrice;
             SaveData.Instance.playerMoney = playerMoney;

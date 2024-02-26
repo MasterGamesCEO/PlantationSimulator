@@ -11,7 +11,7 @@ public class RobotPopup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        _mAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -19,7 +19,7 @@ public class RobotPopup : MonoBehaviour
     {
         
     }
-    public void ActivatePopup(float plotPriceValue)
+    public void ActivatePopup()
     {
         _mAnimator.SetBool(In, true);
     }
