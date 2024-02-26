@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7901909148008275147}
   - component: {fileID: 7117155489847126378}
   - component: {fileID: 1255718025139230181}
+  - component: {fileID: 4930629440358146256}
   m_Layer: 0
   m_Name: Cylinder Trigger 1
   m_TagString: Platform
@@ -106,6 +107,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.002746365, y: 0.0028043485, z: 0.0012750272}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4930629440358146256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349404626875208767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f5c8567304b9245be57efe2ccd2fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAssigned: 0
+  platformPos: {fileID: 1255718025139230181}
+  noRobotPrefab: {fileID: 0}
+  assignedRobotPrefab: {fileID: 0}
+  platformData: {fileID: 0}
 --- !u!1 &1521737936904325922
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,6 +136,7 @@ GameObject:
   - component: {fileID: 7816289731119385795}
   - component: {fileID: 1928203073741354597}
   - component: {fileID: 4647099583625845090}
+  - component: {fileID: 179139921414099032}
   m_Layer: 0
   m_Name: Cylinder Trigger 3
   m_TagString: Platform
@@ -212,6 +231,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.002746365, y: 0.0028043485, z: 0.0012750272}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &179139921414099032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521737936904325922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f5c8567304b9245be57efe2ccd2fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAssigned: 0
+  platformPos: {fileID: 1255718025139230181}
+  noRobotPrefab: {fileID: 0}
+  assignedRobotPrefab: {fileID: 0}
+  platformData: {fileID: 0}
 --- !u!1 &1860702562318992181
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,6 +260,7 @@ GameObject:
   - component: {fileID: 6995160137079960944}
   - component: {fileID: 5230996099757800426}
   - component: {fileID: 183188963339035536}
+  - component: {fileID: 5211445301619952582}
   m_Layer: 0
   m_Name: Cylinder Trigger
   m_TagString: Platform
@@ -318,6 +355,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.002746365, y: 0.0028043485, z: 0.0012750272}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5211445301619952582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860702562318992181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f5c8567304b9245be57efe2ccd2fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAssigned: 0
+  platformPos: {fileID: 183188963339035536}
+  noRobotPrefab: {fileID: 0}
+  assignedRobotPrefab: {fileID: 0}
+  platformData: {fileID: 0}
 --- !u!1 &2371078177828634449
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,6 +609,7 @@ GameObject:
   - component: {fileID: 6922695756463037859}
   - component: {fileID: 1673394793381250775}
   - component: {fileID: 1815438837443621717}
+  - component: {fileID: 274678238319578216}
   m_Layer: 0
   m_Name: Cylinder Trigger 2
   m_TagString: Platform
@@ -649,6 +704,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.002746365, y: 0.0028043485, z: 0.0012750272}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &274678238319578216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4426839448965347222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f5c8567304b9245be57efe2ccd2fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAssigned: 0
+  platformPos: {fileID: 4647099583625845090}
+  noRobotPrefab: {fileID: 0}
+  assignedRobotPrefab: {fileID: 0}
+  platformData: {fileID: 0}
 --- !u!1 &5048216393475666693
 GameObject:
   m_ObjectHideFlags: 0

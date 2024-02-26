@@ -9,24 +9,29 @@ public class PlatformData : MonoBehaviour
     [SerializeField] public Component noRobotPrefab;
     [SerializeField] public Component assignedRobotPrefab;
     [SerializeField] public PlatformDataHandler platformData;
-    
-    private Component _currentRobotPrefab;
-    
-    public void SetRobotPrefab(bool assigned)
+
+    public Component RobotPrefab
     {
-        if (!assigned)
+        get { return _robotPrefab; }
+        set
         {
-            if (_currentRobotPrefab == null)
+            if (value != _robotPrefab)
             {
-                _currentRobotPrefab = Instantiate(noRobotPrefab, platformPos.transform);
-                platformData.AddToPlatform(_currentRobotPrefab);
+                if (_currentRobotPrefab != null)
+                {
+                    Destroy(_currentRobotPrefab.gameObject);
+                }
+                _robotPrefab = value;
             }
         }
     }
 
-    public void SetRobotPrefab(bool assigned, Component newRobotPrefab)
+    private Component _robotPrefab;
+    private Component _currentRobotPrefab;
+    
+    public void SetRobotPrefab(Component newRobotPrefab)
     {
-        if (assigned)
+        if (!isAssigned)
         {
             if (_currentRobotPrefab != null)
             {
@@ -36,7 +41,7 @@ public class PlatformData : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Trying to assign a robot to an unassigned platform.");
+            Debug.LogError("Trying to assign a robot to an assigned platform.");
         }
     }
 }

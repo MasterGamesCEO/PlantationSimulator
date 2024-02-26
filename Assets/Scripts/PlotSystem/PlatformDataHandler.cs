@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlatformDataHandler : MonoBehaviour
@@ -34,7 +35,7 @@ public class PlatformDataHandler : MonoBehaviour
             allPlatforms[i].isAssigned = isAssignedValue == 1;
             // Add additional data loading as needed
 
-            allPlatforms[i].SetRobotPrefab(allPlatforms[i].isAssigned, allPlatforms[i].assignedRobotPrefab);
+            allPlatforms[i].SetRobotPrefab(allPlatforms[i].isAssigned ? allPlatforms[i].assignedRobotPrefab : allPlatforms[i].noRobotPrefab);
         }
     }
 
@@ -46,11 +47,14 @@ public class PlatformDataHandler : MonoBehaviour
     {
         for (int i = 0; i < allPlatforms.Length; i++)
         {
-            PlayerPrefs.DeleteKey($"Platform_{slotIndex}_{i}_IsAssigned");
-            allPlatforms[i].isAssigned = false;
-            // Add additional reset logic as needed
+            if (i < allPlatforms.Length)
+            {
+                PlayerPrefs.DeleteKey($"Platform_{slotIndex}_{i}_IsAssigned");
+                allPlatforms[i].isAssigned = false;
+                // Add additional reset logic as needed
+            }
 
-            allPlatforms[i].SetRobotPrefab(allPlatforms[i].isAssigned, allPlatforms[i].noRobotPrefab);
+            allPlatforms[i].SetRobotPrefab(allPlatforms[i].noRobotPrefab);
         }
     }
 
@@ -58,20 +62,13 @@ public class PlatformDataHandler : MonoBehaviour
 
     #region Add to Platform
 
-    public void AddToPlatform(Component robotPrefab)
+    public void AddToPlatform(Component platform)
     {
-        foreach (var platform in allPlatforms)
-        {
-            if (!platform.isAssigned)
-            {
-                platform.SetRobotPrefab(true, robotPrefab);
-                platform.isAssigned = true;
-                SavePlatformData(_saveData.SlotLastSelectedData);
-                return; // Exit the loop after assigning the robot to the first available platform
-            }
-        }
-        
-        Debug.LogError("No available platform to assign the robot.");
+        allPlatforms[allPlatforms.Length] = allPlatforms[allPlatforms.Length + 1];
+        allPlatforms.SetValue(platform, allPlatforms.Length);
+        SavePlatformData(_saveData.SlotLastSelectedData);
+        Debug.Log("ADDING INSIDE PLATFORM");
+        Debug.Log("ADDING");
     }
 
     #endregion

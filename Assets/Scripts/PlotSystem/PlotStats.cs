@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlotStats : MonoBehaviour
@@ -68,6 +69,8 @@ public class PlotStats : MonoBehaviour
         if (_currentUnlockItem == null)
         {
             _currentUnlockItem = Instantiate(UnlockedPrefab, transform);
+            PlatformDataHandler platformDataHandler = FindObjectOfType<PlatformDataHandler>();
+            platformDataHandler.AddToPlatform(_currentLockItem.GetComponentInChildren(typeof(PlatformData)));
         }
         boundryPos.enabled = false;
     }
