@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,43 +6,39 @@ using UnityEngine;
 public class PlatformData : MonoBehaviour
 {
     [SerializeField] public bool isAssigned = false;
-    [SerializeField] public BoxCollider platformPos;
-    [SerializeField] public Component noRobotPrefab;
-    [SerializeField] public Component assignedRobotPrefab;
-    [SerializeField] public PlatformDataHandler platformData;
+    [SerializeField] public BoxCollider spawnPosition;
+    [SerializeField] public GameObject currentRobotPrefab;
+    [SerializeField] public RobotAttributes currentRobotStats;
 
-    public Component RobotPrefab
+    private void Start()
     {
-        get { return _robotPrefab; }
-        set
-        {
-            if (value != _robotPrefab)
-            {
-                if (_currentRobotPrefab != null)
-                {
-                    Destroy(_currentRobotPrefab.gameObject);
-                }
-                _robotPrefab = value;
-            }
-        }
+        PlatformDataHandler platformDataHandler = FindObjectOfType<PlatformDataHandler>();
+        platformDataHandler.addToArray(this);
     }
 
-    private Component _robotPrefab;
-    private Component _currentRobotPrefab;
-    
-    public void SetRobotPrefab(Component newRobotPrefab)
+    public void savePlatformData()
     {
-        if (!isAssigned)
-        {
-            if (_currentRobotPrefab != null)
-            {
-                Destroy(_currentRobotPrefab.gameObject);
-            }
-            _currentRobotPrefab = Instantiate(newRobotPrefab, platformPos.transform);
-        }
-        else
-        {
-            Debug.LogError("Trying to assign a robot to an assigned platform.");
-        }
+        // Save robot type PlayerPrefs.SetInt($"RobotPrefab", currentRobotPrefab);
+        // Save Robot Attributes
+        
+    }
+    public void loadPlatformData()
+    {
+        // Save robot type PlayerPrefs.SetInt($"RobotPrefab", currentRobotPrefab);
+        // Save Robot Attributes
+        
+    }
+    public void resetPlatformData()
+    {
+        //TODO: make sure the array removes the robots instance
+        // Save robot type PlayerPrefs.SetInt($"RobotPrefab", currentRobotPrefab);
+        // Save Robot Attributes
+        
+    }
+
+    public bool IsAssigned
+    {
+        get => isAssigned;
+        set => isAssigned = value;
     }
 }

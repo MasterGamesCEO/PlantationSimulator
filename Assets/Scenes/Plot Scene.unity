@@ -1775,30 +1775,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe73b6a84e0b9a4e8261fcbaa0f21aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &634127439 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2841705949788646697, guid: c10b3619b14cd4846a126a0ba38675d1,
-    type: 3}
-  m_PrefabInstance: {fileID: 2684603705857384294}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &634127440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 634127439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e279a4de6f06834bb8cc07053c569f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cps: 0
-  assignedPlot: {fileID: 0}
-  price: 0
-  quickSellPrice: 0
-  robotType: 
-  size: 
 --- !u!4 &634484161 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2343556356802247496, guid: 40d0308d21e9c9a48b2305efd8da5f05,
@@ -3153,7 +3129,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 43355b85d2ec7b445911a3fdff19bb9a, type: 2}
+  - {fileID: 2100000, guid: b5c3f4efce7b0a745ad8939818caa7a4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5948,11 +5924,7 @@ PrefabInstance:
     - {fileID: 2841399124744276183, guid: c10b3619b14cd4846a126a0ba38675d1, type: 3}
     - {fileID: 2841732541293547249, guid: c10b3619b14cd4846a126a0ba38675d1, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2841705949788646697, guid: c10b3619b14cd4846a126a0ba38675d1,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 634127440}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c10b3619b14cd4846a126a0ba38675d1, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

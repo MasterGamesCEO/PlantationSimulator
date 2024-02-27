@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlatformDataHandler : MonoBehaviour
 {
-    [SerializeField] public PlatformData[] allPlatforms;
+    [SerializeField] public List<PlatformData> allPlatforms;
     private SaveData _saveData;
 
     #region Save and Load Platform Data
@@ -18,10 +18,11 @@ public class PlatformDataHandler : MonoBehaviour
 
     public void SavePlatformData(int slotIndex)
     {
-        for (int i = 0; i < allPlatforms.Length; i++)
+        for (int i = 0; i < allPlatforms.Count; i++)
         {
+            allPlatforms[i].savePlatformData();
             PlayerPrefs.SetInt($"Platform_{slotIndex}_{i}_IsAssigned", allPlatforms[i].isAssigned ? 1 : 0);
-            // Add additional data saving as needed
+            
         }
 
         PlayerPrefs.Save();
@@ -29,13 +30,12 @@ public class PlatformDataHandler : MonoBehaviour
 
     public void LoadPlatformData(int slotIndex)
     {
-        for (int i = 0; i < allPlatforms.Length; i++)
+        for (int i = 0; i < allPlatforms.Count; i++)
         {
             int isAssignedValue = PlayerPrefs.GetInt($"Platform_{slotIndex}_{i}_IsAssigned", 0);
-            allPlatforms[i].isAssigned = isAssignedValue == 1;
-            // Add additional data loading as needed
+            allPlatforms[i].loadPlatformData();
 
-            allPlatforms[i].SetRobotPrefab(allPlatforms[i].isAssigned ? allPlatforms[i].assignedRobotPrefab : allPlatforms[i].noRobotPrefab);
+
         }
     }
 
@@ -45,16 +45,15 @@ public class PlatformDataHandler : MonoBehaviour
 
     public void ResetGameData(int slotIndex)
     {
-        for (int i = 0; i < allPlatforms.Length; i++)
+        for (int i = 0; i < allPlatforms.Count; i++)
         {
-            if (i < allPlatforms.Length)
+            if (i < allPlatforms.Count)
             {
                 PlayerPrefs.DeleteKey($"Platform_{slotIndex}_{i}_IsAssigned");
                 allPlatforms[i].isAssigned = false;
-                // Add additional reset logic as needed
             }
 
-            allPlatforms[i].SetRobotPrefab(allPlatforms[i].noRobotPrefab);
+            //remove robot instance
         }
     }
 
@@ -62,13 +61,12 @@ public class PlatformDataHandler : MonoBehaviour
 
     #region Add to Platform
 
-    public void AddToPlatform(Component platform)
+    public void addToArray(PlatformData platform)
     {
-        allPlatforms[allPlatforms.Length] = allPlatforms[allPlatforms.Length + 1];
-        allPlatforms.SetValue(platform, allPlatforms.Length);
+        
+        allPlatforms.Add(platform);
         SavePlatformData(_saveData.SlotLastSelectedData);
-        Debug.Log("ADDING INSIDE PLATFORM");
-        Debug.Log("ADDING");
+        Debug.Log("ADDING TO PLATFORM ARRAY");
     }
 
     #endregion
