@@ -68,9 +68,7 @@ public class PlotStats : MonoBehaviour
         }
         if (_currentUnlockItem == null)
         {
-            PlatformDataHandler platformDataHandler = FindObjectOfType<PlatformDataHandler>();
             _currentUnlockItem = Instantiate(UnlockedPrefab, transform);
-            platformDataHandler.addToArray(_currentLockItem.GetComponentInChildren<PlatformData>());
         }
         boundryPos.enabled = false;
     }

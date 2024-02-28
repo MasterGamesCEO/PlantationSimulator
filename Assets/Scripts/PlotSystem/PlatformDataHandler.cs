@@ -20,9 +20,8 @@ public class PlatformDataHandler : MonoBehaviour
     {
         for (int i = 0; i < allPlatforms.Count; i++)
         {
-            allPlatforms[i].savePlatformData();
-            PlayerPrefs.SetInt($"Platform_{slotIndex}_{i}_IsAssigned", allPlatforms[i].isAssigned ? 1 : 0);
-            
+            allPlatforms[i].SavePlatformData(slotIndex, i);
+            Debug.Log("Saving each platform Data in platformDataHandler");
         }
 
         PlayerPrefs.Save();
@@ -32,10 +31,7 @@ public class PlatformDataHandler : MonoBehaviour
     {
         for (int i = 0; i < allPlatforms.Count; i++)
         {
-            int isAssignedValue = PlayerPrefs.GetInt($"Platform_{slotIndex}_{i}_IsAssigned", 0);
-            allPlatforms[i].loadPlatformData();
-
-
+            allPlatforms[i].LoadPlatformData(slotIndex, i);
         }
     }
 
@@ -47,13 +43,7 @@ public class PlatformDataHandler : MonoBehaviour
     {
         for (int i = 0; i < allPlatforms.Count; i++)
         {
-            if (i < allPlatforms.Count)
-            {
-                PlayerPrefs.DeleteKey($"Platform_{slotIndex}_{i}_IsAssigned");
-                allPlatforms[i].isAssigned = false;
-            }
-
-            //remove robot instance
+            allPlatforms.Remove(allPlatforms[i]);
         }
     }
 
@@ -61,12 +51,15 @@ public class PlatformDataHandler : MonoBehaviour
 
     #region Add to Platform
 
-    public void addToArray(PlatformData platform)
+    public void AddToArray(PlatformData platform)
     {
+        LoadPlatformData(_saveData.SlotLastSelectedData);
+        if (!allPlatforms.Contains(platform))
+        {
+            allPlatforms.Add(platform);
+            Debug.Log("ADDING TO PLATFORM ARRAY");
+        }
         
-        allPlatforms.Add(platform);
-        SavePlatformData(_saveData.SlotLastSelectedData);
-        Debug.Log("ADDING TO PLATFORM ARRAY");
     }
 
     #endregion

@@ -9,24 +9,43 @@ public class PlatformData : MonoBehaviour
     [SerializeField] public BoxCollider spawnPosition;
     [SerializeField] public GameObject currentRobotPrefab;
     [SerializeField] public RobotAttributes currentRobotStats;
+    public PlatformDataHandler platformDataHandler;
 
     private void Start()
     {
         PlatformDataHandler platformDataHandler = FindObjectOfType<PlatformDataHandler>();
-        platformDataHandler.addToArray(this);
+        platformDataHandler.AddToArray(this);
     }
 
-    public void savePlatformData()
+    public void SavePlatformData(int slotIndex, int platformIndex)
     {
-        // Save robot type PlayerPrefs.SetInt($"RobotPrefab", currentRobotPrefab);
-        // Save Robot Attributes
-        
+        PlayerPrefs.SetInt($"Platform_{slotIndex}_{platformIndex}_IsAssigned", isAssigned ? 1 : 0);
+
+        if (isAssigned)
+        {
+            // Save robot prefab name
+            PlayerPrefs.SetString($"Platform_{slotIndex}_{platformIndex}_RobotPrefab", currentRobotPrefab.name);
+
+            // Save robot attributes
+            currentRobotStats.SaveAttributes($"Platform_{slotIndex}_{platformIndex}");
+        }
+        Debug.Log("Saved platform data for"+ slotIndex + " " + platformIndex);
     }
-    public void loadPlatformData()
+    public void LoadPlatformData(int slotIndex, int platformIndex)
     {
-        // Save robot type PlayerPrefs.SetInt($"RobotPrefab", currentRobotPrefab);
-        // Save Robot Attributes
-        
+        int isAssignedValue = PlayerPrefs.GetInt($"Platform_{slotIndex}_{platformIndex}_IsAssigned", 0);
+        isAssigned = isAssignedValue == 1;
+
+        if (isAssigned)
+        {
+            // Load robot prefab
+            string robotPrefabName = PlayerPrefs.GetString($"Platform_{slotIndex}_{platformIndex}_RobotPrefab", "");
+            currentRobotPrefab = Resources.Load<GameObject>("Robots/" + robotPrefabName);
+
+            // Load robot attributes
+            currentRobotStats.LoadAttributes($"Platform_{slotIndex}_{platformIndex}");
+        }
+        Debug.Log("Loaded platform data for"+ slotIndex + " " + platformIndex);
     }
     public void resetPlatformData()
     {

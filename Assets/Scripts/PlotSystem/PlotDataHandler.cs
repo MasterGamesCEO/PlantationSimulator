@@ -5,18 +5,8 @@ using UnityEngine.Serialization;
 
 public class PlotDataHandler : MonoBehaviour
 {
-    [SerializeField] private PlayerController controller;
     [SerializeField] public PlotStats[] allPlots;
     
-    public List<SaveData.PlotData> GetPlotDataList()
-    {
-        List<SaveData.PlotData> plotDataList = new List<SaveData.PlotData>();
-        foreach (var plot in allPlots)
-        {
-            plotDataList.Add(new SaveData.PlotData(plot.isLocked));
-        }
-        return plotDataList;
-    }
 
     #region Save and Load Plot Data
 

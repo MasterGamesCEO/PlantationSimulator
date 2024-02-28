@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     public float GetPlayerMoney()
     {
-        return SaveData.Instance.PlayerMoneySave;
+        return SaveData.Instance.playerMoney;
     }
 
     public void SetPlayerMoney(float amount)

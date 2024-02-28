@@ -19,7 +19,6 @@ public class AssignRobots : MonoBehaviour
             Debug.Log("Assignable");
             // todo later: make the code run on a button click
             RobotAttributes makePlot = new RobotAttributes();
-            makePlot.assignedPlot = assigningPlot;
             selectedRobot.transform.position.Equals(assigningPlot.transform.position);
             
 

@@ -4,8 +4,22 @@ using UnityEngine;
 
 public class RobotManager : MonoBehaviour
 {
+    // Robot Prefabs
+    [SerializeField] public GameObject basicPrefab;
+    [SerializeField] public GameObject silverPrefab;
+    [SerializeField] public GameObject goldPrefab;
+    [SerializeField] public GameObject diamondPrefab;
+    [SerializeField] public GameObject ultraPrefab;
+    
     [SerializeField] public List<AssignedRobotInfo> workingRobots;
     [SerializeField] public List<RobotInfo> unassignedRobots;
+
+    private SaveData _saveData;
+
+    private void Start()
+    {
+        _saveData = SaveData.Instance;
+    }
 
     [System.Serializable]
     public class RobotInfo
@@ -43,6 +57,7 @@ public class RobotManager : MonoBehaviour
             platform.isAssigned = true;
             platform.currentRobotPrefab = selectedRobotInfo.robotPrefab;
             platform.currentRobotStats = selectedRobotInfo.attributes;
+            platform.platformDataHandler.SavePlatformData(_saveData.SlotLastSelectedData);
         }
         else
         {
@@ -50,13 +65,18 @@ public class RobotManager : MonoBehaviour
         }
     }
 
-    public void BuyRobot(GameObject robotPrefab, RobotAttributes attributes)
+    public void BuyRobot(RobotAttributes attributes)
     {
         if (unassignedRobots.Count < 4)
         {
             RobotInfo newRobot = new RobotInfo
             {
-                robotPrefab = robotPrefab,
+                robotPrefab = 
+                    attributes.robotType.Equals("basicRobot") ? basicPrefab :
+                    attributes.robotType.Equals("silverRobot") ? silverPrefab :
+                    attributes.robotType.Equals("goldRobot") ? goldPrefab :
+                    attributes.robotType.Equals("diamondRobot") ? diamondPrefab :
+                    attributes.robotType.Equals("ultraRobot") ? ultraPrefab : null,
                 attributes = attributes
             };
             unassignedRobots.Add(newRobot);

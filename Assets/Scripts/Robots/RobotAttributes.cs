@@ -10,17 +10,33 @@ using Random = UnityEngine.Random;
 public class RobotAttributes : MonoBehaviour
 {
     [SerializeField] private float cps;
-    [SerializeField] public GameObject assignedPlot;
     [SerializeField] private int price;
     [SerializeField] private int quickSellPrice;
-    [SerializeField] private String robotType;
-    [SerializeField] private String size;
+    [SerializeField] public String robotType;
+    [SerializeField] public String size;
+    
 
     private void Start()
     {
         cps = Random.Range(0.001f, 5f);
         RobotValue();
         
+    }
+    public void SaveAttributes(string prefix)
+    {
+        PlayerPrefs.SetString($"{prefix}_RobotType", robotType);
+        PlayerPrefs.SetString($"{prefix}_size", size);
+        PlayerPrefs.SetFloat($"{prefix}_cps", cps);
+        PlayerPrefs.SetInt($"{prefix}_price", price);
+    }
+
+    public void LoadAttributes(string prefix)
+    {
+        robotType = PlayerPrefs.GetString($"{prefix}_RobotType", "");
+        Debug.Log("Attributes loaded");
+        size = PlayerPrefs.GetString($"{prefix}_size", "");
+        cps = PlayerPrefs.GetFloat($"{prefix}_Speed", 0f);
+        price = PlayerPrefs.GetInt($"{prefix}_price", 0);
     }
 
     private void RobotValue()
@@ -47,7 +63,7 @@ public class RobotAttributes : MonoBehaviour
         }
         if (cps >= 3.5 & cps < 5)
         {
-            robotType.Equals("ultraBot");
+            robotType.Equals("ultraRobot");
             UltraBotS();
         }
         
@@ -94,7 +110,7 @@ public class RobotAttributes : MonoBehaviour
     {
         price = 10000;
         quickSellPrice = 1000;
-        robotType = "ultraBot";
+        robotType = "ultraRobot";
         
         size = cps >= 4 ? "massive" : "tank";
     }

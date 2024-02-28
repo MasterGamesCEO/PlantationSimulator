@@ -1451,8 +1451,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62de80df2a908054b981ff8ef09351d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableRobots: []
-  assignedRobots: []
+  workingRobots: []
+  unassignedRobots: []
 --- !u!4 &390518834
 Transform:
   m_ObjectHideFlags: 0
@@ -3129,7 +3129,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b5c3f4efce7b0a745ad8939818caa7a4, type: 2}
+  - {fileID: 2100000, guid: f1cff9e4f4019ea4297a1f056eaed440, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

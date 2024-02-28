@@ -8,8 +8,11 @@ using UnityEngine.Serialization;
 public class SaveData : MonoBehaviour
 {
     public float playerMoney;
-    public PlotDataHandler plotDataList;
     private int _slotLastSelected;
+    
+    public PlotDataHandler plotDataList;
+    public PlatformDataHandler platformDataList;
+   
     [FormerlySerializedAs("_ifPlotReset0")] public bool ifPlotReset0 = false;
     [FormerlySerializedAs("_ifPlotReset1")] public bool ifPlotReset1 = false;
     [FormerlySerializedAs("_ifPlotReset2")] public bool ifPlotReset2 = false;
@@ -19,13 +22,9 @@ public class SaveData : MonoBehaviour
         get { return _slotLastSelected; }
         set { _slotLastSelected = value; }
     }
-    private float _playerMoneySave;
     
-    public float PlayerMoneySave
-    {
-        get { return _playerMoneySave; }
-        set { _playerMoneySave = value; }
-    }
+    
+    
 
     private static SaveData _instance;
     public static SaveData Instance
@@ -82,6 +81,7 @@ public class SaveData : MonoBehaviour
         LoadUIState(slotIndex);
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public void SaveGameData(int slotIndex)
     {
         plotDataList = FindObjectOfType<PlotDataHandler>();
@@ -89,8 +89,14 @@ public class SaveData : MonoBehaviour
         {
             plotDataList.SavePlotData(slotIndex);
         }
+        platformDataList = FindObjectOfType<PlatformDataHandler>();
+        if (platformDataList != null)
+        {
+            platformDataList.SavePlatformData(slotIndex);
+            Debug.Log("Save platform data In saveData");
+        }
         PlayerPrefs.SetFloat($"PlayerMoney_{slotIndex}", playerMoney);
-        _playerMoneySave = playerMoney;
+        
         
         Debug.Log($"Saving data for slot {slotIndex}, PlayerMoney: {playerMoney}");
         PlayerPrefs.Save();
@@ -121,9 +127,14 @@ public class SaveData : MonoBehaviour
             {
                 plotDataList.LoadPlotData(slotIndex);
             }
+            platformDataList = FindObjectOfType<PlatformDataHandler>();
+            if (platformDataList != null)
+            {
+                platformDataList.LoadPlatformData(slotIndex);
+            }
             PlayerController playerController = FindObjectOfType<PlayerController>();
             playerMoney = PlayerPrefs.GetFloat($"PlayerMoney_{slotIndex}", 10000f);
-            _playerMoneySave = playerMoney;
+            
             PlotPricePopupScript plotPricePopupScript = FindObjectOfType<PlotPricePopupScript>();
             plotPricePopupScript.UpdateMoney(0);
             if (playerController != null)
@@ -139,12 +150,15 @@ public class SaveData : MonoBehaviour
     private void ResetGameData(int slotIndex)
     {
         plotDataList = FindObjectOfType<PlotDataHandler>();
+        platformDataList = FindObjectOfType<PlatformDataHandler>();
+        
         PlayerPrefs.SetFloat($"PlayerMoney_{slotIndex}", 10000f);
         playerMoney = 10000f;
-        _playerMoneySave = 10000f;
+        
         plotDataList.ResetGameData(slotIndex);
+        platformDataList.ResetGameData(slotIndex);
         PlayerController playerController = FindObjectOfType<PlayerController>();
-        playerController.SetPlayerMoney(_playerMoneySave);
+        playerController.SetPlayerMoney(playerMoney);
         PlotPricePopupScript plotPricePopupScript = FindObjectOfType<PlotPricePopupScript>();
         plotPricePopupScript.UpdateMoney(0);
         
