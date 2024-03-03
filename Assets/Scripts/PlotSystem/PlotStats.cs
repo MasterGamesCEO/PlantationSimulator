@@ -1,12 +1,13 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlotStats : MonoBehaviour
 {
     [SerializeField] public bool isLocked = true;
     [SerializeField] public BoxCollider boundryPos;
-    [SerializeField] public Component LockPrefab;
-    [SerializeField] public Component UnlockedPrefab;
+    [FormerlySerializedAs("LockPrefab")] [SerializeField] public Component lockPrefab;
+    [FormerlySerializedAs("UnlockedPrefab")] [SerializeField] public Component unlockedPrefab;
     
     private Component _currentLockItem;
     private Component _currentUnlockItem;
@@ -29,7 +30,7 @@ public class PlotStats : MonoBehaviour
         {
             if (_currentLockItem == null)
             {
-                _currentLockItem = Instantiate(LockPrefab, transform);
+                _currentLockItem = Instantiate(lockPrefab, transform);
             }
             
         }
@@ -37,7 +38,7 @@ public class PlotStats : MonoBehaviour
         {
             if (_currentUnlockItem == null)
             {
-                _currentUnlockItem = Instantiate(UnlockedPrefab, transform);
+                _currentUnlockItem = Instantiate(unlockedPrefab, transform);
             }
         }
     }
@@ -68,7 +69,7 @@ public class PlotStats : MonoBehaviour
         }
         if (_currentUnlockItem == null)
         {
-            _currentUnlockItem = Instantiate(UnlockedPrefab, transform);
+            _currentUnlockItem = Instantiate(unlockedPrefab, transform);
         }
         boundryPos.enabled = false;
     }

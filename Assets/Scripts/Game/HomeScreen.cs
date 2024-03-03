@@ -239,7 +239,7 @@ public class HomeScreen : MonoBehaviour
             else
             {
                 // If no save exists, create a new save
-                CreateNewSave(_selectedOptionIndexSlot);
+                ResetSave(_selectedOptionIndexSlot);
             }
         }
         else if (_selectedOptionIndexVerticalSlot == 1)
@@ -267,6 +267,7 @@ public class HomeScreen : MonoBehaviour
     {
         // Start the scene transition
         _saveData.SlotLastSelectedData = slotIndex;
+        CurrentData.Instance.SlotLastSelectedData = slotIndex;
         sceneController.ChangeScene(1);
 
         // Wait for the scene transition to complete
@@ -349,22 +350,5 @@ public class HomeScreen : MonoBehaviour
 
     // Implement the CreateNewSave and DeleteSave methods from ISaveSlotHandler
     // ReSharper disable Unity.PerformanceAnalysis
-    public void CreateNewSave(int slotIndex)
-    {
-        // Check if a save already exists for the specified slotIndex
-        if (_saveData.DoesSaveExist(slotIndex))
-        {
-            Debug.Log($"A save already exists for Slot {slotIndex}. If you want to overwrite, implement logic here.");
-        }
-        else
-        {
-            _saveData.SlotLastSelectedData = slotIndex;
-
-            // Reset and get the updated SaveData instance
-            SaveData newData = _saveData.Reset(slotIndex);
-            
-            // Optionally, you can load the new save immediately if needed
-            LoadSave(slotIndex);
-        }
-    }
+    
 }

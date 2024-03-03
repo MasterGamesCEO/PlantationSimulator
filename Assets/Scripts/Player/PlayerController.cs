@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator playerAnimation;
     
     private SaveData _saveData;
+    public CurrentData currentData;
+    
     private static readonly int IsWalking = Animator.StringToHash("IsWalking");
     private static readonly int IsSprinting = Animator.StringToHash("IsSprinting");
 
@@ -27,14 +29,10 @@ public class PlayerController : MonoBehaviour
 
     #region Properties
 
-    public float GetPlayerMoney()
-    {
-        return SaveData.Instance.playerMoney;
-    }
-
     public void SetPlayerMoney(float amount)
     {
         playerMoney = amount;
+        CurrentData.Instance.SaveMoney = playerMoney;
         SaveData.Instance.playerMoney = playerMoney;
     }
 
@@ -180,7 +178,7 @@ public class PlayerController : MonoBehaviour
             _curPlotStats.DeactivateBoundary();
             plotPricePopupScript.UpdateMoney(_curPlotStats.PlotPrice);
             playerMoney -= _curPlotStats.PlotPrice;
-            SaveData.Instance.playerMoney = playerMoney;
+            CurrentData.Instance.SaveMoney = playerMoney;
             plotPricePopupScript.RunMoneySpread();
         }
         else

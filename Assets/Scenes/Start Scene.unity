@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -346,6 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 512871747}
   - component: {fileID: 512871748}
+  - component: {fileID: 512871749}
   m_Layer: 0
   m_Name: Save System
   m_TagString: Untagged
@@ -382,9 +383,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMoney: 0
   plotDataList: {fileID: 0}
+  platformDataList: {fileID: 0}
   ifPlotReset0: 0
   ifPlotReset1: 0
   ifPlotReset2: 0
+--- !u!114 &512871749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512871746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f185504a03c54564f835f8d4f8a6fb23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiData:
+    saveMoney: 0
+  gameplayData:
+    gameplayPlotStats: []
 --- !u!1 &692575696
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,6 +996,15 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 13e06030-ca9b-47ce-a01a-92088345717a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  sprint:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

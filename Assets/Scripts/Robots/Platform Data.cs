@@ -47,7 +47,7 @@ public class PlatformData : MonoBehaviour
         }
         Debug.Log("Loaded platform data for"+ slotIndex + " " + platformIndex);
     }
-    public void resetPlatformData()
+    public void ResetPlatformData()
     {
         //TODO: make sure the array removes the robots instance
         // Save robot type PlayerPrefs.SetInt($"RobotPrefab", currentRobotPrefab);

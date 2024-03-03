@@ -5,57 +5,42 @@ using UnityEngine.Serialization;
 
 public class PlotDataHandler : MonoBehaviour
 {
-    [SerializeField] public PlotStats[] allPlots;
+    [SerializeField] public List<PlotStats> allPlots;
     
 
+    
     #region Save and Load Plot Data
 
-    public void SavePlotData(int slotIndex)
+    public void SavePlotData()
     {
-        
-        for (int i = 0; i < allPlots.Length; i++)
-        {
-            PlayerPrefs.SetInt($"Plot_{slotIndex}_{i}_IsLocked", allPlots[i].isLocked ? 1 : 0);
-        }
-        
-        PlayerPrefs.Save();
+        CurrentData.Instance.PlotStats = allPlots;
     }
 
-    public void LoadPlotData(int slotIndex)
+    public void LoadPlotData()
     {
-        for (int i = 0; i < allPlots.Length; i++)
+        
+        allPlots = CurrentData.Instance.PlotStats;
+        for (int i = 0; i < allPlots.Count; i++)
         {
-            int isLockedValue = PlayerPrefs.GetInt($"Plot_{slotIndex}_{i}_IsLocked", 1);
-            allPlots[i].isLocked = isLockedValue == 1;
-            allPlots[i].SetPlotColor(allPlots[i].isLocked);
+                allPlots[i].SetPlotColor(allPlots[i].isLocked);
         }
         
     }
 
     #endregion
-
-    #region Unlock and Reset Plot Data
-
-    public void UnlockFirstPlot()
+    
+    
+    public List<PlotStats> ResetPlotData()
     {
-        if (allPlots.Length > 0)
+        for (int i = 0; i < allPlots.Count; i++)
         {
-            allPlots[0].isLocked = false;
-            allPlots[0].DeactivateBoundary();
-        }
-    }
-
-    public void ResetGameData(int slotIndex)
-    {
-        for (int i = 0; i < allPlots.Length; i++)
-        {
-            PlayerPrefs.DeleteKey($"Plot_{slotIndex}_{i}_IsLocked");
             allPlots[i].isLocked = true;
             allPlots[i].ActivateBoundary();
             allPlots[i].SetPlotColor(allPlots[i].isLocked);
         }
-        UnlockFirstPlot();
+        allPlots[0].isLocked = false;
+        allPlots[0].DeactivateBoundary();
+        return allPlots;
     }
-
-    #endregion
+    
 }
