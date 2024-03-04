@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using SaveLoad;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class PlotDataHandler : MonoBehaviour
 {
-    [SerializeField] public List<PlotStats> allPlots;
+    [SerializeField] public List<Plot> allPlots;
     
 
     
@@ -22,7 +23,7 @@ public class PlotDataHandler : MonoBehaviour
         allPlots = CurrentData.Instance.PlotStats;
         for (int i = 0; i < allPlots.Count; i++)
         {
-                allPlots[i].SetPlotColor(allPlots[i].isLocked);
+                allPlots[i].SetPlotColor(allPlots[i].stats.isLocked);
         }
         
     }
@@ -30,15 +31,15 @@ public class PlotDataHandler : MonoBehaviour
     #endregion
     
     
-    public List<PlotStats> ResetPlotData()
+    public List<Plot> ResetPlotData()
     {
         for (int i = 0; i < allPlots.Count; i++)
         {
-            allPlots[i].isLocked = true;
+            allPlots[i].stats.isLocked= true;
             allPlots[i].ActivateBoundary();
-            allPlots[i].SetPlotColor(allPlots[i].isLocked);
+            allPlots[i].SetPlotColor(allPlots[i].stats.isLocked);
         }
-        allPlots[0].isLocked = false;
+        allPlots[0].stats.isLocked = false;
         allPlots[0].DeactivateBoundary();
         return allPlots;
     }

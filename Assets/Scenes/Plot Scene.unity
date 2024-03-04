@@ -731,7 +731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e27e983d15abf44fa528fd2597312e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
   allPlots:
   - {fileID: 818945435}
   - {fileID: 1469801116}
@@ -1451,6 +1450,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62de80df2a908054b981ff8ef09351d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basicPrefab: {fileID: 0}
+  silverPrefab: {fileID: 0}
+  goldPrefab: {fileID: 0}
+  diamondPrefab: {fileID: 0}
+  ultraPrefab: {fileID: 0}
   workingRobots: []
   unassignedRobots: []
 --- !u!4 &390518834
@@ -3129,7 +3133,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f1cff9e4f4019ea4297a1f056eaed440, type: 2}
+  - {fileID: 2100000, guid: b0faa20cf01f1f14da759bb561f0a376, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -1,4 +1,5 @@
 using System.Collections;
+using SaveLoad;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController _controller;
     private InputManager _input;
-    private PlotStats _curPlotStats;
+    private Plot _curPlot;
     private bool _isSprinting;
 
     [SerializeField] private PlotPricePopupScript plotPricePopupScript;
@@ -137,16 +138,16 @@ public class PlayerController : MonoBehaviour
 
     private void HandlePlotTrigger(Collider plotCollider)
     {
-        _curPlotStats = plotCollider.gameObject.GetComponent<PlotStats>();
-        if (_curPlotStats.isLocked)
+        _curPlot = plotCollider.gameObject.GetComponent<Plot>();
+        if (_curPlot.isLocked)
         {
             Debug.Log("LOCKED PLOT");
-            plotPricePopupScript.ActivatePopup(_curPlotStats.PlotPrice);
+            plotPricePopupScript.ActivatePopup(_curPlot.PlotPrice);
         }
         else
         {
             Debug.Log("UNLOCKED PLOT");
-            _curPlotStats.DeactivateBoundary();
+            _curPlot.DeactivateBoundary();
             plotPricePopupScript.DeactivatePopup();
         }
     }
@@ -171,13 +172,13 @@ public class PlayerController : MonoBehaviour
 
     private void BuyLand()
     {
-        if (playerMoney >= _curPlotStats.PlotPrice)
+        if (playerMoney >= _curPlot.PlotPrice)
         {
             plotPricePopupScript.DeactivatePopup();
-            _curPlotStats.isLocked = false;
-            _curPlotStats.DeactivateBoundary();
-            plotPricePopupScript.UpdateMoney(_curPlotStats.PlotPrice);
-            playerMoney -= _curPlotStats.PlotPrice;
+            _curPlot.isLocked = false;
+            _curPlot.DeactivateBoundary();
+            plotPricePopupScript.UpdateMoney(_curPlot.PlotPrice);
+            playerMoney -= _curPlot.PlotPrice;
             CurrentData.Instance.SaveMoney = playerMoney;
             plotPricePopupScript.RunMoneySpread();
         }

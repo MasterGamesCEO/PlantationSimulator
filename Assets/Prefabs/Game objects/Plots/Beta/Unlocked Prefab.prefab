@@ -120,10 +120,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAssigned: 0
-  platformPos: {fileID: 1255718025139230181}
-  noRobotPrefab: {fileID: 0}
-  assignedRobotPrefab: {fileID: 0}
-  platformData: {fileID: 0}
+  spawnPosition: {fileID: 0}
+  currentRobotPrefab: {fileID: 0}
+  currentRobotStats: {fileID: 0}
+  platformDataHandler: {fileID: 0}
 --- !u!1 &1521737936904325922
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,10 +244,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAssigned: 0
-  platformPos: {fileID: 1255718025139230181}
-  noRobotPrefab: {fileID: 0}
-  assignedRobotPrefab: {fileID: 0}
-  platformData: {fileID: 0}
+  spawnPosition: {fileID: 0}
+  currentRobotPrefab: {fileID: 0}
+  currentRobotStats: {fileID: 0}
+  platformDataHandler: {fileID: 0}
 --- !u!1 &1860702562318992181
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,10 +368,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAssigned: 0
-  platformPos: {fileID: 183188963339035536}
-  noRobotPrefab: {fileID: 0}
-  assignedRobotPrefab: {fileID: 0}
-  platformData: {fileID: 0}
+  spawnPosition: {fileID: 0}
+  currentRobotPrefab: {fileID: 0}
+  currentRobotStats: {fileID: 0}
+  platformDataHandler: {fileID: 0}
 --- !u!1 &2371078177828634449
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,10 +717,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAssigned: 0
-  platformPos: {fileID: 4647099583625845090}
-  noRobotPrefab: {fileID: 0}
-  assignedRobotPrefab: {fileID: 0}
-  platformData: {fileID: 0}
+  spawnPosition: {fileID: 0}
+  currentRobotPrefab: {fileID: 0}
+  currentRobotStats: {fileID: 0}
+  platformDataHandler: {fileID: 0}
 --- !u!1 &5048216393475666693
 GameObject:
   m_ObjectHideFlags: 0
