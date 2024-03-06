@@ -32,11 +32,11 @@ public class RobotManager : MonoBehaviour
     public class AssignedRobotInfo
     {
         public GameObject robotPrefab;
-        public PlatformData assignedPlatform;
+        public Platform assignedPlatform;
         public RobotAttributes attributes;
     }
 
-    public void AssignRobotToAPlatform(PlatformData platform, int selectedAvailableRobotIndex)
+    public void AssignRobotToAPlatform(Platform platform, int selectedAvailableRobotIndex)
     {
 
         if (unassignedRobots[selectedAvailableRobotIndex] != null)

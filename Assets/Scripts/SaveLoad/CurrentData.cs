@@ -7,18 +7,6 @@ namespace SaveLoad
     [System.Serializable]
     public class CurrentData : MonoBehaviour
     {
-    
-        [SerializeField] public float SaveMoney
-        {
-            get => uiData.saveMoney;
-            set => uiData.saveMoney = value;
-        }
-        [SerializeField] public List<PlotStats> PlotStats
-        {
-            get => gameplayData.gameplayPlotStats;
-            set => gameplayData.gameplayPlotStats = value;
-        }
-    
         public UiData uiData = new UiData();
         public GameplayData gameplayData = new GameplayData();
 
@@ -30,7 +18,8 @@ namespace SaveLoad
         [System.Serializable]
         public class GameplayData
         {
-            public List<Plot> gameplayPlotStats;
+            public List<PlotStats> gameplayPlotStats;
+            public List<PlatformStats> GameplayPlatformStats;
         }
    
 
@@ -87,7 +76,6 @@ namespace SaveLoad
             string currentData = System.IO.File.ReadAllText(filePath);
             Debug.Log(currentData);
             uiData = JsonUtility.FromJson<UiData>(currentData);
-            SaveMoney = uiData.saveMoney;
             Debug.Log("Loaded Money");
         }
         // ReSharper disable Unity.PerformanceAnalysis
@@ -107,25 +95,6 @@ namespace SaveLoad
                     foreach (var x in gameplayData.gameplayPlotStats)
                     {
                         Debug.Log(x.ToString());
-                    }
-                    
-                    
-                    if (gameplayData != null)
-                    {
-                        if (gameplayData.gameplayPlotStats != null)
-                        {
-                            PlotStats = gameplayData.gameplayPlotStats;
-                        
-                            Debug.Log($"Loaded Plots: {PlotStats.Count} plots");
-                        }
-                        else
-                        {
-                            Debug.LogWarning("Loaded Plot data's 'gameplayPlotStats' is null.");
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogWarning("Deserialization of GameplayData failed.");
                     }
                 }
                 catch (Exception e)

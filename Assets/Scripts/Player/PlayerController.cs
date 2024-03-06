@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     public void SetPlayerMoney(float amount)
     {
         playerMoney = amount;
-        CurrentData.Instance.SaveMoney = playerMoney;
+        CurrentData.Instance.uiData.saveMoney = playerMoney;
         SaveData.Instance.playerMoney = playerMoney;
     }
 
@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
     private void HandlePlotTrigger(Collider plotCollider)
     {
         _curPlot = plotCollider.gameObject.GetComponent<Plot>();
-        if (_curPlot.isLocked)
+        if (_curPlot.stats.isLocked)
         {
             Debug.Log("LOCKED PLOT");
             plotPricePopupScript.ActivatePopup(_curPlot.PlotPrice);
@@ -175,11 +175,11 @@ public class PlayerController : MonoBehaviour
         if (playerMoney >= _curPlot.PlotPrice)
         {
             plotPricePopupScript.DeactivatePopup();
-            _curPlot.isLocked = false;
+            _curPlot.stats.isLocked = false;
             _curPlot.DeactivateBoundary();
             plotPricePopupScript.UpdateMoney(_curPlot.PlotPrice);
             playerMoney -= _curPlot.PlotPrice;
-            CurrentData.Instance.SaveMoney = playerMoney;
+            CurrentData.Instance.uiData.saveMoney = playerMoney;
             plotPricePopupScript.RunMoneySpread();
         }
         else

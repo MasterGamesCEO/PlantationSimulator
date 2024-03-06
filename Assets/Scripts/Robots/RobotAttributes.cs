@@ -9,9 +9,9 @@ using Random = UnityEngine.Random;
 
 public class RobotAttributes : MonoBehaviour
 {
-    [SerializeField] private float cps;
+    [SerializeField] public float cps;
     [SerializeField] private int price;
-    [SerializeField] private int quickSellPrice;
+    [SerializeField] public int quickSellPrice;
     [SerializeField] public String robotType;
     [SerializeField] public String size;
     
@@ -22,22 +22,7 @@ public class RobotAttributes : MonoBehaviour
         RobotValue();
         
     }
-    public void SaveAttributes(string prefix)
-    {
-        PlayerPrefs.SetString($"{prefix}_RobotType", robotType);
-        PlayerPrefs.SetString($"{prefix}_size", size);
-        PlayerPrefs.SetFloat($"{prefix}_cps", cps);
-        PlayerPrefs.SetInt($"{prefix}_price", price);
-    }
-
-    public void LoadAttributes(string prefix)
-    {
-        robotType = PlayerPrefs.GetString($"{prefix}_RobotType", "");
-        Debug.Log("Attributes loaded");
-        size = PlayerPrefs.GetString($"{prefix}_size", "");
-        cps = PlayerPrefs.GetFloat($"{prefix}_Speed", 0f);
-        price = PlayerPrefs.GetInt($"{prefix}_price", 0);
-    }
+    
 
     private void RobotValue()
     {

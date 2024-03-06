@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using SaveLoad;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -8,22 +9,29 @@ public class PlotDataHandler : MonoBehaviour
 {
     [SerializeField] public List<Plot> allPlots;
     
+    
 
     
     #region Save and Load Plot Data
 
     public void SavePlotData()
     {
-        CurrentData.Instance.PlotStats = allPlots;
+        List<PlotStats> savePlotStats = new List<PlotStats>();
+        for (int i = 0; i < allPlots.Count; i++)
+        {
+            savePlotStats.Add(allPlots[i].GetPlotStats());
+        }
+
+        CurrentData.Instance.gameplayData.gameplayPlotStats = savePlotStats;
     }
 
     public void LoadPlotData()
     {
         
-        allPlots = CurrentData.Instance.PlotStats;
         for (int i = 0; i < allPlots.Count; i++)
         {
-                allPlots[i].SetPlotColor(allPlots[i].stats.isLocked);
+            allPlots[i].SetPlotStats(CurrentData.Instance.gameplayData.gameplayPlotStats[i]);
+            allPlots[i].SetPlotColor(allPlots[i].stats.isLocked);
         }
         
     }
@@ -31,17 +39,20 @@ public class PlotDataHandler : MonoBehaviour
     #endregion
     
     
-    public List<Plot> ResetPlotData()
+    public List<PlotStats> ResetPlotData()
     {
-        for (int i = 0; i < allPlots.Count; i++)
+        List<PlotStats> savePlotStats = new List<PlotStats>();
+        allPlots[0].stats.isLocked = false;
+        allPlots[0].DeactivateBoundary();
+        for (int i = 1; i < allPlots.Count; i++)
         {
             allPlots[i].stats.isLocked= true;
             allPlots[i].ActivateBoundary();
             allPlots[i].SetPlotColor(allPlots[i].stats.isLocked);
+            savePlotStats.Add(allPlots[i].GetPlotStats());
         }
-        allPlots[0].stats.isLocked = false;
-        allPlots[0].DeactivateBoundary();
-        return allPlots;
+        
+        return savePlotStats;
     }
     
 }

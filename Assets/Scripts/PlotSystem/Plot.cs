@@ -8,8 +8,8 @@ public class Plot : MonoBehaviour
 
     [SerializeField] public PlotStats stats;
     [SerializeField] public BoxCollider boundryPos;
-    [FormerlySerializedAs("LockPrefab")] [SerializeField] public Component lockPrefab;
-    [FormerlySerializedAs("UnlockedPrefab")] [SerializeField] public Component unlockedPrefab;
+    [SerializeField] public Component lockPrefab;
+    [SerializeField] public Component unlockedPrefab;
     
     private Component _currentLockItem;
     private Component _currentUnlockItem;
@@ -19,11 +19,20 @@ public class Plot : MonoBehaviour
 
     private void Awake()
     {
-        stats = new PlotStats(true);
         SetPlotPrice();
     }
-
+    
     #endregion
+
+    public void SetPlotStats(PlotStats loadedStats)
+    {
+        stats = loadedStats;
+    }
+
+    public PlotStats GetPlotStats()
+    {
+        return stats;
+    }
 
     #region Plot Configuration
 

@@ -106,7 +106,7 @@ public class SaveData : MonoBehaviour
                 plotDataList.LoadPlotData();
             }
             PlayerController playerController = FindObjectOfType<PlayerController>();
-            playerMoney = CurrentData.Instance.SaveMoney;
+            playerMoney = CurrentData.Instance.uiData.saveMoney;
             playerController.SetPlayerMoney(playerMoney);
             
             PlotPricePopupScript plotPricePopupScript = FindObjectOfType<PlotPricePopupScript>();
