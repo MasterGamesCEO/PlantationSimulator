@@ -75,6 +75,11 @@ public class SaveData : MonoBehaviour
         {
             plotDataList.SavePlotData();
         }
+        platformDataList = FindObjectOfType<PlatformDataHandler>();
+        if (platformDataList != null)
+        {
+            platformDataList.SavePlatformData();
+        }
         CurrentData.Instance.SaveFile();
         Debug.Log($"Saving data for slot {slotIndex}");
     }
@@ -104,6 +109,11 @@ public class SaveData : MonoBehaviour
             if (plotDataList != null)
             {
                 plotDataList.LoadPlotData();
+            }
+            platformDataList = FindObjectOfType<PlatformDataHandler>();
+            if (platformDataList != null)
+            {
+                platformDataList.LoadPlatformData();
             }
             PlayerController playerController = FindObjectOfType<PlayerController>();
             playerMoney = CurrentData.Instance.uiData.saveMoney;

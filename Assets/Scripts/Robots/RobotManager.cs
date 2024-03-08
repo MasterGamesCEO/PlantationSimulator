@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
 public class RobotManager : MonoBehaviour
 {
     // Robot Prefabs
@@ -54,10 +54,10 @@ public class RobotManager : MonoBehaviour
                 assignedPlatform = platform,
                 attributes = selectedRobotInfo.attributes
             });
-            platform.isAssigned = true;
+            platform.stats.isAssigned = true;
             platform.currentRobotPrefab = selectedRobotInfo.robotPrefab;
             platform.currentRobotStats = selectedRobotInfo.attributes;
-            platform.platformDataHandler.SavePlatformData(_saveData.SlotLastSelectedData);
+            platform.platformDataHandler.SavePlatformData();
         }
         else
         {

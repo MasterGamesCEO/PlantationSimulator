@@ -27,19 +27,29 @@ public class PlatformDataHandler : MonoBehaviour
             savePlatformStats.Add(allPlatforms[i].GetPlatformStats());
         }
 
-        CurrentData.Instance.gameplayData.GameplayPlatformStats = savePlatformStats;
+        CurrentData.Instance.gameplayData.gameplayPlatformStats = savePlatformStats;
     }
 
     public void LoadPlatformData()
     {
-        
-        for (int i = 0; i < allPlatforms.Count; i++)
+        Debug.Log("Loadplatformdata");
+        for (int i = 0; i < CurrentData.Instance.gameplayData.gameplayPlatformStats.Count; i++)
         {
-            allPlatforms[i].SetPlatformStats(CurrentData.Instance.gameplayData.GameplayPlatformStats[i]);
-            if (allPlatforms[i].stats.isAssigned)
+            if (CurrentData.Instance.gameplayData.gameplayPlatformStats[i] != null)
             {
-                allPlatforms[i].addRobotToScene();
+                foreach (var t in allPlatforms)
+                {
+                    allPlatforms[i].SetPlatformStats(CurrentData.Instance.gameplayData.gameplayPlatformStats[i]);
+                    if (allPlatforms[i].stats.isAssigned && !allPlatforms[i].stats.hasRobotPrefab) 
+                    { 
+                        allPlatforms[i].AddRobotToScene();
+                    }
+                    Debug.Log("Platform"+allPlatforms[i].name+" stats loaded");
+                }
+                
             }
+            
+            
         }
         
     }
@@ -47,23 +57,13 @@ public class PlatformDataHandler : MonoBehaviour
     #endregion
     
     
-    public List<PlotStats> ResetPlatformData()
+    public List<PlatformStats> ResetPlatformData()
     {
         List<PlatformStats> savePlatformStats = new List<PlatformStats>();
-        for (int i = 0; i < 3; i++)
-        {
-            allPlatforms[0].stats.isLocked = false;
-            allPlots[0].DeactivateBoundary();
-        }
-        for (int i = 1; i < allPlots.Count; i++)
-        {
-            allPlots[i].stats.isLocked= true;
-            allPlots[i].ActivateBoundary();
-            allPlots[i].SetPlotColor(allPlots[i].stats.isLocked);
-            savePlotStats.Add(allPlots[i].GetPlotStats());
-        }
         
-        return savePlotStats;
+        
+        
+        return savePlatformStats;
     }
 
     #endregion
@@ -72,13 +72,11 @@ public class PlatformDataHandler : MonoBehaviour
 
     public void AddToArray(Platform platform)
     {
-        LoadPlatformData(_saveData.SlotLastSelectedData);
-        if (!allPlatforms.Contains(platform))
-        {
-            allPlatforms.Add(platform);
-            Debug.Log("ADDING TO PLATFORM ARRAY");
-        }
-        
+        List<PlatformStats> savePlatformStats = new List<PlatformStats>();
+        allPlatforms.Add(platform);
+       // platform.CreatePlatformStats;
+        savePlatformStats.Add(platform.GetPlatformStats());
+        CurrentData.Instance.gameplayData.gameplayPlatformStats = savePlatformStats;
     }
 
     #endregion

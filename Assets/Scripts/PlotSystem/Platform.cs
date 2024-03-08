@@ -13,10 +13,12 @@ public class Platform : MonoBehaviour
 
     private void Start()
     {
-        PlatformDataHandler platformDataHandler = FindObjectOfType<PlatformDataHandler>();
-        platformDataHandler.AddToArray(this);
+        PlatformDataHandler dataHandler = FindObjectOfType<PlatformDataHandler>();
+        Debug.Log("added" +gameObject.name);
+        dataHandler.AddToArray(this);
     }
 
+    
     public void SetPlatformStats(PlatformStats loadedStats)
     {
         stats = loadedStats;
@@ -32,5 +34,18 @@ public class Platform : MonoBehaviour
     {
         get => stats.isAssigned;
         set => stats.isAssigned = value;
+    }
+
+    public void AddRobotToScene()
+    {
+        if (!stats.hasRobotPrefab)
+        {
+            if (currentRobotPrefab != null)
+            {
+                
+            }
+            Debug.Log("Added Robot To Scene");
+            stats.hasRobotPrefab = true;
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SaveLoad
 {
@@ -19,7 +20,7 @@ namespace SaveLoad
         public class GameplayData
         {
             public List<PlotStats> gameplayPlotStats;
-            public List<PlatformStats> GameplayPlatformStats;
+            public List<PlatformStats> gameplayPlatformStats;
         }
    
 
@@ -96,6 +97,10 @@ namespace SaveLoad
                     {
                         Debug.Log(x.ToString());
                     }
+                    foreach (var x in gameplayData.gameplayPlatformStats)
+                    {
+                        Debug.Log(x.ToString());
+                    }
                 }
                 catch (Exception e)
                 {
@@ -112,13 +117,15 @@ namespace SaveLoad
         public void Reset()
         {
             PlotDataHandler plotDataHandler = FindObjectOfType<PlotDataHandler>();
+            PlatformDataHandler platformDataHandler = FindObjectOfType<PlatformDataHandler>();
             UiData newUiData = new UiData
             {
                 saveMoney = 10000f
             };
             GameplayData newGameplayData = new GameplayData()
             {
-                gameplayPlotStats = plotDataHandler.ResetPlotData()
+                gameplayPlotStats = plotDataHandler.ResetPlotData(),
+                gameplayPlatformStats = platformDataHandler.ResetPlatformData()
             };
         
             string currentMoneyData = JsonUtility.ToJson(newUiData);
