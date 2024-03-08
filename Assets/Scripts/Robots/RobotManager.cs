@@ -11,7 +11,7 @@ public class RobotManager : MonoBehaviour
     [SerializeField] public GameObject diamondPrefab;
     [SerializeField] public GameObject ultraPrefab;
     
-    [SerializeField] public List<AssignedRobotInfo> workingRobots;
+    [SerializeField] public List<RobotInfo> workingRobots;
     [SerializeField] public List<RobotInfo> unassignedRobots;
 
     private SaveData _saveData;
@@ -27,14 +27,7 @@ public class RobotManager : MonoBehaviour
         public GameObject robotPrefab;
         public RobotAttributes attributes; // Add information about the robot
     }
-
-    [System.Serializable]
-    public class AssignedRobotInfo
-    {
-        public GameObject robotPrefab;
-        public Platform assignedPlatform;
-        public RobotAttributes attributes;
-    }
+    
 
     public void AssignRobotToAPlatform(Platform platform, int selectedAvailableRobotIndex)
     {
@@ -48,12 +41,12 @@ public class RobotManager : MonoBehaviour
             unassignedRobots.Remove(selectedRobotInfo);
 
             // Add the assigned robot to the list
-            workingRobots.Add(new AssignedRobotInfo
+            workingRobots.Add(new RobotInfo()
             {
                 robotPrefab = newRobot,
-                assignedPlatform = platform,
                 attributes = selectedRobotInfo.attributes
             });
+            
             platform.stats.isAssigned = true;
             platform.currentRobotPrefab = selectedRobotInfo.robotPrefab;
             platform.currentRobotStats = selectedRobotInfo.attributes;
