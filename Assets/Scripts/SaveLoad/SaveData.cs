@@ -113,7 +113,7 @@ public class SaveData : MonoBehaviour
             platformDataList = FindObjectOfType<PlatformDataHandler>();
             if (platformDataList != null)
             {
-                platformDataList.LoadPlatformData();
+                
             }
             PlayerController playerController = FindObjectOfType<PlayerController>();
             playerMoney = CurrentData.Instance.uiData.saveMoney;

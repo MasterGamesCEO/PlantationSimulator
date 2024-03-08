@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SaveLoad;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
@@ -14,9 +15,16 @@ public class Platform : MonoBehaviour
     private void Start()
     {
         PlatformDataHandler dataHandler = FindObjectOfType<PlatformDataHandler>();
-        Debug.Log("added" +gameObject.name);
-        dataHandler.AddToArray(this);
+        if (!CurrentData.Instance.gameplayData.gameplayPlatformStats.Contains(stats))
+        {
+            dataHandler.AddToArray(this);
+        }
+        else
+        {
+            Debug.Log("Contains "+ stats);
+        }
     }
+    
 
     
     public void SetPlatformStats(PlatformStats loadedStats)
