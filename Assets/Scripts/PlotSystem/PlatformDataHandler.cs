@@ -32,7 +32,7 @@ public class PlatformDataHandler : MonoBehaviour
         CurrentData.Instance.gameplayData.gameplayPlatformStats = savePlatformStats;
     }
 
-    public void LoadPlatformData()
+    public void LoadPlatformData(Platform platform)
     {
         Debug.Log("Loadplatformdata");
         /*
@@ -50,16 +50,32 @@ public class PlatformDataHandler : MonoBehaviour
             }
             }
             */
-        if (allPlatforms.Count <= CurrentData.Instance.gameplayData.gameplayPlatformStats.Count )
+        if (!allPlatforms.Contains(platform))
+        {
+            allPlatforms.Add(platform);
+            int index = allPlatforms.IndexOf(platform);
+            if ( index < CurrentData.Instance.gameplayData.gameplayPlatformStats.Count)
+            {
+                Debug.Log(allPlatforms[index].IsAssigned);
+                Debug.Log(CurrentData.Instance.gameplayData.gameplayPlatformStats[index].isAssigned);
+                allPlatforms[index].SetPlatformStats(CurrentData.Instance.gameplayData.gameplayPlatformStats[index]);
+            }
+            if (allPlatforms[index].stats.isAssigned)
+            { 
+                allPlatforms[index].AddRobotToScene();
+            }
+            Debug.Log("Platform"+allPlatforms[index].name+" stats loaded");
+        }
+        /*if (allPlatforms.Count <= CurrentData.Instance.gameplayData.gameplayPlatformStats.Count )
         {
             Debug.Log(allPlatforms.Count);
             Debug.Log(CurrentData.Instance.gameplayData.gameplayPlatformStats.Count );
-            PlatformStats platformStats = CurrentData.Instance.gameplayData.gameplayPlatformStats[allPlatforms.Count];
+            PlatformStats platformStats = CurrentData.Instance.gameplayData.gameplayPlatformStats.FindAll();
             Debug.Log(platformStats);
             allPlatforms[allPlatforms.Count].SetPlatformStats(platformStats);
             Debug.Log("Platform "+allPlatforms.Count+" stats loaded");
         }
-
+        */
 
     }
 
@@ -83,9 +99,8 @@ public class PlatformDataHandler : MonoBehaviour
     {
         
         Debug.Log("added " +platform.name);
-        allPlatforms.Add(platform);
        // platform.CreatePlatformStats;
-        LoadPlatformData();
+        LoadPlatformData(platform);
     }
 
     #endregion

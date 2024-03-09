@@ -34,6 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1643949827986710929}
+  - {fileID: 7528760200529008042}
   m_Father: {fileID: 3233894574180575966}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &7901909148008275147
@@ -119,11 +120,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f5c8567304b9245be57efe2ccd2fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAssigned: 0
-  spawnPosition: {fileID: 0}
+  stats:
+    isAssigned: 0
+    hasRobotPrefab: 0
+    quickSellPrice: 0
+    robotType: 
+    size: 
+    cps: 0
+  spawnPosition: {fileID: 7528760200529008042}
   currentRobotPrefab: {fileID: 0}
   currentRobotStats: {fileID: 0}
   platformDataHandler: {fileID: 0}
+--- !u!1 &656153781047523003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6695900996305071829}
+  m_Layer: 0
+  m_Name: Spawn Position (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6695900996305071829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656153781047523003}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0006600004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 104554372737461723}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1521737936904325922
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,6 +196,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6549787667537699621}
+  - {fileID: 6309857512258882069}
   m_Father: {fileID: 3233894574180575966}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &7816289731119385795
@@ -243,8 +282,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f5c8567304b9245be57efe2ccd2fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAssigned: 0
-  spawnPosition: {fileID: 0}
+  stats:
+    isAssigned: 0
+    hasRobotPrefab: 0
+    quickSellPrice: 0
+    robotType: 
+    size: 
+    cps: 0
+  spawnPosition: {fileID: 6309857512258882069}
   currentRobotPrefab: {fileID: 0}
   currentRobotStats: {fileID: 0}
   platformDataHandler: {fileID: 0}
@@ -282,6 +327,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7861193414897326686}
+  - {fileID: 456967720695100764}
   m_Father: {fileID: 3233894574180575966}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &6995160137079960944
@@ -367,8 +413,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f5c8567304b9245be57efe2ccd2fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAssigned: 0
-  spawnPosition: {fileID: 0}
+  stats:
+    isAssigned: 0
+    hasRobotPrefab: 0
+    quickSellPrice: 0
+    robotType: 
+    size: 
+    cps: 0
+  spawnPosition: {fileID: 456967720695100764}
   currentRobotPrefab: {fileID: 0}
   currentRobotStats: {fileID: 0}
   platformDataHandler: {fileID: 0}
@@ -561,6 +613,68 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: 90e7b691baf757a4ba893046ae980ff8, type: 3}
+--- !u!1 &2732127867938158124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7528760200529008042}
+  m_Layer: 0
+  m_Name: Spawn Position (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7528760200529008042
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2732127867938158124}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.00066000037}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7613770685697733400}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2842009008262027802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 456967720695100764}
+  m_Layer: 0
+  m_Name: Spawn Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &456967720695100764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2842009008262027802}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.00066}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8597676306028746500}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2858318291932868708
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,6 +711,37 @@ Transform:
   - {fileID: 7616924836270205760}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3270613780509912337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6309857512258882069}
+  m_Layer: 0
+  m_Name: Spawn Position (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6309857512258882069
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270613780509912337}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.00066000054}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7616924836270205760}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4426839448965347222
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,6 +776,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4092040881618027400}
+  - {fileID: 6695900996305071829}
   m_Father: {fileID: 3233894574180575966}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &6922695756463037859
@@ -716,8 +862,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f5c8567304b9245be57efe2ccd2fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAssigned: 0
-  spawnPosition: {fileID: 0}
+  stats:
+    isAssigned: 0
+    hasRobotPrefab: 0
+    quickSellPrice: 0
+    robotType: 
+    size: 
+    cps: 0
+  spawnPosition: {fileID: 6695900996305071829}
   currentRobotPrefab: {fileID: 0}
   currentRobotStats: {fileID: 0}
   platformDataHandler: {fileID: 0}

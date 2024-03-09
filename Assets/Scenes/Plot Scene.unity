@@ -1582,11 +1582,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62de80df2a908054b981ff8ef09351d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicPrefab: {fileID: 0}
-  silverPrefab: {fileID: 0}
-  goldPrefab: {fileID: 0}
-  diamondPrefab: {fileID: 0}
-  ultraPrefab: {fileID: 0}
+  basicPrefab: {fileID: 2841705949788646697, guid: c10b3619b14cd4846a126a0ba38675d1,
+    type: 3}
+  silverPrefab: {fileID: 2841705949788646697, guid: c10b3619b14cd4846a126a0ba38675d1,
+    type: 3}
+  goldPrefab: {fileID: 2841705949788646697, guid: c10b3619b14cd4846a126a0ba38675d1,
+    type: 3}
+  diamondPrefab: {fileID: 2841705949788646697, guid: c10b3619b14cd4846a126a0ba38675d1,
+    type: 3}
+  ultraPrefab: {fileID: 2841705949788646697, guid: c10b3619b14cd4846a126a0ba38675d1,
+    type: 3}
   workingRobots: []
   unassignedRobots: []
 --- !u!4 &390518834
@@ -3397,7 +3402,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: af298d8c60a59364fb1d9db8bbf8d5e9, type: 2}
+  - {fileID: 2100000, guid: f1cff9e4f4019ea4297a1f056eaed440, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6309,11 +6314,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2775193209800937347, guid: c10b3619b14cd4846a126a0ba38675d1,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2838761823865127521, guid: c10b3619b14cd4846a126a0ba38675d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6364,37 +6364,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2841262880615914661, guid: c10b3619b14cd4846a126a0ba38675d1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841399124744276183, guid: c10b3619b14cd4846a126a0ba38675d1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841609655598439701, guid: c10b3619b14cd4846a126a0ba38675d1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2841705949788646697, guid: c10b3619b14cd4846a126a0ba38675d1,
         type: 3}
       propertyPath: m_Name
       value: Robot
       objectReference: {fileID: 0}
-    - target: {fileID: 2841732541293547249, guid: c10b3619b14cd4846a126a0ba38675d1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 2841609655598439701, guid: c10b3619b14cd4846a126a0ba38675d1, type: 3}
-    - {fileID: 2841262880615914661, guid: c10b3619b14cd4846a126a0ba38675d1, type: 3}
-    - {fileID: 2841399124744276183, guid: c10b3619b14cd4846a126a0ba38675d1, type: 3}
-    - {fileID: 2841732541293547249, guid: c10b3619b14cd4846a126a0ba38675d1, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c10b3619b14cd4846a126a0ba38675d1, type: 3}

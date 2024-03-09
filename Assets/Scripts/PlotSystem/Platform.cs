@@ -7,7 +7,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     [SerializeField] public PlatformStats stats;
-    [SerializeField] public BoxCollider spawnPosition;
+    [SerializeField] public Transform spawnPosition;
     [SerializeField] public GameObject currentRobotPrefab;
     [SerializeField] public RobotAttributes currentRobotStats;
     public PlatformDataHandler platformDataHandler;
@@ -46,14 +46,9 @@ public class Platform : MonoBehaviour
 
     public void AddRobotToScene()
     {
-        if (!stats.hasRobotPrefab)
-        {
-            if (currentRobotPrefab != null)
-            {
-                
-            }
-            Debug.Log("Added Robot To Scene");
-            stats.hasRobotPrefab = true;
-        }
+        currentRobotPrefab = FindObjectOfType<RobotManager>().ultraPrefab;
+        Instantiate(currentRobotPrefab, spawnPosition);
+        Debug.Log("Added Robot To Scene");
+        stats.hasRobotPrefab = true;
     }
 }
