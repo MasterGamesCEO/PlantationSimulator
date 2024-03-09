@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController _controller;
     private InputManager _input;
     private Plot _curPlot;
+    private Platform _curPlatform;
     private bool _isSprinting;
 
     [SerializeField] private PlotPricePopupScript plotPricePopupScript;
@@ -151,12 +152,11 @@ public class PlayerController : MonoBehaviour
             plotPricePopupScript.DeactivatePopup();
         }
     }
-    private void HandlePlatformTrigger(Collider plotCollider)
+    private void HandlePlatformTrigger(Collider platformCollider)
     {
-        /*
-        //TODO: add current platform robot stats
-        //TODO: Here -> _curPlatformStats = plotCollider.gameObject.GetComponent<PlotStats>();
-        if (//TODO: Current Platform has robot... _curPlatformStats.isEmpty)
+        _curPlatform = platformCollider.gameObject.GetComponent<Platform>();
+        
+        if (!_curPlatform.stats.isAssigned)
         {
             Debug.Log("Empty Platform");
             robotPopupScript.ActivatePopup(); //TODO: Add currently unassigned robots to the popup;
@@ -166,8 +166,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Robot here");
             //TODO: Activate a un assign robot popup
         }
-        */
-        robotPopupScript.ActivatePopup();
+        
     }
 
     private void BuyLand()
