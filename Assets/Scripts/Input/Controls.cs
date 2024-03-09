@@ -163,6 +163,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AssignRobot"",
+                    ""type"": ""Button"",
+                    ""id"": ""46b8dff2-ea6f-4550-8c08-b6c982e02e68"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -275,6 +284,50 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""BackKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5f6cb4c8-98ac-424e-bcd3-fb27b89b95ad"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AssignRobot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a88f722d-9a0f-4a15-a9be-4778e9086a16"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AssignRobot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d2900baf-b432-45c3-b6f8-c108e5d13583"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AssignRobot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d2b7e622-343e-4045-ba6e-b73dde73b525"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AssignRobot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -292,6 +345,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Dialog_openDialog = m_Dialog.FindAction("openDialog", throwIfNotFound: true);
         m_Dialog_enterKey = m_Dialog.FindAction("enterKey", throwIfNotFound: true);
         m_Dialog_BackKey = m_Dialog.FindAction("BackKey", throwIfNotFound: true);
+        m_Dialog_AssignRobot = m_Dialog.FindAction("AssignRobot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -412,6 +466,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Dialog_openDialog;
     private readonly InputAction m_Dialog_enterKey;
     private readonly InputAction m_Dialog_BackKey;
+    private readonly InputAction m_Dialog_AssignRobot;
     public struct DialogActions
     {
         private @Controls m_Wrapper;
@@ -421,6 +476,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @openDialog => m_Wrapper.m_Dialog_openDialog;
         public InputAction @enterKey => m_Wrapper.m_Dialog_enterKey;
         public InputAction @BackKey => m_Wrapper.m_Dialog_BackKey;
+        public InputAction @AssignRobot => m_Wrapper.m_Dialog_AssignRobot;
         public InputActionMap Get() { return m_Wrapper.m_Dialog; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -445,6 +501,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @BackKey.started += instance.OnBackKey;
             @BackKey.performed += instance.OnBackKey;
             @BackKey.canceled += instance.OnBackKey;
+            @AssignRobot.started += instance.OnAssignRobot;
+            @AssignRobot.performed += instance.OnAssignRobot;
+            @AssignRobot.canceled += instance.OnAssignRobot;
         }
 
         private void UnregisterCallbacks(IDialogActions instance)
@@ -464,6 +523,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @BackKey.started -= instance.OnBackKey;
             @BackKey.performed -= instance.OnBackKey;
             @BackKey.canceled -= instance.OnBackKey;
+            @AssignRobot.started -= instance.OnAssignRobot;
+            @AssignRobot.performed -= instance.OnAssignRobot;
+            @AssignRobot.canceled -= instance.OnAssignRobot;
         }
 
         public void RemoveCallbacks(IDialogActions instance)
@@ -493,5 +555,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnOpenDialog(InputAction.CallbackContext context);
         void OnEnterKey(InputAction.CallbackContext context);
         void OnBackKey(InputAction.CallbackContext context);
+        void OnAssignRobot(InputAction.CallbackContext context);
     }
 }

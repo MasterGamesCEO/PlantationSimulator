@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
     public InputAction enterKey;
     public InputAction backKey;
     public InputAction sprint;
+    public InputAction assignRobot;
     public Vector2 Move { get; private set; }
 
     #endregion
@@ -65,6 +66,7 @@ public class InputManager : MonoBehaviour
         enterKey = _controls.Dialog.enterKey;
         backKey = _controls.Dialog.BackKey;
         sprint = _controls.Player.Sprint;
+        assignRobot = _controls.Dialog.AssignRobot;
     }
 
     private void EnableInputActions()

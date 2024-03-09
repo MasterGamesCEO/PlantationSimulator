@@ -17,7 +17,7 @@ public class Platform : MonoBehaviour
         PlatformDataHandler dataHandler = FindObjectOfType<PlatformDataHandler>();
         if (!CurrentData.Instance.gameplayData.gameplayPlatformStats.Contains(stats))
         {
-            dataHandler.AddToArray(this);
+            dataHandler.LoadPlatformData(this);
         }
         else
         {

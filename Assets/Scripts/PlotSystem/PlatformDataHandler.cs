@@ -93,15 +93,5 @@ public class PlatformDataHandler : MonoBehaviour
 
     #endregion
 
-    #region Add to Platform
-
-    public void AddToArray(Platform platform)
-    {
-        
-        Debug.Log("added " +platform.name);
-       // platform.CreatePlatformStats;
-        LoadPlatformData(platform);
-    }
-
-    #endregion
+    
 }
