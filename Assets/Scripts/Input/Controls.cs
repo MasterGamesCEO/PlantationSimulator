@@ -165,9 +165,36 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""AssignRobot"",
+                    ""name"": ""Robot1"",
                     ""type"": ""Button"",
-                    ""id"": ""46b8dff2-ea6f-4550-8c08-b6c982e02e68"",
+                    ""id"": ""496b0f31-fed6-4110-aa93-6b7242d19a3b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Robot2"",
+                    ""type"": ""Button"",
+                    ""id"": ""34387976-118a-48a4-9b62-9645889792c6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Robot3"",
+                    ""type"": ""Button"",
+                    ""id"": ""603bacf8-de33-44c3-8ceb-8a8744b2a4bd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Robot4"",
+                    ""type"": ""Button"",
+                    ""id"": ""d79e2d67-cf7d-460e-9a74-b0786e5158e9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -287,45 +314,45 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5f6cb4c8-98ac-424e-bcd3-fb27b89b95ad"",
+                    ""id"": ""508f95d6-4051-4196-aac8-dd6fafb8e9c9"",
                     ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""AssignRobot"",
+                    ""action"": ""Robot1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a88f722d-9a0f-4a15-a9be-4778e9086a16"",
+                    ""id"": ""729956e5-6e85-460d-889c-90e11b06480d"",
                     ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""AssignRobot"",
+                    ""action"": ""Robot2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d2900baf-b432-45c3-b6f8-c108e5d13583"",
+                    ""id"": ""079631bc-fa26-425a-83d5-baa62e2af756"",
                     ""path"": ""<Keyboard>/3"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""AssignRobot"",
+                    ""action"": ""Robot3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d2b7e622-343e-4045-ba6e-b73dde73b525"",
+                    ""id"": ""0cef5445-8de5-46ab-955b-f56fddcc7106"",
                     ""path"": ""<Keyboard>/4"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""AssignRobot"",
+                    ""action"": ""Robot4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -345,7 +372,10 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Dialog_openDialog = m_Dialog.FindAction("openDialog", throwIfNotFound: true);
         m_Dialog_enterKey = m_Dialog.FindAction("enterKey", throwIfNotFound: true);
         m_Dialog_BackKey = m_Dialog.FindAction("BackKey", throwIfNotFound: true);
-        m_Dialog_AssignRobot = m_Dialog.FindAction("AssignRobot", throwIfNotFound: true);
+        m_Dialog_Robot1 = m_Dialog.FindAction("Robot1", throwIfNotFound: true);
+        m_Dialog_Robot2 = m_Dialog.FindAction("Robot2", throwIfNotFound: true);
+        m_Dialog_Robot3 = m_Dialog.FindAction("Robot3", throwIfNotFound: true);
+        m_Dialog_Robot4 = m_Dialog.FindAction("Robot4", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -466,7 +496,10 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Dialog_openDialog;
     private readonly InputAction m_Dialog_enterKey;
     private readonly InputAction m_Dialog_BackKey;
-    private readonly InputAction m_Dialog_AssignRobot;
+    private readonly InputAction m_Dialog_Robot1;
+    private readonly InputAction m_Dialog_Robot2;
+    private readonly InputAction m_Dialog_Robot3;
+    private readonly InputAction m_Dialog_Robot4;
     public struct DialogActions
     {
         private @Controls m_Wrapper;
@@ -476,7 +509,10 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @openDialog => m_Wrapper.m_Dialog_openDialog;
         public InputAction @enterKey => m_Wrapper.m_Dialog_enterKey;
         public InputAction @BackKey => m_Wrapper.m_Dialog_BackKey;
-        public InputAction @AssignRobot => m_Wrapper.m_Dialog_AssignRobot;
+        public InputAction @Robot1 => m_Wrapper.m_Dialog_Robot1;
+        public InputAction @Robot2 => m_Wrapper.m_Dialog_Robot2;
+        public InputAction @Robot3 => m_Wrapper.m_Dialog_Robot3;
+        public InputAction @Robot4 => m_Wrapper.m_Dialog_Robot4;
         public InputActionMap Get() { return m_Wrapper.m_Dialog; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -501,9 +537,18 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @BackKey.started += instance.OnBackKey;
             @BackKey.performed += instance.OnBackKey;
             @BackKey.canceled += instance.OnBackKey;
-            @AssignRobot.started += instance.OnAssignRobot;
-            @AssignRobot.performed += instance.OnAssignRobot;
-            @AssignRobot.canceled += instance.OnAssignRobot;
+            @Robot1.started += instance.OnRobot1;
+            @Robot1.performed += instance.OnRobot1;
+            @Robot1.canceled += instance.OnRobot1;
+            @Robot2.started += instance.OnRobot2;
+            @Robot2.performed += instance.OnRobot2;
+            @Robot2.canceled += instance.OnRobot2;
+            @Robot3.started += instance.OnRobot3;
+            @Robot3.performed += instance.OnRobot3;
+            @Robot3.canceled += instance.OnRobot3;
+            @Robot4.started += instance.OnRobot4;
+            @Robot4.performed += instance.OnRobot4;
+            @Robot4.canceled += instance.OnRobot4;
         }
 
         private void UnregisterCallbacks(IDialogActions instance)
@@ -523,9 +568,18 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @BackKey.started -= instance.OnBackKey;
             @BackKey.performed -= instance.OnBackKey;
             @BackKey.canceled -= instance.OnBackKey;
-            @AssignRobot.started -= instance.OnAssignRobot;
-            @AssignRobot.performed -= instance.OnAssignRobot;
-            @AssignRobot.canceled -= instance.OnAssignRobot;
+            @Robot1.started -= instance.OnRobot1;
+            @Robot1.performed -= instance.OnRobot1;
+            @Robot1.canceled -= instance.OnRobot1;
+            @Robot2.started -= instance.OnRobot2;
+            @Robot2.performed -= instance.OnRobot2;
+            @Robot2.canceled -= instance.OnRobot2;
+            @Robot3.started -= instance.OnRobot3;
+            @Robot3.performed -= instance.OnRobot3;
+            @Robot3.canceled -= instance.OnRobot3;
+            @Robot4.started -= instance.OnRobot4;
+            @Robot4.performed -= instance.OnRobot4;
+            @Robot4.canceled -= instance.OnRobot4;
         }
 
         public void RemoveCallbacks(IDialogActions instance)
@@ -555,6 +609,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnOpenDialog(InputAction.CallbackContext context);
         void OnEnterKey(InputAction.CallbackContext context);
         void OnBackKey(InputAction.CallbackContext context);
-        void OnAssignRobot(InputAction.CallbackContext context);
+        void OnRobot1(InputAction.CallbackContext context);
+        void OnRobot2(InputAction.CallbackContext context);
+        void OnRobot3(InputAction.CallbackContext context);
+        void OnRobot4(InputAction.CallbackContext context);
     }
 }

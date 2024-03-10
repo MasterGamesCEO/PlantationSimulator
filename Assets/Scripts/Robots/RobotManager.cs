@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using SaveLoad;
 using UnityEngine;
 [System.Serializable]
 public class RobotManager : MonoBehaviour
@@ -11,68 +12,44 @@ public class RobotManager : MonoBehaviour
     [SerializeField] public GameObject diamondPrefab;
     [SerializeField] public GameObject ultraPrefab;
     
-    [SerializeField] public List<RobotInfo> workingRobots;
-    [SerializeField] public List<RobotInfo> unassignedRobots;
+    [SerializeField] public List<RobotAttributes> workingRobots;
+    [SerializeField] public List<RobotAttributes> unassignedRobots;
 
     private SaveData _saveData;
 
+    public void SaveRobotData()
+    {
+        List<RobotAttributes> saveWorkingRobotAttributesList = new List<RobotAttributes>();
+        List<RobotAttributes> saveUnassignedRobotAttributesList = new List<RobotAttributes>();
+        for (int i = 0; i < workingRobots.Count; i++)
+        {
+            saveWorkingRobotAttributesList.Add(workingRobots[i]);
+            Debug.Log("CPS For " + i + " " + workingRobots[i].cps);
+        }
+        for (int i = 0; i < unassignedRobots.Count; i++)
+        {
+            saveUnassignedRobotAttributesList.Add(unassignedRobots[i]);
+            Debug.Log("CPS For " + i + " " + unassignedRobots[i].cps);
+        }
+        CurrentData.Instance.robotData.workingRobots = saveWorkingRobotAttributesList;
+        CurrentData.Instance.robotData.unassignedRobots = saveUnassignedRobotAttributesList;
+    }
+
+    public void LoadRobotData()
+    {
+        workingRobots = CurrentData.Instance.robotData.workingRobots;
+        unassignedRobots = CurrentData.Instance.robotData.unassignedRobots;
+    }
     private void Start()
     {
         _saveData = SaveData.Instance;
     }
-
-    [System.Serializable]
-    public class RobotInfo
-    {
-        public GameObject robotPrefab;
-        public RobotAttributes attributes; // Add information about the robot
-    }
     
-
-    public void AssignRobotToAPlatform(Platform platform, int selectedAvailableRobotIndex)
-    {
-
-        if (unassignedRobots[selectedAvailableRobotIndex] != null)
-        {
-            RobotInfo selectedRobotInfo = unassignedRobots[selectedAvailableRobotIndex];
-            GameObject newRobot = Instantiate(selectedRobotInfo.robotPrefab, platform.spawnPosition.transform.position, Quaternion.identity);
-
-            // Remove the selected robot from available list
-            unassignedRobots.Remove(selectedRobotInfo);
-
-            // Add the assigned robot to the list
-            workingRobots.Add(new RobotInfo()
-            {
-                robotPrefab = newRobot,
-                attributes = selectedRobotInfo.attributes
-            });
-            
-            platform.stats.isAssigned = true;
-            platform.currentRobotPrefab = selectedRobotInfo.robotPrefab;
-            platform.currentRobotStats = selectedRobotInfo.attributes;
-            platform.platformDataHandler.SavePlatformData();
-        }
-        else
-        {
-            Debug.Log("No robot in that slot");
-        }
-    }
-
     public void BuyRobot(RobotAttributes attributes)
     {
         if (unassignedRobots.Count < 4)
         {
-            RobotInfo newRobot = new RobotInfo
-            {
-                robotPrefab = 
-                    attributes.robotType.Equals("basicRobot") ? basicPrefab :
-                    attributes.robotType.Equals("silverRobot") ? silverPrefab :
-                    attributes.robotType.Equals("goldRobot") ? goldPrefab :
-                    attributes.robotType.Equals("diamondRobot") ? diamondPrefab :
-                    attributes.robotType.Equals("ultraRobot") ? ultraPrefab : null,
-                attributes = attributes
-            };
-            unassignedRobots.Add(newRobot);
+            unassignedRobots.Add(attributes);
         }
         else
         {

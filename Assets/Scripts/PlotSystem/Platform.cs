@@ -46,9 +46,18 @@ public class Platform : MonoBehaviour
 
     public void AddRobotToScene()
     {
-        currentRobotPrefab = FindObjectOfType<RobotManager>().ultraPrefab;
-        Instantiate(currentRobotPrefab, spawnPosition);
-        Debug.Log("Added Robot To Scene");
-        stats.hasRobotPrefab = true;
+        currentRobotPrefab =
+            stats.robotType.Equals("basicRobot") ? FindObjectOfType<RobotManager>().basicPrefab :
+            stats.robotType.Equals("silverRobot") ? FindObjectOfType<RobotManager>().silverPrefab :
+            stats.robotType.Equals("goldRobot") ? FindObjectOfType<RobotManager>().goldPrefab :
+            stats.robotType.Equals("diamondRobot") ? FindObjectOfType<RobotManager>().diamondPrefab :
+            stats.robotType.Equals("ultraRobot") ? FindObjectOfType<RobotManager>().ultraPrefab: null;
+        if (currentRobotPrefab != null)
+        {
+            Debug.Log(currentRobotPrefab.name);
+            Instantiate(currentRobotPrefab, spawnPosition);
+            Debug.Log("Added Robot To Scene");
+            stats.hasRobotPrefab = true;
+        }
     }
 }

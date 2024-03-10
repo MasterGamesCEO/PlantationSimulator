@@ -143,9 +143,36 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "AssignRobot",
+                    "name": "Robot1",
                     "type": "Button",
-                    "id": "46b8dff2-ea6f-4550-8c08-b6c982e02e68",
+                    "id": "496b0f31-fed6-4110-aa93-6b7242d19a3b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Robot2",
+                    "type": "Button",
+                    "id": "34387976-118a-48a4-9b62-9645889792c6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Robot3",
+                    "type": "Button",
+                    "id": "603bacf8-de33-44c3-8ceb-8a8744b2a4bd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Robot4",
+                    "type": "Button",
+                    "id": "d79e2d67-cf7d-460e-9a74-b0786e5158e9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -265,45 +292,45 @@
                 },
                 {
                     "name": "",
-                    "id": "5f6cb4c8-98ac-424e-bcd3-fb27b89b95ad",
+                    "id": "508f95d6-4051-4196-aac8-dd6fafb8e9c9",
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AssignRobot",
+                    "action": "Robot1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "a88f722d-9a0f-4a15-a9be-4778e9086a16",
+                    "id": "729956e5-6e85-460d-889c-90e11b06480d",
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AssignRobot",
+                    "action": "Robot2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "d2900baf-b432-45c3-b6f8-c108e5d13583",
+                    "id": "079631bc-fa26-425a-83d5-baa62e2af756",
                     "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AssignRobot",
+                    "action": "Robot3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "d2b7e622-343e-4045-ba6e-b73dde73b525",
+                    "id": "0cef5445-8de5-46ab-955b-f56fddcc7106",
                     "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AssignRobot",
+                    "action": "Robot4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

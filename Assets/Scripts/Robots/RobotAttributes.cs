@@ -7,7 +7,8 @@ using UnityEngine.Search;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-public class RobotAttributes : MonoBehaviour
+[System.Serializable]
+public class RobotAttributes 
 {
     [SerializeField] public float cps;
     [SerializeField] private int price;
@@ -16,11 +17,12 @@ public class RobotAttributes : MonoBehaviour
     [SerializeField] public String size;
     
 
-    private void Start()
+    
+
+    public void RandomizeNewData()
     {
         cps = Random.Range(0.001f, 5f);
         RobotValue();
-        
     }
     
 

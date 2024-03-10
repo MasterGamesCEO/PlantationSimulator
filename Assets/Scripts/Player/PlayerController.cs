@@ -50,31 +50,11 @@ public class PlayerController : MonoBehaviour
         _input.buyLand.performed += OnBuyLandPerformed;
         _input.sprint.performed += OnSprintPerformed;
         _input.sprint.canceled += OnSprintPerformed;
-        _input.assignRobot.performed += OnAssignRobotPreformed;
+        
     }
 
-    private void OnAssignRobotPreformed(InputAction.CallbackContext obj)
-    {
-        if (robotPopupScript.PopupActive())
-        {
-            
-        }
-        else
-        {
-            Debug.Log("No Robot Popup");
-        }
-    }
-    private void AssignRobot()
-    {
-        //if ()
-        {
-            
-        }
-        //else
-        {
-            //Debug.Log("No robot in slot");
-        }
-    }
+    
+    
 
     private void OnSprintPerformed(InputAction.CallbackContext obj)
     {
@@ -183,7 +163,7 @@ public class PlayerController : MonoBehaviour
         if (!_curPlatform.stats.isAssigned)
         {
             Debug.Log("Empty Platform");
-            robotPopupScript.ActivatePopup(); //TODO: Add currently unassigned robots to the popup;
+            robotPopupScript.ActivatePopup(_curPlatform); //TODO: Add currently unassigned robots to the popup;
         }
         else //Current platform has a robot
         {

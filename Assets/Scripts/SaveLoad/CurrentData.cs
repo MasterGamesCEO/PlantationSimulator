@@ -10,6 +10,7 @@ namespace SaveLoad
     {
         public UiData uiData = new UiData();
         public GameplayData gameplayData = new GameplayData();
+        public RobotData robotData = new RobotData();
 
         [System.Serializable]
         public class UiData
@@ -21,6 +22,12 @@ namespace SaveLoad
         {
             public List<PlotStats> gameplayPlotStats;
             public List<PlatformStats> gameplayPlatformStats;
+        }
+        [System.Serializable]
+        public class RobotData
+        {
+            public List<RobotAttributes> workingRobots;
+            public List<RobotAttributes> unassignedRobots;
         }
    
 
@@ -35,6 +42,11 @@ namespace SaveLoad
             {
                 SaveMoneyToJson();
             }
+
+            if (FindObjectOfType<RobotManager>())
+            {
+                SaveRobotsToJson();
+            }
         }
         public void LoadFile()
         {
@@ -46,6 +58,10 @@ namespace SaveLoad
             if (FindObjectOfType<PlotPricePopupScript>())
             {
                 LoadMoneyFromJson();
+            }
+            if (FindObjectOfType<RobotManager>())
+            {
+                LoadRobotsFromJson();
             }
         }
     
@@ -70,6 +86,17 @@ namespace SaveLoad
             System.IO.File.WriteAllText(filePath,currentData);
         
             Debug.Log("Saved Plots");
+        }
+        public void SaveRobotsToJson()
+        {
+            string filePath = Application.persistentDataPath + $"/SavedRobotDataFor{_slotLastSelected}.json";
+            Debug.Log(filePath);
+        
+            string currentData = JsonUtility.ToJson(robotData);
+            Debug.Log(robotData);
+            System.IO.File.WriteAllText(filePath,currentData);
+        
+            Debug.Log("Saved Robots");
         }
         public void LoadMoneyFromJson()
         {
@@ -111,6 +138,14 @@ namespace SaveLoad
             {
                 Debug.LogWarning($"File not found at path: {filePath}");
             }
+        }
+        public void LoadRobotsFromJson()
+        {
+            string filePath = Application.persistentDataPath + $"/SavedRobotDataFor{_slotLastSelected}.json";
+            string currentData = System.IO.File.ReadAllText(filePath);
+            Debug.Log(currentData);
+            robotData = JsonUtility.FromJson<RobotData>(currentData);
+            Debug.Log("Loaded Robots");
         }
 
 

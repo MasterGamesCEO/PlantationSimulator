@@ -14,6 +14,7 @@ public class SaveData : MonoBehaviour
     
     public PlotDataHandler plotDataList;
     public PlatformDataHandler platformDataList;
+    public RobotManager robotManager;
    
     public bool ifPlotReset0 = false;
     public bool ifPlotReset1 = false;
@@ -80,6 +81,11 @@ public class SaveData : MonoBehaviour
         {
             platformDataList.SavePlatformData();
         }
+        robotManager = FindObjectOfType<RobotManager>();
+        if (robotManager != null)
+        {
+            robotManager.SaveRobotData();
+        }
         CurrentData.Instance.SaveFile();
         Debug.Log($"Saving data for slot {slotIndex}");
     }
@@ -110,10 +116,10 @@ public class SaveData : MonoBehaviour
             {
                 plotDataList.LoadPlotData();
             }
-            platformDataList = FindObjectOfType<PlatformDataHandler>();
-            if (platformDataList != null)
+            robotManager = FindObjectOfType<RobotManager>();
+            if (robotManager != null)
             {
-                
+                robotManager.LoadRobotData();
             }
             PlayerController playerController = FindObjectOfType<PlayerController>();
             playerMoney = CurrentData.Instance.uiData.saveMoney;
