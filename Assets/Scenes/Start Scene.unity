@@ -384,6 +384,7 @@ MonoBehaviour:
   playerMoney: 0
   plotDataList: {fileID: 0}
   platformDataList: {fileID: 0}
+  robotManager: {fileID: 0}
   ifPlotReset0: 0
   ifPlotReset1: 0
   ifPlotReset2: 0
@@ -403,6 +404,10 @@ MonoBehaviour:
     saveMoney: 0
   gameplayData:
     gameplayPlotStats: []
+    gameplayPlatformStats: []
+  robotData:
+    workingRobots: []
+    unassignedRobots: []
 --- !u!1 &692575696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,6 +1006,42 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   sprint:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  robot1:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  robot2:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  robot3:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  robot4:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 

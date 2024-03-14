@@ -6,9 +6,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class RobotPopup : MonoBehaviour
+public class UnassignPopup : MonoBehaviour
 {
-    [SerializeField] public Animator _mAnimator;
+    private Animator _mAnimator;
     [SerializeField] public Platform selectedPlatform;
     private static readonly int In = Animator.StringToHash("In");
     private InputManager _input;
@@ -18,46 +18,30 @@ public class RobotPopup : MonoBehaviour
     {
         _input = InputManager.Instance;
         _mAnimator = GetComponent<Animator>();
-        _input.robot1.performed += OnAssignRobotPreformed;
-        _input.robot2.performed += OnAssignRobotPreformed;
-        _input.robot3.performed += OnAssignRobotPreformed;
-        _input.robot4.performed += OnAssignRobotPreformed;
+        _input.quickSell.performed += OnUnAssignRobotPreformed;
+        _input.unAssignRobot.performed += OnUnAssignRobotPreformed;
     }
 
-    private void OnAssignRobotPreformed(InputAction.CallbackContext obj)
+    private void OnUnAssignRobotPreformed(InputAction.CallbackContext obj)
     {
-        int slotIndex = new int();
-        if (_input.robot1.WasPressedThisFrame()) {
-            slotIndex = 0;
-        } else if (_input.robot2.WasPressedThisFrame()) {
-            slotIndex = 1;
-        } else if (_input.robot3.WasPressedThisFrame()) {
-            slotIndex = 2;
-        } else if (_input.robot4.WasPressedThisFrame()) {
-            slotIndex = 3;
-        }
-        if (PopupActive())
+        if (_input.quickSell.WasPressedThisFrame()) 
         {
-           Debug.Log(slotIndex);
-           RobotManager manager = FindObjectOfType<RobotManager>();
-           PlatformDataHandler handler = FindObjectOfType<PlatformDataHandler>();
-           if (manager != null && handler != null)
-           {
-               if (slotIndex < manager.unassignedRobots.Count)
-               {
-                   manager.workingRobots.Add(manager.unassignedRobots[slotIndex ]);
-                   selectedPlatform.stats = new PlatformStats(true, manager.unassignedRobots[slotIndex ]);
-                   selectedPlatform.AddRobotToScene();
-                   DeactivatePopup();
-                   manager.unassignedRobots.Remove(manager.unassignedRobots[slotIndex]);
-                   
-               }
-               else
-               {
-                   Debug.Log($"No robot in {slotIndex + 1}'s unassigned robots");
-               }
-           }
+            if (PopupActive())
+            {
+                Debug.Log(selectedPlatform);
+                RobotManager manager = FindObjectOfType<RobotManager>();
+                PlatformDataHandler handler = FindObjectOfType<PlatformDataHandler>();
+                if (manager != null && handler != null)
+                {
+                    //TODO: Remove from working robots the stats
+                }
+            }
+        } else if (_input.unAssignRobot.WasPressedThisFrame())
+        {
+            //TODO: move the stats back to unassigned
         }
+
+        
     }
 
     public void ActivatePopup(Platform platform)

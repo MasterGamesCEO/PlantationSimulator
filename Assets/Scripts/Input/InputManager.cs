@@ -25,6 +25,8 @@ public class InputManager : MonoBehaviour
     public InputAction robot2;
     public InputAction robot3;
     public InputAction robot4;
+    public InputAction quickSell;
+    public InputAction unAssignRobot;
     public Vector2 Move { get; private set; }
 
     #endregion
@@ -74,6 +76,8 @@ public class InputManager : MonoBehaviour
         robot2 = _controls.Dialog.Robot2;
         robot3 = _controls.Dialog.Robot3;
         robot4 = _controls.Dialog.Robot4;
+        quickSell = _controls.Dialog.QuickSell;
+        unAssignRobot = _controls.Dialog.UnassignRobot;
     }
 
     private void EnableInputActions()

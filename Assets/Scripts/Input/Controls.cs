@@ -199,6 +199,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Quick Sell"",
+                    ""type"": ""Button"",
+                    ""id"": ""0c890954-9568-467e-8ae2-e66fb4be39b7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UnassignRobot"",
+                    ""type"": ""Button"",
+                    ""id"": ""967ea14c-13c0-4318-b6b2-f672f67f19b5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -355,6 +373,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Robot4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1efd6676-f61d-46b4-91fe-fa9a8e5f7590"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quick Sell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d9c0b2b-d41f-4b0b-8252-7363b34876b3"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UnassignRobot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -376,6 +416,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Dialog_Robot2 = m_Dialog.FindAction("Robot2", throwIfNotFound: true);
         m_Dialog_Robot3 = m_Dialog.FindAction("Robot3", throwIfNotFound: true);
         m_Dialog_Robot4 = m_Dialog.FindAction("Robot4", throwIfNotFound: true);
+        m_Dialog_QuickSell = m_Dialog.FindAction("Quick Sell", throwIfNotFound: true);
+        m_Dialog_UnassignRobot = m_Dialog.FindAction("UnassignRobot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -500,6 +542,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Dialog_Robot2;
     private readonly InputAction m_Dialog_Robot3;
     private readonly InputAction m_Dialog_Robot4;
+    private readonly InputAction m_Dialog_QuickSell;
+    private readonly InputAction m_Dialog_UnassignRobot;
     public struct DialogActions
     {
         private @Controls m_Wrapper;
@@ -513,6 +557,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Robot2 => m_Wrapper.m_Dialog_Robot2;
         public InputAction @Robot3 => m_Wrapper.m_Dialog_Robot3;
         public InputAction @Robot4 => m_Wrapper.m_Dialog_Robot4;
+        public InputAction @QuickSell => m_Wrapper.m_Dialog_QuickSell;
+        public InputAction @UnassignRobot => m_Wrapper.m_Dialog_UnassignRobot;
         public InputActionMap Get() { return m_Wrapper.m_Dialog; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -549,6 +595,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Robot4.started += instance.OnRobot4;
             @Robot4.performed += instance.OnRobot4;
             @Robot4.canceled += instance.OnRobot4;
+            @QuickSell.started += instance.OnQuickSell;
+            @QuickSell.performed += instance.OnQuickSell;
+            @QuickSell.canceled += instance.OnQuickSell;
+            @UnassignRobot.started += instance.OnUnassignRobot;
+            @UnassignRobot.performed += instance.OnUnassignRobot;
+            @UnassignRobot.canceled += instance.OnUnassignRobot;
         }
 
         private void UnregisterCallbacks(IDialogActions instance)
@@ -580,6 +632,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Robot4.started -= instance.OnRobot4;
             @Robot4.performed -= instance.OnRobot4;
             @Robot4.canceled -= instance.OnRobot4;
+            @QuickSell.started -= instance.OnQuickSell;
+            @QuickSell.performed -= instance.OnQuickSell;
+            @QuickSell.canceled -= instance.OnQuickSell;
+            @UnassignRobot.started -= instance.OnUnassignRobot;
+            @UnassignRobot.performed -= instance.OnUnassignRobot;
+            @UnassignRobot.canceled -= instance.OnUnassignRobot;
         }
 
         public void RemoveCallbacks(IDialogActions instance)
@@ -613,5 +671,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnRobot2(InputAction.CallbackContext context);
         void OnRobot3(InputAction.CallbackContext context);
         void OnRobot4(InputAction.CallbackContext context);
+        void OnQuickSell(InputAction.CallbackContext context);
+        void OnUnassignRobot(InputAction.CallbackContext context);
     }
 }
