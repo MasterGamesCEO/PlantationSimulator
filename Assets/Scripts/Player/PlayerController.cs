@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour
         } else if (other.gameObject.tag.Equals("Platform"))
         {
             robotPopupScript.DeactivatePopup();
+            unassignPopupScript.DeactivatePopup();
         }
     }
 
@@ -169,7 +170,7 @@ public class PlayerController : MonoBehaviour
         else //Current platform has a robot
         {
             Debug.Log("Robot here");
-            //unassignPopupScript.ActivatePopup(_curPlatform);
+            unassignPopupScript.ActivatePopup(_curPlatform);
         }
         
     }

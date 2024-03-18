@@ -3375,7 +3375,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f1cff9e4f4019ea4297a1f056eaed440, type: 2}
+  - {fileID: 2100000, guid: 3ba8d7f1ca794724ea4784e00e71157f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5876,6 +5876,11 @@ PrefabInstance:
       objectReference: {fileID: 541511882}
     - target: {fileID: 1147213301800016350, guid: 56e960c413a931543abc33b5617e58f9,
         type: 3}
+      propertyPath: unassignPopupScript
+      value: 
+      objectReference: {fileID: 2372825560039540604}
+    - target: {fileID: 1147213301800016350, guid: 56e960c413a931543abc33b5617e58f9,
+        type: 3}
       propertyPath: plotPricePopupScript
       value: 
       objectReference: {fileID: 2372825560039540601}
@@ -6232,7 +6237,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 674793363752982878, guid: 4dd9c2d3315575942b11f9e3963d329b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2372825560039540604}
   m_SourcePrefab: {fileID: 100100000, guid: 4dd9c2d3315575942b11f9e3963d329b, type: 3}
 --- !u!114 &2372825560039540601 stripped
 MonoBehaviour:
@@ -6252,6 +6261,25 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 2372825560039540600}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2372825560039540603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 674793363752982878, guid: 4dd9c2d3315575942b11f9e3963d329b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2372825560039540600}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2372825560039540604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2372825560039540603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2e555861dc38246bda57e875784b34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedPlatform: {fileID: 0}
 --- !u!1001 &2684603705857384294
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,10 +9,10 @@ public class PlatformStats
     [SerializeField] public bool isAssigned = false;
     
     [SerializeField] public bool hasRobotPrefab = false;
-    [SerializeField] private int quickSellPrice;
+    [SerializeField] public int quickSellPrice;
     [SerializeField] public String robotType;
     [SerializeField] public String size;
-    [SerializeField] private float cps;
+    [SerializeField] public float cps;
 
 
     public PlatformStats(bool isAssigned, RobotAttributes attributes)

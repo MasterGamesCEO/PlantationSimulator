@@ -47,24 +47,11 @@ public class UnassignPopup : MonoBehaviour
     public void ActivatePopup(Platform platform)
     {
         RobotManager manager = FindObjectOfType<RobotManager>();
-        for (int i = 0; i < 4; i++)
-        {
-            int maxIndex = new int();
-            maxIndex = manager.unassignedRobots.Count;
-            Transform option = _mAnimator.transform.Find($"Slot{i}");
-            TextMeshProUGUI optionText = option.Find("Text (TMP)")?.GetComponent<TextMeshProUGUI>();
-            if (optionText != null)
-                optionText.text = i < maxIndex
-                    ? $"[{i + 1}] " + manager.unassignedRobots[i].robotType
-                    : $"[{i + 1}] NO ROBOT";
-            Image image = option.Find("Shadow")?.GetComponent<Image>();
-            ColorUtility.TryParseHtmlString("#FF6D6D", out var colorRed);
-            ColorUtility.TryParseHtmlString("#4CAAFF", out var colorBlue);
-            if (image != null) 
-                image.color = i < maxIndex 
-                    ? colorBlue 
-                    : colorRed;
-        } 
+        Transform option = _mAnimator.transform.Find($"Slot{0}");
+        TextMeshProUGUI optionText = option.Find("Text (TMP)")?.GetComponent<TextMeshProUGUI>();
+        if (optionText != null)
+            optionText.text = "" + platform.stats.quickSellPrice;
+
         _mAnimator.SetBool(In, true);
         selectedPlatform = platform;
     }
