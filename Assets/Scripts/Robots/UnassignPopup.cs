@@ -50,7 +50,7 @@ public class UnassignPopup : MonoBehaviour
         Transform option = _mAnimator.transform.Find($"Slot{0}");
         TextMeshProUGUI optionText = option.Find("Text (TMP)")?.GetComponent<TextMeshProUGUI>();
         if (optionText != null)
-            optionText.text = "" + platform.stats.quickSellPrice;
+            optionText.text = "$" + platform.stats.quickSellPrice;
 
         _mAnimator.SetBool(In, true);
         selectedPlatform = platform;
