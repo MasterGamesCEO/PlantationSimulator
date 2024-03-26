@@ -7,6 +7,7 @@ public class PlotPricePopupScript : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI plotPrice;
     [SerializeField] private TextMeshProUGUI moneyText;
+    [SerializeField] private TextMeshProUGUI cropText;
     [SerializeField] private GameObject moneySpreadPrefab;
     
     private GameObject _currentMoneySpread;

@@ -20,34 +20,34 @@ public class RobotAttributes
 
     public void RandomizeNewData()
     {
-        cps = Random.Range(0.001f, 5f);
+        cps = Random.Range(1f, 50f);
         RobotValue();
     }
     
 
     private void RobotValue()
     {
-        if (cps >= 0.001 & cps < 0.1)
+        if (cps >= 1 & cps < 5)
         {
             robotType.Equals("basicRobot");
             BasicRobotS();
         }
-        if (cps >= 0.1 & cps < 1)
+        if (cps >= 5 & cps < 10)
         {
             robotType.Equals("silverRobot");
             SilverRobotS();
         }
-        if (cps >= 1 & cps < 2)
+        if (cps >= 10 & cps < 20)
         {
             robotType.Equals("goldRobot");
             GoldRobotS();
         }
-        if (cps >= 2 & cps < 3.5)
+        if (cps >= 20 & cps < 35)
         {
             robotType.Equals("diamondRobot");
             DiamondRobotS();
         }
-        if (cps >= 3.5 & cps < 5)
+        if (cps >= 35 & cps < 50)
         {
             robotType.Equals("ultraRobot");
             UltraBotS();

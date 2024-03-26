@@ -124,6 +124,8 @@ public class SaveData : MonoBehaviour
             PlayerController playerController = FindObjectOfType<PlayerController>();
             playerMoney = CurrentData.Instance.uiData.saveMoney;
             playerController.SetPlayerMoney(playerMoney);
+            NumberCounter numberCounter = FindObjectOfType<NumberCounter>();
+            numberCounter.Value = CurrentData.Instance.uiData.cropData;
             
             PlotPricePopupScript plotPricePopupScript = FindObjectOfType<PlotPricePopupScript>();
             plotPricePopupScript.UpdateMoney(0);

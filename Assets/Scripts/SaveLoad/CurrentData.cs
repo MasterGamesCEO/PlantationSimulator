@@ -16,6 +16,7 @@ namespace SaveLoad
         public class UiData
         {
             public float saveMoney;
+            public float cropData;
         }
         [System.Serializable]
         public class GameplayData
@@ -104,6 +105,8 @@ namespace SaveLoad
             string currentData = System.IO.File.ReadAllText(filePath);
             Debug.Log(currentData);
             uiData = JsonUtility.FromJson<UiData>(currentData);
+            NumberCounter numberCounter = FindObjectOfType<NumberCounter>();
+            numberCounter.Value = Instance.uiData.cropData;
             Debug.Log("Loaded Money");
         }
         // ReSharper disable Unity.PerformanceAnalysis
@@ -155,7 +158,8 @@ namespace SaveLoad
             PlatformDataHandler platformDataHandler = FindObjectOfType<PlatformDataHandler>();
             UiData newUiData = new UiData
             {
-                saveMoney = 10000f
+                saveMoney = 10000f,
+                cropData = 0f
             };
             GameplayData newGameplayData = new GameplayData()
             {

@@ -11,9 +11,12 @@ public class Platform : MonoBehaviour
     [SerializeField] public GameObject currentRobotPrefab;
     [SerializeField] public RobotAttributes currentRobotStats;
     public PlatformDataHandler platformDataHandler;
+    public bool isUpdating;
+    public bool firstUpdate = true;
 
     private void Start()
     {
+        
         PlatformDataHandler dataHandler = FindObjectOfType<PlatformDataHandler>();
         if (!CurrentData.Instance.gameplayData.gameplayPlatformStats.Contains(stats))
         {
@@ -24,9 +27,39 @@ public class Platform : MonoBehaviour
             Debug.Log("Contains "+ stats);
         }
     }
-    
 
-    
+
+    private void Update()
+    {
+        if (stats.isAssigned)
+        {
+            if (!isUpdating)
+            {
+                StartCoroutine(UpdateCrops());
+            }
+            
+        }
+    }
+    IEnumerator UpdateCrops()
+    {
+        
+        isUpdating = true;
+        PlotPricePopupScript plotScript = FindObjectOfType<PlotPricePopupScript>();
+        NumberCounter numberCounter = FindObjectOfType<NumberCounter>();
+        if (!firstUpdate)
+        {
+            //plotScript.UpdateCrops(-stats.cps);
+            CurrentData.Instance.uiData.cropData += stats.cps;
+            numberCounter.Value = CurrentData.Instance.uiData.cropData;
+        }
+        else
+        {
+            firstUpdate = false;
+        }
+        yield return new WaitForSeconds(5);
+        isUpdating = false;
+    }
+
     public void SetPlatformStats(PlatformStats loadedStats)
     {
         stats = loadedStats;
