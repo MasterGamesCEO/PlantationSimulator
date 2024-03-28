@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
         playerMoney = amount;
         CurrentData.Instance.uiData.saveMoney = playerMoney;
         SaveData.Instance.playerMoney = playerMoney;
+        
     }
 
     #endregion

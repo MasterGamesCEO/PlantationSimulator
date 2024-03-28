@@ -13,6 +13,7 @@ public class PlatformStats
     [SerializeField] public String robotType;
     [SerializeField] public String size;
     [SerializeField] public float cps;
+    [SerializeField] public int price;
 
 
     public PlatformStats(bool isAssigned, RobotAttributes attributes)
@@ -25,6 +26,7 @@ public class PlatformStats
             robotType = attributes.robotType;
             size = attributes.size;
             cps = attributes.cps;
+            price = attributes.price;
         }
         
     }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using SaveLoad;
 using UnityEngine;
+using Object = System.Object;
 
 public class Platform : MonoBehaviour
 {
@@ -91,6 +92,23 @@ public class Platform : MonoBehaviour
             Instantiate(currentRobotPrefab, spawnPosition);
             Debug.Log("Added Robot To Scene");
             stats.hasRobotPrefab = true;
+        }
+    }
+    public void RemoveRobotFromScene()
+    {
+        Debug.Log("trying to remove");
+        if (currentRobotPrefab != null)
+        {
+            Debug.Log(currentRobotPrefab.name);
+            
+            Transform objTransform = transform.Find("Spawn Position");
+            Transform obj = objTransform.Find("Robot Blue(Clone)");
+            if (obj != null)
+            {
+                Destroy(obj.gameObject);
+                Debug.Log("Removed Robot To Scene");
+                stats.hasRobotPrefab = false;
+            }
         }
     }
 }

@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System.Diagnostics.CodeAnalysis;
+using SaveLoad;
 
 public class UnassignPopup : MonoBehaviour
 {
@@ -34,11 +36,81 @@ public class UnassignPopup : MonoBehaviour
                 if (manager != null && handler != null)
                 {
                     //TODO: Remove from working robots the stats
+                    RobotAttributes attributes = new RobotAttributes()
+                    {
+                        cps = selectedPlatform.stats.cps,
+                        quickSellPrice = selectedPlatform.stats.quickSellPrice,
+                        robotType = selectedPlatform.stats.robotType,
+                        size = selectedPlatform.stats.size,
+                        price = selectedPlatform.stats.price
+                    };
+                    if (attributes != null)
+                    {
+                        for (int i = 0; i < manager.workingRobots.Count; i++)
+                        {
+                            if ((manager.workingRobots[i].cps == attributes.cps) && (manager.workingRobots[i].quickSellPrice == attributes.quickSellPrice) && (manager.workingRobots[i].robotType == attributes.robotType) && (manager.workingRobots[i].size == attributes.size))
+                            {
+                                manager.workingRobots.Remove(manager.workingRobots[i]);
+                                selectedPlatform.stats.isAssigned = false;
+                                selectedPlatform.RemoveRobotFromScene();
+                                
+                                
+                                PlotPricePopupScript plotPricePopupScript = FindObjectOfType<PlotPricePopupScript>();
+                                plotPricePopupScript.UpdateMoney(-(selectedPlatform.stats.quickSellPrice));
+                                PlayerController playerController = FindObjectOfType<PlayerController>();
+                                playerController.SetPlayerMoney(CurrentData.Instance.uiData.saveMoney + selectedPlatform.stats.quickSellPrice);
+                                DeactivatePopup();
+                            }
+                            else
+                            {
+                                Debug.Log("No match in run");
+                            }
+                        }
+                    }
                 }
             }
         } else if (_input.unAssignRobot.WasPressedThisFrame())
         {
             //TODO: move the stats back to unassigned
+            if (PopupActive())
+            {
+                Debug.Log(selectedPlatform);
+                RobotManager manager = FindObjectOfType<RobotManager>();
+                PlatformDataHandler handler = FindObjectOfType<PlatformDataHandler>();
+                if (manager != null && handler != null)
+                {
+                    RobotAttributes attributes = new RobotAttributes()
+                    {
+                        cps = selectedPlatform.stats.cps,
+                        quickSellPrice = selectedPlatform.stats.quickSellPrice,
+                        robotType = selectedPlatform.stats.robotType,
+                        size = selectedPlatform.stats.size,
+                        price = selectedPlatform.stats.price
+                    };
+                    if (attributes != null)
+                    {
+                        for (int i = 0; i < manager.workingRobots.Count; i++)
+                        {
+                            if ((manager.workingRobots[i].cps == attributes.cps) &&
+                                (manager.workingRobots[i].quickSellPrice == attributes.quickSellPrice) &&
+                                (manager.workingRobots[i].robotType == attributes.robotType) &&
+                                (manager.workingRobots[i].size == attributes.size))
+                            {
+                                manager.unassignedRobots.Add(manager.workingRobots[i]);
+                                manager.workingRobots.Remove(manager.workingRobots[i]);
+                                selectedPlatform.stats.isAssigned = false;
+                                selectedPlatform.RemoveRobotFromScene();
+                                
+                                DeactivatePopup();
+                            }
+                            else
+                            {
+                                Debug.Log("No match in run");
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         
@@ -59,7 +131,6 @@ public class UnassignPopup : MonoBehaviour
     public void DeactivatePopup()
     {
         _mAnimator.SetBool(In, false);
-        selectedPlatform = null;
     }
 
     public bool PopupActive()

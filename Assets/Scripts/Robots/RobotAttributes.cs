@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 public class RobotAttributes 
 {
     [SerializeField] public float cps;
-    [SerializeField] private int price;
+    [SerializeField] public int price;
     [SerializeField] public int quickSellPrice;
     [SerializeField] public String robotType;
     [SerializeField] public String size;
