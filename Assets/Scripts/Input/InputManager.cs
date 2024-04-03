@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class InputManager : MonoBehaviour
 {
@@ -19,6 +20,13 @@ public class InputManager : MonoBehaviour
     public InputAction openDialog;
     public InputAction enterKey;
     public InputAction backKey;
+    public InputAction sprint;
+    public InputAction robot1;
+    public InputAction robot2;
+    public InputAction robot3;
+    public InputAction robot4;
+    public InputAction quickSell;
+    public InputAction unAssignRobot;
     public Vector2 Move { get; private set; }
 
     #endregion
@@ -63,6 +71,13 @@ public class InputManager : MonoBehaviour
         openDialog = _controls.Dialog.openDialog;
         enterKey = _controls.Dialog.enterKey;
         backKey = _controls.Dialog.BackKey;
+        sprint = _controls.Player.Sprint;
+        robot1 = _controls.Dialog.Robot1;
+        robot2 = _controls.Dialog.Robot2;
+        robot3 = _controls.Dialog.Robot3;
+        robot4 = _controls.Dialog.Robot4;
+        quickSell = _controls.Dialog.QuickSell;
+        unAssignRobot = _controls.Dialog.UnassignRobot;
     }
 
     private void EnableInputActions()

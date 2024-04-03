@@ -1,30 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class StockMarket : MonoBehaviour
 {
 
     public float timeStart = 200;
-    [SerializeField] private int StockPrice = 100;
-    private string countDown;
-    private bool timesUp = false;
-    private bool stockChange = false;
+    [FormerlySerializedAs("StockPrice")] [SerializeField] private int stockPrice = 100;
+    private string _countDown;
+    private bool _timesUp = false;
+    private bool _stockChange = false;
 
     private void Stocks()
     {
         if (timeStart <= 0)
         {
-            timesUp = true;
+            _timesUp = true;
         }
-        if (timesUp == true)
+        if (_timesUp == true)
         {
             ResetTimer();
-            stockChange = true;
+            _stockChange = true;
         }
-        if (stockChange = true)
+        if (_stockChange == true)
         {
-            StockPrice = Random.Range(50, 200);
+            stockPrice = Random.Range(50, 200);
         }
     }
     private void ResetTimer()
@@ -39,7 +40,7 @@ public class StockMarket : MonoBehaviour
     void Update()
     {
         timeStart -= Time.deltaTime;
-        countDown = Mathf.Round(timeStart).ToString();
+        _countDown = Mathf.Round(timeStart).ToString();
         if ( timeStart < 0 )
         {
             Stocks();

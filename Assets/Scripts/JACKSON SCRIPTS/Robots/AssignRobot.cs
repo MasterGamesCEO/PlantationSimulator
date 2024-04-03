@@ -9,28 +9,27 @@ public class AssignRobots : MonoBehaviour
 {
     [SerializeField] private GameObject selectedRobot;
     [SerializeField] private GameObject assigningPlot;
-    [NonSerialized] public bool isAssignable = false;
-    private Vector3 robotPosition;
+    [NonSerialized] public bool IsAssignable = false;
+    private Vector3 _robotPosition;
     
     void Start()
     {
-        if (isAssignable == true)
+        if (IsAssignable == true)
         {
             Debug.Log("Assignable");
             // todo later: make the code run on a button click
             RobotAttributes makePlot = new RobotAttributes();
-            makePlot.assignedPlot = assigningPlot;
             selectedRobot.transform.position.Equals(assigningPlot.transform.position);
             
 
         }
-        if (isAssignable == false)
+        if (IsAssignable == false)
         {
             Debug.Log("Nothing");
         }
     }
    
-    private void assigned()
+    private void Assigned()
     {
         
        

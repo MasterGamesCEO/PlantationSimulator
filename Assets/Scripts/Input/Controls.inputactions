@@ -13,6 +13,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "e560bd90-9059-4caa-9b04-8f2c6ce54c7f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -70,6 +79,17 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "0daa6873-124d-4174-9951-d09655e63e71",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -117,6 +137,60 @@
                     "name": "BackKey",
                     "type": "Button",
                     "id": "d059cd9d-7a5f-4079-8e79-00587e9965fd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Robot1",
+                    "type": "Button",
+                    "id": "496b0f31-fed6-4110-aa93-6b7242d19a3b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Robot2",
+                    "type": "Button",
+                    "id": "34387976-118a-48a4-9b62-9645889792c6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Robot3",
+                    "type": "Button",
+                    "id": "603bacf8-de33-44c3-8ceb-8a8744b2a4bd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Robot4",
+                    "type": "Button",
+                    "id": "d79e2d67-cf7d-460e-9a74-b0786e5158e9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Quick Sell",
+                    "type": "Button",
+                    "id": "0c890954-9568-467e-8ae2-e66fb4be39b7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UnassignRobot",
+                    "type": "Button",
+                    "id": "967ea14c-13c0-4318-b6b2-f672f67f19b5",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -231,6 +305,72 @@
                     "processors": "",
                     "groups": "",
                     "action": "BackKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "508f95d6-4051-4196-aac8-dd6fafb8e9c9",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Robot1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "729956e5-6e85-460d-889c-90e11b06480d",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Robot2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "079631bc-fa26-425a-83d5-baa62e2af756",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Robot3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0cef5445-8de5-46ab-955b-f56fddcc7106",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Robot4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1efd6676-f61d-46b4-91fe-fa9a8e5f7590",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quick Sell",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2d9c0b2b-d41f-4b0b-8252-7363b34876b3",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnassignRobot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

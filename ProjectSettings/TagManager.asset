@@ -9,6 +9,7 @@ TagManager:
   - Plopup
   - Onplot
   - House
+  - Platform
   layers:
   - Default
   - TransparentFX

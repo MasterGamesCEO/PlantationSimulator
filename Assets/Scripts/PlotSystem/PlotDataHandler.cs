@@ -1,71 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
+using SaveLoad;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class PlotDataHandler : MonoBehaviour
 {
-    [FormerlySerializedAs("_controller")] [SerializeField] private PlayerController controller;
-    [SerializeField] public PlotStats[] allPlots;
+    [SerializeField] public List<Plot> allPlots;
     
-    public List<SaveData.PlotData> GetPlotDataList()
-    {
-        List<SaveData.PlotData> plotDataList = new List<SaveData.PlotData>();
-        foreach (var plot in allPlots)
-        {
-            plotDataList.Add(new SaveData.PlotData(plot.isLocked));
-        }
-        return plotDataList;
-    }
+    
 
+    
     #region Save and Load Plot Data
 
-    public void SavePlotData(int slotIndex)
+    public void SavePlotData()
     {
-        
-        for (int i = 0; i < allPlots.Length; i++)
+        List<PlotStats> savePlotStats = new List<PlotStats>();
+        for (int i = 0; i < allPlots.Count; i++)
         {
-            PlayerPrefs.SetInt($"Plot_{slotIndex}_{i}_IsLocked", allPlots[i].isLocked ? 1 : 0);
+            savePlotStats.Add(allPlots[i].GetPlotStats());
         }
-        
-        PlayerPrefs.Save();
+
+        CurrentData.Instance.gameplayData.gameplayPlotStats = savePlotStats;
     }
 
-    public void LoadPlotData(int slotIndex)
+    public void LoadPlotData()
     {
-        for (int i = 0; i < allPlots.Length; i++)
+        
+        for (int i = 0; i < allPlots.Count; i++)
         {
-            int isLockedValue = PlayerPrefs.GetInt($"Plot_{slotIndex}_{i}_IsLocked", 1);
-            allPlots[i].isLocked = isLockedValue == 1;
-            allPlots[i].SetPlotColor(allPlots[i].isLocked);
+            allPlots[i].SetPlotStats(CurrentData.Instance.gameplayData.gameplayPlotStats[i]);
+            allPlots[i].SetPlotColor(allPlots[i].stats.isLocked);
         }
         
     }
 
     #endregion
-
-    #region Unlock and Reset Plot Data
-
-    public void UnlockFirstPlot()
+    
+    
+    public List<PlotStats> ResetPlotData()
     {
-        if (allPlots.Length > 0)
+        List<PlotStats> savePlotStats = new List<PlotStats>();
+        allPlots[0].stats.isLocked = false;
+        allPlots[0].DeactivateBoundary();
+        for (int i = 1; i < allPlots.Count; i++)
         {
-            allPlots[0].isLocked = false;
-            allPlots[0].DeactivateBoundry();
+            allPlots[i].stats.isLocked= true;
+            allPlots[i].ActivateBoundary();
+            allPlots[i].SetPlotColor(allPlots[i].stats.isLocked);
+            savePlotStats.Add(allPlots[i].GetPlotStats());
         }
+        
+        return savePlotStats;
     }
-
-    public void ResetGameData(int slotIndex)
-    {
-        for (int i = 0; i < allPlots.Length; i++)
-        {
-            PlayerPrefs.DeleteKey($"Plot_{slotIndex}_{i}_IsLocked");
-            allPlots[i].isLocked = true;
-            allPlots[i].ActivateBoundry();
-            allPlots[i].SetPlotColor(allPlots[i].isLocked);
-        }
-        UnlockFirstPlot();
-    }
-
-    #endregion
+    
 }

@@ -229,10 +229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   boundryPos: {fileID: 2638917511651399961}
-  lockMaterial: {fileID: 2100000, guid: 9efedd2a02a24ac479e285d244f6b34e, type: 2}
-  unlockMaterial: {fileID: 2100000, guid: f42a357a923c92f4b9818c765c8b2c03, type: 2}
-  lockItem: {fileID: 403014359101205795, guid: 6b33f034d84101a4388965deff7ffb60, type: 3}
-  currentlockItem: {fileID: 0}
+  LockPrefab: {fileID: 0}
+  UnlockedPrefab: {fileID: 0}
 --- !u!65 &5767001104101108031
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -252,7 +250,7 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 1, z: 10}
+  m_Size: {x: 11, y: 1, z: 11}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5324086053878212247
 GameObject:
@@ -283,7 +281,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9.333, y: 2, z: 9.333}
+  m_LocalScale: {x: 10, y: 2, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2343556356802247496}

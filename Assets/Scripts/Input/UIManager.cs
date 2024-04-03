@@ -1,4 +1,5 @@
 using System.Collections;
+using SaveLoad;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -50,11 +51,6 @@ public class UIManager : MonoBehaviour
         _input.openDialog.performed += OnDialogPerformed;
         
         LoadGameData();
-        PlotDataHandler plotDataHandler = FindObjectOfType<PlotDataHandler>();
-        if (plotDataHandler != null)
-        {
-            plotDataHandler.UnlockFirstPlot();
-        }
     }
 
     private void Update()
@@ -121,6 +117,7 @@ public class UIManager : MonoBehaviour
     private void OnOptionsAction()
     {
         Debug.Log("Options");
+        CurrentData.Instance.LoadFile();
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
