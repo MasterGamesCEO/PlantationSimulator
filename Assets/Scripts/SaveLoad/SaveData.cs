@@ -122,8 +122,12 @@ public class SaveData : MonoBehaviour
                 robotManager.LoadRobotData();
             }
             PlayerController playerController = FindObjectOfType<PlayerController>();
-            playerMoney = CurrentData.Instance.uiData.saveMoney;
-            playerController.SetPlayerMoney(playerMoney);
+            if (playerController != null)
+            {
+                playerMoney = CurrentData.Instance.uiData.saveMoney;
+                            playerController.SetPlayerMoney(playerMoney);
+            }
+            
             NumberCounter numberCounter = FindObjectOfType<NumberCounter>();
             numberCounter.Value = CurrentData.Instance.uiData.cropData;
             

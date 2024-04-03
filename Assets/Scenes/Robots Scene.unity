@@ -861,7 +861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3740a47c8b7c4cf4d9e972f6b8d74233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  botType: {fileID: 8718822945244518949, guid: f4510045a7023b341bb20d98f3a33395, type: 3}
+  botType: {fileID: 8718822945244518949, guid: 144deb8a15175864bbc202fb4b72c470, type: 3}
   speed: 0.01
   isWalking: 0
   botAnimator: {fileID: 5866666021909216657, guid: 9d5870410887605499da38294b5d2188,
@@ -870,6 +870,9 @@ MonoBehaviour:
   slot2: {fileID: 1648632996}
   slot3: {fileID: 1520397596}
   lookBack: {x: 0, y: 0, z: 0, w: 0}
+  spot1: {fileID: 2109240916}
+  spot2: {fileID: 1961009194}
+  spot3: {fileID: 1094050669}
   number1: {fileID: 0}
   number2: {fileID: 0}
   number3: {fileID: 0}
@@ -1787,9 +1790,7 @@ MonoBehaviour:
   diamondPrefab: {fileID: 0}
   ultraPrefab: {fileID: 0}
   workingRobots: []
-  unassignedRobots:
-  - robotPrefab: {fileID: 0}
-    attributes: {fileID: 0}
+  unassignedRobots: []
 --- !u!1001 &1512583770
 PrefabInstance:
   m_ObjectHideFlags: 0

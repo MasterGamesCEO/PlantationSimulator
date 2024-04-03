@@ -102,7 +102,7 @@ public class Platform : MonoBehaviour
             Debug.Log(currentRobotPrefab.name);
             
             Transform objTransform = transform.Find("Spawn Position");
-            Transform obj = objTransform.Find("Robot Blue(Clone)");
+            Transform obj = objTransform.Find(currentRobotPrefab.name + "(Clone)");
             if (obj != null)
             {
                 Destroy(obj.gameObject);

@@ -402,6 +402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiData:
     saveMoney: 0
+    cropData: 0
   gameplayData:
     gameplayPlotStats: []
     gameplayPlatformStats: []
@@ -1042,6 +1043,24 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   robot4:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  quickSell:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  unAssignRobot:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 

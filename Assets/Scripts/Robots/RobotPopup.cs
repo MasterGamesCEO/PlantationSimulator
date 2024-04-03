@@ -88,7 +88,6 @@ public class RobotPopup : MonoBehaviour
     public void DeactivatePopup()
     {
         _mAnimator.SetBool(In, false);
-        selectedPlatform = null;
     }
 
     public bool PopupActive()

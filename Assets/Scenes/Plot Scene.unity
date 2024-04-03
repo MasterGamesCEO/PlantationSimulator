@@ -1579,18 +1579,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 390518832}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62de80df2a908054b981ff8ef09351d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 89499e856101e1a42a1b8126864ea7ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicPrefab: {fileID: 2841705949788646697, guid: c10b3619b14cd4846a126a0ba38675d1,
+  basicPrefab: {fileID: 8718822945244518949, guid: f4510045a7023b341bb20d98f3a33395,
     type: 3}
-  silverPrefab: {fileID: 2841705949788646697, guid: c10b3619b14cd4846a126a0ba38675d1,
+  silverPrefab: {fileID: 7254945933070597935, guid: d8025b7d9ec463e4590cf98d2c4a5ab1,
     type: 3}
-  goldPrefab: {fileID: 2841705949788646697, guid: c10b3619b14cd4846a126a0ba38675d1,
+  goldPrefab: {fileID: 8679858539886753804, guid: aafc600357bf8ae499ca8044e7e295ab,
     type: 3}
-  diamondPrefab: {fileID: 2841705949788646697, guid: c10b3619b14cd4846a126a0ba38675d1,
+  diamondPrefab: {fileID: 9021179442857879386, guid: 082978f95d38ef8438e89e403809e88a,
     type: 3}
-  ultraPrefab: {fileID: 2841705949788646697, guid: c10b3619b14cd4846a126a0ba38675d1,
+  ultraPrefab: {fileID: 3707666822292358951, guid: 57f0898723a7e244ba570ea01b35e5c4,
     type: 3}
   workingRobots: []
   unassignedRobots: []
@@ -5889,11 +5889,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2531396288567058683, guid: 56e960c413a931543abc33b5617e58f9,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: aa4717349c84c974fabe64a7869882d7, type: 2}
     - target: {fileID: 4096142615674465828, guid: 56e960c413a931543abc33b5617e58f9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6085,6 +6080,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928263213650942092, guid: 4dd9c2d3315575942b11f9e3963d329b,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5291930465965055255, guid: 4dd9c2d3315575942b11f9e3963d329b,
         type: 3}
