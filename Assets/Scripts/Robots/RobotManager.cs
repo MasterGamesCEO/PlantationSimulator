@@ -6,14 +6,32 @@ using UnityEngine;
 public class RobotManager : MonoBehaviour
 {
     // Robot Prefabs
-    [SerializeField] public GameObject basicPrefab;
-    [SerializeField] public GameObject silverPrefab;
-    [SerializeField] public GameObject goldPrefab;
-    [SerializeField] public GameObject diamondPrefab;
-    [SerializeField] public GameObject ultraPrefab;
+    [Header("Auction prefab")]
+    [SerializeField] public GameObject basicScrawnyACPrefab;
+    [SerializeField] public GameObject basicNormalACPrefab;
+    [SerializeField] public GameObject silverNormalACPrefab;
+    [SerializeField] public GameObject silverTallACPrefab;
+    [SerializeField] public GameObject goldTallACPrefab;
+    [SerializeField] public GameObject goldBuiltACPrefab;
+    [SerializeField] public GameObject diamondBuiltACPrefab;
+    [SerializeField] public GameObject diamondMassiveACPrefab;
+    [SerializeField] public GameObject ultraMassiveACPrefab;
+    [SerializeField] public GameObject ultraTankACPrefab;
+    [Header("Plot prefab")]
+    [SerializeField] public GameObject basicScrawnyPrefab;
+    [SerializeField] public GameObject basicNormalPrefab;
+    [SerializeField] public GameObject silverNormalPrefab;
+    [SerializeField] public GameObject silverTallPrefab;
+    [SerializeField] public GameObject goldTallPrefab;
+    [SerializeField] public GameObject goldBuiltPrefab;
+    [SerializeField] public GameObject diamondBuiltPrefab;
+    [SerializeField] public GameObject diamondMassivePrefab;
+    [SerializeField] public GameObject ultraMassivePrefab;
+    [SerializeField] public GameObject ultraTankPrefab;
     
     [SerializeField] public List<RobotAttributes> workingRobots;
     [SerializeField] public List<RobotAttributes> unassignedRobots;
+    [SerializeField] public List<RobotAttributes> auctionRobots;
 
     private SaveData _saveData;
 

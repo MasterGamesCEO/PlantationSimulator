@@ -81,11 +81,17 @@ public class Platform : MonoBehaviour
     public void AddRobotToScene()
     {
         currentRobotPrefab =
-            stats.robotType.Equals("basicRobot") ? FindObjectOfType<RobotManager>().basicPrefab :
-            stats.robotType.Equals("silverRobot") ? FindObjectOfType<RobotManager>().silverPrefab :
-            stats.robotType.Equals("goldRobot") ? FindObjectOfType<RobotManager>().goldPrefab :
-            stats.robotType.Equals("diamondRobot") ? FindObjectOfType<RobotManager>().diamondPrefab :
-            stats.robotType.Equals("ultraRobot") ? FindObjectOfType<RobotManager>().ultraPrefab: null;
+            stats.robotType.Equals("basic") && stats.size.Equals("Scrawny") ? FindObjectOfType<RobotManager>().basicScrawnyPrefab :
+            stats.robotType.Equals("basic") && stats.size.Equals("Normal") ? FindObjectOfType<RobotManager>().basicNormalPrefab :
+            stats.robotType.Equals("silver") && stats.size.Equals("Normal") ? FindObjectOfType<RobotManager>().silverNormalPrefab :
+            stats.robotType.Equals("silver") && stats.size.Equals("Tall") ? FindObjectOfType<RobotManager>().silverTallPrefab :
+            stats.robotType.Equals("gold") && stats.size.Equals("Tall") ? FindObjectOfType<RobotManager>().goldTallPrefab :
+            stats.robotType.Equals("gold") && stats.size.Equals("Built") ? FindObjectOfType<RobotManager>().goldBuiltPrefab :
+            stats.robotType.Equals("diamond") && stats.size.Equals("Built") ? FindObjectOfType<RobotManager>().diamondBuiltPrefab :
+            stats.robotType.Equals("diamond") && stats.size.Equals("Massive") ? FindObjectOfType<RobotManager>().diamondMassivePrefab :
+            stats.robotType.Equals("ultra") && stats.size.Equals("Massive") ? FindObjectOfType<RobotManager>().ultraMassivePrefab :
+            stats.robotType.Equals("ultra") && stats.size.Equals("Tank") ? FindObjectOfType<RobotManager>().ultraTankPrefab :
+            null;
         if (currentRobotPrefab != null)
         {
             Debug.Log(currentRobotPrefab.name);

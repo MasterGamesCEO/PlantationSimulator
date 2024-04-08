@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Market Scene.unity
     guid: 204a01a449e2d6d4bbcf7d59602c7387
+  - enabled: 1
+    path: Assets/Scenes/Robots Scene.unity
+    guid: 8cebf0ff232f7374c93749ea7c149bad
   m_configObjects: {}

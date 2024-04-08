@@ -10,6 +10,7 @@ TagManager:
   - Onplot
   - House
   - Platform
+  - Auction
   layers:
   - Default
   - TransparentFX

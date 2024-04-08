@@ -91,6 +91,9 @@ public class PlayerController : MonoBehaviour
         } else if (other.gameObject.tag.Equals("Platform"))
         {
             HandlePlatformTrigger(other);
+        } else if (other.gameObject.tag.Equals("Auction"))
+        {
+            SwitchToAuction();
         }
     }
 
@@ -197,7 +200,14 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Scene Transition
-
+    private void SwitchToAuction()
+    {
+        SaveData.Instance.SaveGameData(_saveData.SlotLastSelectedData);
+        SceneController currentScene = FindObjectOfType<SceneController>();
+        
+        StartCoroutine(LoadSceneAndData(_saveData.SlotLastSelectedData, currentScene, 3));
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
     private void SwitchHomeScenes()
     {
         SaveData.Instance.SaveGameData(_saveData.SlotLastSelectedData);

@@ -48,7 +48,10 @@ public class UnassignPopup : MonoBehaviour
                     {
                         for (int i = 0; i < manager.workingRobots.Count; i++)
                         {
-                            if ((manager.workingRobots[i].cps == attributes.cps) && (manager.workingRobots[i].quickSellPrice == attributes.quickSellPrice) && (manager.workingRobots[i].robotType == attributes.robotType) && (manager.workingRobots[i].size == attributes.size))
+                            if ((manager.workingRobots[i].cps == attributes.cps) &&
+                                (manager.workingRobots[i].quickSellPrice == attributes.quickSellPrice) &&
+                                (manager.workingRobots[i].robotType == attributes.robotType) &&
+                                (manager.workingRobots[i].size == attributes.size) && manager.workingRobots[i].ID == attributes.ID)
                             {
                                 manager.workingRobots.Remove(manager.workingRobots[i]);
                                 selectedPlatform.stats.isAssigned = false;
@@ -94,7 +97,7 @@ public class UnassignPopup : MonoBehaviour
                             if ((manager.workingRobots[i].cps == attributes.cps) &&
                                 (manager.workingRobots[i].quickSellPrice == attributes.quickSellPrice) &&
                                 (manager.workingRobots[i].robotType == attributes.robotType) &&
-                                (manager.workingRobots[i].size == attributes.size))
+                                (manager.workingRobots[i].size == attributes.size) && manager.workingRobots[i].ID == attributes.ID)
                             {
                                 manager.unassignedRobots.Add(manager.workingRobots[i]);
                                 manager.workingRobots.Remove(manager.workingRobots[i]);
