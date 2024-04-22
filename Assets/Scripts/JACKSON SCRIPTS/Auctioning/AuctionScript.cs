@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
+using static Unity.Mathematics.math;
+using Random = UnityEngine.Random;
 
 public class AuctionScript : MonoBehaviour
 {
@@ -29,11 +33,19 @@ public class AuctionScript : MonoBehaviour
     [SerializeField] private GameObject number2;
     [SerializeField] private GameObject number3;
     
+    [SerializeField] private Animator popup1;
+    [SerializeField] private Animator popup2;
+    [SerializeField] private Animator popup3;
+    
     private static readonly int IsWalking = Animator.StringToHash("IsWalking");
     private static readonly int IsBackWalking = Animator.StringToHash("IsBackWalking");
+    private static readonly int Type1 = Animator.StringToHash("Type1");
+    private static readonly int Type2 = Animator.StringToHash("Type2");
+    private static readonly int Type3 = Animator.StringToHash("Type3");
 
     void Start()
     {
+        RobotManager manager = FindObjectOfType<RobotManager>();
        float random1 = Random.Range(0f, 100f);
        float random2 = Random.Range(0f, 100f); 
        float random3 = Random.Range(0f, 100f);
@@ -41,9 +53,12 @@ public class AuctionScript : MonoBehaviour
        number2 = Instantiate(Robot(random2), new Vector3((float)15, (float)0.905, (float)1.8), Quaternion.LookRotation(Vector3.left));
        number3 = Instantiate(Robot(random3), new Vector3((float)20, (float)0.905, (float)1.8), Quaternion.LookRotation(Vector3.left));
        
-       RunSpotLightColors();
+       RunSpotLightColorsAndPopupAnimVar();
        
        lookBack = Quaternion.LookRotation(Vector3.back);
+       UpdatePopupData(popup1, manager.auctionRobots[0]);
+       UpdatePopupData(popup2, manager.auctionRobots[1]);
+       UpdatePopupData(popup3, manager.auctionRobots[2]);
        StartCoroutine(Stage1Walk(number1));
        StartCoroutine(Stage1Walk(number2));
        StartCoroutine(Stage1Walk(number3));
@@ -52,7 +67,7 @@ public class AuctionScript : MonoBehaviour
     }
     
 
-    private void RunSpotLightColors()
+    private void RunSpotLightColorsAndPopupAnimVar()
     {
         RobotManager manager = FindObjectOfType<RobotManager>();
         for (int i = 0; i < 3; i++)
@@ -62,22 +77,27 @@ public class AuctionScript : MonoBehaviour
                if (manager.auctionRobots[i].robotType == "basic")
                {
                    spot1.gameObject.GetComponent<Light>().color = Color.grey;
+                   popup1.SetInteger(Type1, 0);
                }
                if (manager.auctionRobots[i].robotType == "silver")
                {
                    spot1.gameObject.GetComponent<Light>().color = (Color.white);
+                   popup1.SetInteger(Type1, 1);
                }
                if (manager.auctionRobots[i].robotType == "gold")
                {
                    spot1.gameObject.GetComponent<Light>().color = (Color.yellow);
+                   popup1.SetInteger(Type1, 2);
                }
                if (manager.auctionRobots[i].robotType == "diamond")
                {
                    spot1.gameObject.GetComponent<Light>().color = (Color.blue);
+                   popup1.SetInteger(Type1, 2);
                }
                if (manager.auctionRobots[i].robotType == "ultra")
                {
                    spot1.gameObject.GetComponent<Light>().color = Color.red;
+                   popup1.SetInteger(Type1, 3);
                }
                Debug.Log(i + " " + spot1.GetComponent<Light>().color);
            } else if (i == 1)
@@ -85,22 +105,27 @@ public class AuctionScript : MonoBehaviour
                if (manager.auctionRobots[i].robotType == "basic")
                {
                    spot2.gameObject.GetComponent<Light>().color = (Color.grey);
+                   popup2.SetInteger(Type2, 0);
                }
                if (manager.auctionRobots[i].robotType == "silver")
                {
                    spot2.gameObject.GetComponent<Light>().color = (Color.white);
+                   popup2.SetInteger(Type2, 1);
                }
                if (manager.auctionRobots[i].robotType == "gold")
                {
                    spot2.gameObject.GetComponent<Light>().color = (Color.yellow);
+                   popup2.SetInteger(Type2, 2);
                }
                if (manager.auctionRobots[i].robotType == "diamond")
                {
                    spot2.gameObject.GetComponent<Light>().color = (Color.blue);
+                   popup2.SetInteger(Type2, 2);
                }
                if (manager.auctionRobots[i].robotType == "ultra")
                {
                    spot2.gameObject.GetComponent<Light>().color = (Color.red);
+                   popup2.SetInteger(Type2, 3);
                }
                Debug.Log(i + " " + spot2.GetComponent<Light>().color);
            } else if (i == 2)
@@ -108,22 +133,27 @@ public class AuctionScript : MonoBehaviour
                if (manager.auctionRobots[i].robotType == "basic")
                {
                    spot3.gameObject.GetComponent<Light>().color = (Color.grey);
+                   popup3.SetInteger(Type3, 0);
                }
                if (manager.auctionRobots[i].robotType == "silver")
                {
                    spot3.gameObject.GetComponent<Light>().color = (Color.white);
+                   popup3.SetInteger(Type3, 1);
                }
                if (manager.auctionRobots[i].robotType == "gold")
                {
                    spot3.gameObject.GetComponent<Light>().color = (Color.yellow);
+                   popup3.SetInteger(Type3, 2);
                }
                if (manager.auctionRobots[i].robotType == "diamond")
                {
                    spot3.gameObject.GetComponent<Light>().color = (Color.blue);
+                   popup3.SetInteger(Type3, 2);
                }
                if (manager.auctionRobots[i].robotType == "ultra")
                {
                    spot3.gameObject.GetComponent<Light>().color = (Color.red);
+                   popup3.SetInteger(Type3, 3);
                }
                Debug.Log(i + " " + spot3.GetComponent<Light>().color);
            }
@@ -235,8 +265,10 @@ public class AuctionScript : MonoBehaviour
             yield return new WaitForSeconds(0.00001f);
             number2.GetComponent<Animator>().SetBool(IsBackWalking, true);
             number2.transform.position = Vector3.MoveTowards(number2.transform.position,back2.transform.position, speed/5);
-        } 
+        }
         number2.GetComponent<Animator>().SetBool(IsBackWalking, false);
+        yield return new WaitForSeconds(.5f);
+        popup2.SetBool("Popup", true);
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
@@ -258,7 +290,8 @@ public class AuctionScript : MonoBehaviour
             yield return new WaitForSeconds(0.00001f);
             number1.GetComponent<Animator>().SetBool(IsWalking, false);
             number1.transform.rotation = Quaternion.RotateTowards(number1.transform.rotation,angle, speed*25);
-        } 
+        }
+        popup1.SetBool("Popup", true);
     }
     private IEnumerator Stage4RotateRight()
     {
@@ -279,9 +312,27 @@ public class AuctionScript : MonoBehaviour
             number3.GetComponent<Animator>().SetBool(IsWalking, false);
             number3.transform.rotation = Quaternion.RotateTowards(number3.transform.rotation,angle, speed*25);
         } 
+        yield return new WaitForSeconds(1f);
+        popup3.SetBool("Popup", true);
     }
 
     #endregion
+    public void UpdatePopupData(Animator currentAnim, RobotAttributes currentBot)
+    {
+        Transform option = currentAnim.transform.Find("FORE");
+        TextMeshProUGUI typeText = option.Find("TYPE")?.GetComponent<TextMeshProUGUI>();
+        if (typeText != null)
+            typeText.text = currentBot.robotType;
+        TextMeshProUGUI sizeText = option.Find("SIZE")?.GetComponent<TextMeshProUGUI>();
+        if (sizeText != null)
+            sizeText.text = currentBot.size;
+        TextMeshProUGUI cpsText = option.Find("CPS")?.GetComponent<TextMeshProUGUI>();
+        if (cpsText != null)
+            cpsText.text = (round(currentBot.cps*10))/10  + " CPS";
+        TextMeshProUGUI priceText = option.Find("PRICE")?.GetComponent<TextMeshProUGUI>();
+        if (priceText != null)
+            priceText.text = "$" + (currentBot.price);
+    }
     
     #region Robot Creation
     private GameObject Robot(float random)
@@ -357,7 +408,7 @@ public class AuctionScript : MonoBehaviour
     {
         RobotAttributes newRobotAttributes = new RobotAttributes();
         newRobotAttributes.cps = Random.Range(1f, 10f);
-        newRobotAttributes.price = newRobotAttributes.cps * Random.Range(100, 200);
+        newRobotAttributes.price = (int)(newRobotAttributes.cps * Random.Range(100, 200));
         newRobotAttributes.quickSellPrice = newRobotAttributes.price/10;
         newRobotAttributes.robotType = "basic";
         newRobotAttributes.size = newRobotAttributes.cps <= 5 ? "Scrawny" : "Normal";
@@ -369,7 +420,7 @@ public class AuctionScript : MonoBehaviour
     {
         RobotAttributes newRobotAttributes = new RobotAttributes();
         newRobotAttributes.cps = Random.Range(10f, 35f);
-        newRobotAttributes.price = newRobotAttributes.cps * Random.Range(100, 200);
+        newRobotAttributes.price = (int)(newRobotAttributes.cps * Random.Range(100, 200));
         newRobotAttributes.quickSellPrice = newRobotAttributes.price/10;
         newRobotAttributes.robotType = "silver";
         newRobotAttributes.size = newRobotAttributes.cps <= 22.5f ? "Normal" : "Tall";
@@ -381,7 +432,7 @@ public class AuctionScript : MonoBehaviour
     {
         RobotAttributes newRobotAttributes = new RobotAttributes();
         newRobotAttributes.cps = Random.Range(35f, 75f);
-        newRobotAttributes.price = newRobotAttributes.cps * Random.Range(200, 300);
+        newRobotAttributes.price = (int)(newRobotAttributes.cps * Random.Range(200, 300));
         newRobotAttributes.quickSellPrice = newRobotAttributes.price/10;
         newRobotAttributes.robotType = "gold";
         newRobotAttributes.size = newRobotAttributes.cps <= 55 ? "Tall" : "Built";
@@ -393,7 +444,7 @@ public class AuctionScript : MonoBehaviour
     {
         RobotAttributes newRobotAttributes = new RobotAttributes();
         newRobotAttributes.cps = Random.Range(75f, 175f);
-        newRobotAttributes.price = newRobotAttributes.cps * Random.Range(300, 400);
+        newRobotAttributes.price = (int)(newRobotAttributes.cps * Random.Range(300, 400));
         newRobotAttributes.quickSellPrice = newRobotAttributes.price/10;
         newRobotAttributes.robotType = "diamond";
         newRobotAttributes.size = newRobotAttributes.cps <= 125 ? "Built" : "Massive";
@@ -405,7 +456,7 @@ public class AuctionScript : MonoBehaviour
     {
         RobotAttributes newRobotAttributes = new RobotAttributes();
         newRobotAttributes.cps = Random.Range(175f, 500f);
-        newRobotAttributes.price = newRobotAttributes.cps * Random.Range(500, 10000);
+        newRobotAttributes.price = (int)(newRobotAttributes.cps * Random.Range(500, 10000));
         newRobotAttributes.quickSellPrice = newRobotAttributes.price/10;
         newRobotAttributes.robotType = "ultra";
         newRobotAttributes.size = newRobotAttributes.cps <= 350 ? "Massive" : "Tank";
