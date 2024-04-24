@@ -29,6 +29,8 @@ public class AuctionScript : MonoBehaviour
     public GameObject spot2;
     public GameObject spot3;
 
+    public TextMeshProUGUI money;
+
     [SerializeField] private GameObject number1;
     [SerializeField] private GameObject number2;
     [SerializeField] private GameObject number3;
@@ -45,6 +47,7 @@ public class AuctionScript : MonoBehaviour
 
     void Start()
     {
+        money.text = "$" + SaveData.Instance.playerMoney;
         RobotManager manager = FindObjectOfType<RobotManager>();
        float random1 = Random.Range(0f, 100f);
        float random2 = Random.Range(0f, 100f); 
@@ -333,6 +336,11 @@ public class AuctionScript : MonoBehaviour
         if (priceText != null)
             priceText.text = "$" + (currentBot.price);
     }
+
+    public bool IsPopupActive()
+    {
+        return (popup1.GetBool("Popup") && popup2.GetBool("Popup") && popup3.GetBool("Popup"));
+    }
     
     #region Robot Creation
     private GameObject Robot(float random)
@@ -456,7 +464,7 @@ public class AuctionScript : MonoBehaviour
     {
         RobotAttributes newRobotAttributes = new RobotAttributes();
         newRobotAttributes.cps = Random.Range(175f, 500f);
-        newRobotAttributes.price = (int)(newRobotAttributes.cps * Random.Range(500, 10000));
+        newRobotAttributes.price = (int)(newRobotAttributes.cps * Random.Range(500, 1999));
         newRobotAttributes.quickSellPrice = newRobotAttributes.price/10;
         newRobotAttributes.robotType = "ultra";
         newRobotAttributes.size = newRobotAttributes.cps <= 350 ? "Massive" : "Tank";

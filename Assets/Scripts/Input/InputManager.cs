@@ -27,6 +27,7 @@ public class InputManager : MonoBehaviour
     public InputAction robot4;
     public InputAction quickSell;
     public InputAction unAssignRobot;
+    public InputAction auctionControls;
     public Vector2 Move { get; private set; }
 
     #endregion
@@ -78,6 +79,7 @@ public class InputManager : MonoBehaviour
         robot4 = _controls.Dialog.Robot4;
         quickSell = _controls.Dialog.QuickSell;
         unAssignRobot = _controls.Dialog.UnassignRobot;
+        auctionControls = _controls.Auction.auctionControls;
     }
 
     private void EnableInputActions()
@@ -101,6 +103,14 @@ public class InputManager : MonoBehaviour
     private void DisableUIControls()
     {
         uiControls.Disable();
+    }
+    public void EnableAuctionControls()
+    {
+        auctionControls.Enable();
+    }
+    private void DisableAuctionControls()
+    {
+        auctionControls.Disable();
     }
 
     #endregion

@@ -92,6 +92,14 @@ public class RobotPopup : MonoBehaviour
 
     public bool PopupActive()
     {
-        return _mAnimator.GetBool(In);
+        if (_mAnimator != null)
+        {
+            return _mAnimator.GetBool(In);
+        }
+        else
+        {
+            return false;
+        }
+        
     }
 }

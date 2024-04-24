@@ -99,6 +99,10 @@ public class Platform : MonoBehaviour
             Debug.Log("Added Robot To Scene");
             stats.hasRobotPrefab = true;
         }
+        else
+        {
+            Debug.Log("Null");
+        }
     }
     public void RemoveRobotFromScene()
     {

@@ -1,7 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using SaveLoad;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 [System.Serializable]
 public class RobotManager : MonoBehaviour
 {
@@ -65,15 +68,45 @@ public class RobotManager : MonoBehaviour
     
     public void BuyRobot(RobotAttributes attributes)
     {
-        if (unassignedRobots.Count < 4)
+        if (unassignedRobots.Count < 4 && CurrentData.Instance.uiData.saveMoney >= attributes.price)
         {
             unassignedRobots.Add(attributes);
+            _saveData.playerMoney -= attributes.price;
+            LoadSave(_saveData.SlotLastSelectedData);
         }
         else
         {
-            Debug.Log("Maximum number of available robots reached");
+            Debug.Log("Maximum number of available robots reached or too broke");
         }
         
     }
-    
+    public void LoadSave(int slotIndex)
+    {
+        _saveData.SaveGameData(_saveData.SlotLastSelectedData);
+        if (_saveData.DoesSaveExist(slotIndex))
+        {
+            SceneController sceneController = FindObjectOfType<SceneController>();
+            StartCoroutine(LoadSceneAndData(slotIndex, sceneController));
+        }
+        else
+        {
+            Debug.Log("No save data found for Slot " + slotIndex);
+        }
+    }
+    private IEnumerator LoadSceneAndData(int slotIndex, SceneController sceneController)
+    {
+        // Start the scene transition
+        _saveData.SlotLastSelectedData = slotIndex;
+        CurrentData.Instance.SlotLastSelectedData = slotIndex;
+        sceneController.ChangeScene(2);
+
+        // Wait for the scene transition to complete
+        while (sceneController.currentlySceneChanging)
+        {
+            yield return null;
+        }
+
+        // Scene transition is complete, now load the data
+        _saveData.Load(slotIndex);
+    }
 }

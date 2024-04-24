@@ -1582,18 +1582,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89499e856101e1a42a1b8126864ea7ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicPrefab: {fileID: 8718822945244518949, guid: f4510045a7023b341bb20d98f3a33395,
+  basicScrawnyACPrefab: {fileID: 4664653957344769856, guid: c0987eccb3c5fb6429c1385fa896d7e0,
     type: 3}
-  silverPrefab: {fileID: 7254945933070597935, guid: d8025b7d9ec463e4590cf98d2c4a5ab1,
+  basicNormalACPrefab: {fileID: 8718822945244518949, guid: f4510045a7023b341bb20d98f3a33395,
     type: 3}
-  goldPrefab: {fileID: 8679858539886753804, guid: aafc600357bf8ae499ca8044e7e295ab,
+  silverNormalACPrefab: {fileID: 7254945933070597935, guid: d8025b7d9ec463e4590cf98d2c4a5ab1,
     type: 3}
-  diamondPrefab: {fileID: 9021179442857879386, guid: 082978f95d38ef8438e89e403809e88a,
+  silverTallACPrefab: {fileID: 8319251065512677320, guid: 341f29387bd332e4bad61a36ab8e464d,
     type: 3}
-  ultraPrefab: {fileID: 3707666822292358951, guid: 57f0898723a7e244ba570ea01b35e5c4,
+  goldTallACPrefab: {fileID: 407279735046665422, guid: c8fa7c9c5168b8447a785ba76d445c6b,
+    type: 3}
+  goldBuiltACPrefab: {fileID: 8679858539886753804, guid: aafc600357bf8ae499ca8044e7e295ab,
+    type: 3}
+  diamondBuiltACPrefab: {fileID: 9021179442857879386, guid: 082978f95d38ef8438e89e403809e88a,
+    type: 3}
+  diamondMassiveACPrefab: {fileID: 8065880277310089715, guid: c45fce5daf3776943832c82ea11bd9b1,
+    type: 3}
+  ultraMassiveACPrefab: {fileID: 5908183433431668164, guid: 4cc31695f04cbc8469ad94425f0b4ef5,
+    type: 3}
+  ultraTankACPrefab: {fileID: 3707666822292358951, guid: 57f0898723a7e244ba570ea01b35e5c4,
+    type: 3}
+  basicScrawnyPrefab: {fileID: 4664653957344769856, guid: 7a38c4119e8bb95478741c9188ae2e44,
+    type: 3}
+  basicNormalPrefab: {fileID: 8718822945244518949, guid: 144deb8a15175864bbc202fb4b72c470,
+    type: 3}
+  silverNormalPrefab: {fileID: 7254945933070597935, guid: fce1c84f5e7b0d74795bcdce228da3ad,
+    type: 3}
+  silverTallPrefab: {fileID: 8319251065512677320, guid: e73d369359551734784e74e5734b1ecd,
+    type: 3}
+  goldTallPrefab: {fileID: 407279735046665422, guid: 28fac96db009b1a42aea48041c132071,
+    type: 3}
+  goldBuiltPrefab: {fileID: 8679858539886753804, guid: a25b1390731d0c84daac2f5276107856,
+    type: 3}
+  diamondBuiltPrefab: {fileID: 9021179442857879386, guid: 97499242a1365fa41aed19f8f3d09af2,
+    type: 3}
+  diamondMassivePrefab: {fileID: 8065880277310089715, guid: 156a7635cc4e4ab4b82a0bc614aaaf17,
+    type: 3}
+  ultraMassivePrefab: {fileID: 5908183433431668164, guid: 5c07ccecdd9fcdd43a0c4a5914d32a88,
+    type: 3}
+  ultraTankPrefab: {fileID: 3707666822292358951, guid: 7e2402e2ff832e3438ce8e83529110ac,
     type: 3}
   workingRobots: []
   unassignedRobots: []
+  auctionRobots: []
 --- !u!4 &390518834
 Transform:
   m_ObjectHideFlags: 0
@@ -6080,6 +6111,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219839828186308237, guid: 4dd9c2d3315575942b11f9e3963d329b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4928263213650942092, guid: 4dd9c2d3315575942b11f9e3963d329b,
         type: 3}

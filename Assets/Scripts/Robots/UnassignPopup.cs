@@ -88,7 +88,7 @@ public class UnassignPopup : MonoBehaviour
                         quickSellPrice = selectedPlatform.stats.quickSellPrice,
                         robotType = selectedPlatform.stats.robotType,
                         size = selectedPlatform.stats.size,
-                        price = selectedPlatform.stats.price
+                        price = selectedPlatform.stats.price, ID = selectedPlatform.stats.ID
                     };
                     if (attributes != null)
                     {

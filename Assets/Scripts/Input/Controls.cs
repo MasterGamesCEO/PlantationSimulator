@@ -397,6 +397,78 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Auction"",
+            ""id"": ""33a43351-9dbf-4b55-84eb-64b21b8ce657"",
+            ""actions"": [
+                {
+                    ""name"": ""auctionControls"",
+                    ""type"": ""Button"",
+                    ""id"": ""a1ba6595-3c81-4a11-b40e-3263d21c9012"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""moveThroughUI"",
+                    ""id"": ""493344e6-1b63-403d-a3a6-13f9458f034a"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""auctionControls"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""add486a4-ffd0-4bbb-a536-fd014720d877"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""auctionControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""a567d51d-27c5-41ea-96d2-7f1ce854e76e"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""auctionControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""2546fa17-b97a-48ac-ac63-df34dc740fc3"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""auctionControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""68bd8bdb-de9b-4a08-a9eb-61ee5f902ea4"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""auctionControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -418,6 +490,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Dialog_Robot4 = m_Dialog.FindAction("Robot4", throwIfNotFound: true);
         m_Dialog_QuickSell = m_Dialog.FindAction("Quick Sell", throwIfNotFound: true);
         m_Dialog_UnassignRobot = m_Dialog.FindAction("UnassignRobot", throwIfNotFound: true);
+        // Auction
+        m_Auction = asset.FindActionMap("Auction", throwIfNotFound: true);
+        m_Auction_auctionControls = m_Auction.FindAction("auctionControls", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -655,6 +730,52 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     }
     public DialogActions @Dialog => new DialogActions(this);
+
+    // Auction
+    private readonly InputActionMap m_Auction;
+    private List<IAuctionActions> m_AuctionActionsCallbackInterfaces = new List<IAuctionActions>();
+    private readonly InputAction m_Auction_auctionControls;
+    public struct AuctionActions
+    {
+        private @Controls m_Wrapper;
+        public AuctionActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @auctionControls => m_Wrapper.m_Auction_auctionControls;
+        public InputActionMap Get() { return m_Wrapper.m_Auction; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(AuctionActions set) { return set.Get(); }
+        public void AddCallbacks(IAuctionActions instance)
+        {
+            if (instance == null || m_Wrapper.m_AuctionActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_AuctionActionsCallbackInterfaces.Add(instance);
+            @auctionControls.started += instance.OnAuctionControls;
+            @auctionControls.performed += instance.OnAuctionControls;
+            @auctionControls.canceled += instance.OnAuctionControls;
+        }
+
+        private void UnregisterCallbacks(IAuctionActions instance)
+        {
+            @auctionControls.started -= instance.OnAuctionControls;
+            @auctionControls.performed -= instance.OnAuctionControls;
+            @auctionControls.canceled -= instance.OnAuctionControls;
+        }
+
+        public void RemoveCallbacks(IAuctionActions instance)
+        {
+            if (m_Wrapper.m_AuctionActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IAuctionActions instance)
+        {
+            foreach (var item in m_Wrapper.m_AuctionActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_AuctionActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public AuctionActions @Auction => new AuctionActions(this);
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -673,5 +794,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnRobot4(InputAction.CallbackContext context);
         void OnQuickSell(InputAction.CallbackContext context);
         void OnUnassignRobot(InputAction.CallbackContext context);
+    }
+    public interface IAuctionActions
+    {
+        void OnAuctionControls(InputAction.CallbackContext context);
     }
 }

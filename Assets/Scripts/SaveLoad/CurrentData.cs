@@ -56,7 +56,7 @@ namespace SaveLoad
                 LoadPlotsFromJson();
             }
 
-            if (FindObjectOfType<PlotPricePopupScript>())
+            if (FindObjectOfType<UIManager>())
             {
                 LoadMoneyFromJson();
             }
