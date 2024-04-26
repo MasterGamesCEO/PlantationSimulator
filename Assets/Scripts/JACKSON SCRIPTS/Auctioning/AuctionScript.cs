@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using SaveLoad;
 using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.UI;
 using static Unity.Mathematics.math;
 using Random = UnityEngine.Random;
 
@@ -47,7 +49,7 @@ public class AuctionScript : MonoBehaviour
 
     void Start()
     {
-        money.text = "$" + SaveData.Instance.playerMoney;
+        money.text = "$" + CurrentData.Instance.uiData.saveMoney;
         RobotManager manager = FindObjectOfType<RobotManager>();
        float random1 = Random.Range(0f, 100f);
        float random2 = Random.Range(0f, 100f); 
@@ -335,6 +337,15 @@ public class AuctionScript : MonoBehaviour
         TextMeshProUGUI priceText = option.Find("PRICE")?.GetComponent<TextMeshProUGUI>();
         if (priceText != null)
             priceText.text = "$" + (currentBot.price);
+        Image image = option.GetComponent<Image>();
+        Debug.Log(image);
+        if (image != null)
+            image.color = currentBot.robotType == "basic" ? Color.grey :
+                currentBot.robotType == "silver" ? Color.white :
+                currentBot.robotType == "gold" ? Color.yellow :
+                currentBot.robotType == "diamond" ? Color.blue :
+                currentBot.robotType == "ultra" ? Color.red :
+                Color.black;
     }
 
     public bool IsPopupActive()

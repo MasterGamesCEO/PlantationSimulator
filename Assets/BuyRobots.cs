@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuyRobots : MonoBehaviour
 {
@@ -58,6 +59,7 @@ public class BuyRobots : MonoBehaviour
             _wasXPressed = false;
         }
     }
+    // ReSharper disable Unity.PerformanceAnalysis
     private void UpdateStartUI()
     {
         for (int i = 0; i < 3; i++)
@@ -83,6 +85,8 @@ public class BuyRobots : MonoBehaviour
                     optionCPS.fontStyle = i == _selectedOptionIndexStart ? FontStyles.Bold : FontStyles.Normal;
                     optionPRICE.fontStyle = i == _selectedOptionIndexStart ? FontStyles.Bold : FontStyles.Normal;
                 }
+
+                
             }
         }
     }

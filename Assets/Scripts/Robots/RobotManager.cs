@@ -70,8 +70,10 @@ public class RobotManager : MonoBehaviour
     {
         if (unassignedRobots.Count < 4 && CurrentData.Instance.uiData.saveMoney >= attributes.price)
         {
+            PlotPricePopupScript plotPricePopupScript = FindObjectOfType<PlotPricePopupScript>();
             unassignedRobots.Add(attributes);
-            _saveData.playerMoney -= attributes.price;
+            plotPricePopupScript.UpdateMoney(attributes.price);
+            CurrentData.Instance.uiData.saveMoney -= attributes.price;
             LoadSave(_saveData.SlotLastSelectedData);
         }
         else

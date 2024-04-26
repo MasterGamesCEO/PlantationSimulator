@@ -95,6 +95,10 @@ public class PlayerController : MonoBehaviour
         {
             SwitchToAuction();
         }
+        else if (other.gameObject.tag.Equals("Stock"))
+        {
+            FindObjectOfType<SellCrops>().SellCropsForMoney(CurrentData.Instance.uiData.cropData);
+        }
     }
 
     private void OnTriggerExit(Collider other)
