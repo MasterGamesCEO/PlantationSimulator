@@ -35,7 +35,7 @@ public class PlotPricePopupScript : MonoBehaviour
     public void ActivatePopup(float plotPriceValue)
     {
         plotPriceValue = (int)plotPriceValue;
-        plotPrice.text = "$" + plotPriceValue.ToString();
+        plotPrice.text = plotPriceValue.ToString("C0");
         _mAnimator.SetBool(Popup, true);
     }
 

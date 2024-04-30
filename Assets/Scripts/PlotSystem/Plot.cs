@@ -58,10 +58,25 @@ public class Plot : MonoBehaviour
     public void SetPlotPrice()
     {
         float distanceFromStartingPlot = Mathf.Abs(Mathf.RoundToInt(transform.position.x) / 8);
-        float basePrice = 500;
+        float basePrice = 2000;
         float pricePerDistance = 100;
 
-        PlotPrice = basePrice + (Mathf.Pow(distanceFromStartingPlot * pricePerDistance, 8 / 5F));
+        
+        if ((basePrice + (Mathf.Pow(distanceFromStartingPlot * pricePerDistance, 2)) < 92000))
+        {
+            PlotPrice = (int)(basePrice + (Mathf.Pow(distanceFromStartingPlot * pricePerDistance, 2)));
+        }
+        else if ((basePrice + (Mathf.Pow(distanceFromStartingPlot * pricePerDistance, 2.7f)) > 20000000))
+        {
+            PlotPrice = (int)(basePrice + (Mathf.Pow(distanceFromStartingPlot * pricePerDistance, 3.2f)));
+        } else if ((basePrice + (Mathf.Pow(distanceFromStartingPlot * pricePerDistance, 2)) < 252000))
+        {
+            PlotPrice = (int)(basePrice + (Mathf.Pow(distanceFromStartingPlot * pricePerDistance, 2.2f)));
+        }
+        else
+        {
+            PlotPrice = (int)(basePrice + (Mathf.Pow(distanceFromStartingPlot * pricePerDistance, 2.7f)));
+        } 
     }
 
     #endregion

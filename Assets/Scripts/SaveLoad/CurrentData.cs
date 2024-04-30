@@ -158,7 +158,7 @@ namespace SaveLoad
             PlatformDataHandler platformDataHandler = FindObjectOfType<PlatformDataHandler>();
             UiData newUiData = new UiData
             {
-                saveMoney = 10000f,
+                saveMoney = 1000f,
                 cropData = 0f
             };
             GameplayData newGameplayData = new GameplayData()

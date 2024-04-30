@@ -5902,6 +5902,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1147213301800016350, guid: 56e960c413a931543abc33b5617e58f9,
         type: 3}
+      propertyPath: playerMoney
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147213301800016350, guid: 56e960c413a931543abc33b5617e58f9,
+        type: 3}
       propertyPath: robotPopupScript
       value: 
       objectReference: {fileID: 541511882}
