@@ -49,7 +49,7 @@ public class AuctionScript : MonoBehaviour
 
     void Start()
     {
-        money.text = "$" + CurrentData.Instance.uiData.saveMoney;
+        money.text = "$" + (int)CurrentData.Instance.uiData.saveMoney;
         RobotManager manager = FindObjectOfType<RobotManager>();
        float random1 = Random.Range(0f, 100f);
        float random2 = Random.Range(0f, 100f); 

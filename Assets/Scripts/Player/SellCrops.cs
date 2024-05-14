@@ -22,7 +22,7 @@ public class SellCrops : MonoBehaviour
         else
         {
             RandyTime = Random.Range(60, 600); //1-10 minute random
-            stockPrice = Random.Range(50, 200);
+            stockPrice = Random.Range(100, 400);
             textBoxPrice.text = stockPrice.ToString("C0");
         }
         
@@ -31,7 +31,7 @@ public class SellCrops : MonoBehaviour
 
     public void SellCropsForMoney(float cropsToSell)
     {
-        CurrentData.Instance.uiData.saveMoney += cropsToSell * stockPrice;
+        CurrentData.Instance.uiData.saveMoney += (cropsToSell/100) * stockPrice;
         CurrentData.Instance.uiData.cropData -= cropsToSell;
         FindObjectOfType<PlotPricePopupScript>().UpdateMoney(0);
         FindObjectOfType<NumberCounter>().Value -= cropsToSell;

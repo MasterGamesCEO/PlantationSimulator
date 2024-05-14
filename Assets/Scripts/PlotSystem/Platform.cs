@@ -96,6 +96,12 @@ public class Platform : MonoBehaviour
         {
             Debug.Log(currentRobotPrefab.name);
             Instantiate(currentRobotPrefab, spawnPosition);
+            Animator robotAnimator = currentRobotPrefab.GetComponent<Animator>();
+            if ( robotAnimator != null)
+            {
+                robotAnimator.SetBool("IsFarming", true);
+                
+            }
             Debug.Log("Added Robot To Scene");
             stats.hasRobotPrefab = true;
         }
@@ -104,6 +110,9 @@ public class Platform : MonoBehaviour
             Debug.Log("Null");
         }
     }
+
+    
+
     public void RemoveRobotFromScene()
     {
         Debug.Log("trying to remove");

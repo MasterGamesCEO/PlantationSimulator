@@ -182,8 +182,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "PLANTATION \nSIM 24"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 561e8019ee1704046bbc66bf827aac3c, type: 2}
-  m_sharedMaterial: {fileID: 2321710919351276593, guid: 561e8019ee1704046bbc66bf827aac3c,
+  m_fontAsset: {fileID: 11400000, guid: 6762c1a03a6147547a78106d4399d35e, type: 2}
+  m_sharedMaterial: {fileID: 2321710919351276593, guid: 6762c1a03a6147547a78106d4399d35e,
     type: 2}
   m_fontSharedMaterials:
   - {fileID: 2321710919351276593, guid: 561e8019ee1704046bbc66bf827aac3c, type: 2}
@@ -1061,6 +1061,15 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   unAssignRobot:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  auctionControls:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
